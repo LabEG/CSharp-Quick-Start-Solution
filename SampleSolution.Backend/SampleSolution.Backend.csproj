@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <Import Project="..\SampleSolution.Core\SampleSolution.Core.projitems" Label="Shared" />
+
+  <Import Project="..\SampleSolution.DAL\SampleSolution.DAL.projitems" Label="Shared" />
+
+</Project>

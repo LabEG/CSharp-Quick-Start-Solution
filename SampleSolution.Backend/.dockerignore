@@ -1,0 +1,4 @@
+*
+!obj/Docker/publish/*
+!obj/Docker/empty/
+!bin/Release/netcoreapp2.0/publish/*

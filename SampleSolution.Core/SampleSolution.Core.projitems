@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>027144be-86c1-4406-ab59-7d2a12c36dfe</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SampleSolution.Core</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\ICrudController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CrudHttpRepositoryConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Base\Entity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Base\IEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Exceptions\ObjectNotFoundException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\Pagination\PagedList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\Pagination\PagedListQueryFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\Pagination\PagedListQueryFilterMethod.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\Pagination\PagedListQuerySortDirection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\Pagination\PageListQuery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\Pagination\PageListQuerySort.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\Pagination\PageMeta.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudFileRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudHttpRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\ICrudRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Base\CrudHttpService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Base\ICrudService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\CheckSumService.cs" />
+  </ItemGroup>
+</Project>

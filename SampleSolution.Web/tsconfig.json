@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "commonjs",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "checkJs": true,
+    "diagnostics": true,
+    "downlevelIteration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "jsx": "React",
+    "lib": [
+      "ES2017",
+      "DOM",
+      "DOM.Iterable",
+      "ScriptHost"
+    ],
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "preserveConstEnums": false,
+    "pretty": true,
+    "strict": true,
+    "strictFunctionTypes": false,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "include": [
+    "wwwrootsrc/**/*",
+    "test/**/*"
+  ],
+  "exclude": [
+  ]
+}

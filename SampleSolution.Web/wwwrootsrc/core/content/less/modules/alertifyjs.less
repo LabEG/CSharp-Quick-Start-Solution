@@ -1,0 +1,43 @@
+
+.alertify
+{
+    z-index: 10000;
+
+    .dialog
+    {
+        .msg
+        {
+            padding: 0.8em;
+            margin-bottom: 0.8em;
+        }
+
+        nav
+        {
+            button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button)
+            {
+                padding: 0 0.6em;
+                margin: 0.6em 0.8em;
+                line-height: 3em;
+                min-height: 3em;
+                min-width: 6em;
+                font-size: 0.8em;
+                border-radius: 0.2em;
+            }
+        }
+    }
+}
+
+.alertify-logs
+{
+    max-width: 40%;
+    z-index: 10000;
+
+    & > .show
+    {
+        margin-top: 0.8em;
+        max-width: 100%;
+        max-height: 15em;
+        padding: 0.8em;
+        overflow-y: auto;
+    }
+}

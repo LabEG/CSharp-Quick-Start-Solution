@@ -1,0 +1,107 @@
+
+// https://github.com/moby/moby/issues/22260
+
+# запуск всех проектов в докере
+
+docker rm -f $(docker ps -a -q) && docker ps -a
+
+docker run -d \
+           --name samplesolution_backend \
+           --restart always \
+           -v /srv/SampleSolution:/srv/SampleSolution \
+           -p 30102:30102 \
+           docker.dev.local:5000/samplesolution/serverlocal:dev_latest
+
+docker run -d \
+           --name samplesolution_web \
+           --restart always \
+           -v /srv/SampleSolution:/srv/SampleSolution \
+           -p 30202:30202 \
+           docker.dev.local:5000/samplesolution/web:dev_latest
+
+
+
+docker run -d \
+           --name watchtower \
+           --restart always \
+           -v /var/run/docker.sock:/var/run/docker.sock \
+           v2tec/watchtower \
+           --interval 30 \
+           --cleanup
+
+# автообновлятель контейнеров
+docker run -d \
+           --name watchtower \
+           --restart always \
+           -v /var/run/docker.sock:/var/run/docker.sock \
+           v2tec/watchtower \
+           --interval 30 \
+           --cleanup
+
+# приватный репозиторий от докера, весьма убог
+docker run -d -p 5000:5000 \
+           -v /srv/docker-registry:/var/lib/registry \
+		   --name registry-srv \
+		   --restart always \
+		   -e REGISTRY_STORAGE_DELETE_ENABLED=true \
+		   registry:2
+
+# веб морда для приватного репозитория от докера, тоже убога
+docker run -d -p 8080:8080 \
+           --name registry-web \
+		   --restart always \
+		   --link registry-srv \
+		   -e REGISTRY_URL=http://registry-srv:5000/v2 \
+		   -e REGISTRY_NAME=localhost:5000 \
+		   -e REGISTRY_READONLY=false \
+		   hyper/docker-registry-web
+
+# веб морда для управления докером
+docker run -d -p 9000:9000 \
+           -v /var/run/docker.sock:/var/run/docker.sock \
+		   --name portainer \
+		   --restart always \
+		   portainer/portainer
+
+# тестовый запуск		   
+docker run -it --rm \
+           --name samplesolution_serverlocal \
+           -v /srv/SampleSolution:/srv/SampleSolution \
+           -p 30202:30202 \
+           docker.dev.local:5000/samplesolution/serverlocal:dev_latest
+
+
+# запустить в интерактивном режиме и удалить после выхода
+docker run -i --rm 0027edafb450
+
+# посмотреть логи контейнера 
+docker logs 21fec35776bd
+
+# перезапустить все контейнеры
+docker restart $(docker ps -a -q)
+
+# удалить все контейнеры
+docker rm -f $(docker ps -a -q) && docker ps -a
+
+# удалить все образы
+docker rmi -f $(docker images -a -q) && docker images -a
+
+# войти в контейнер
+docker exec -it db0f04a3ac76 bash
+
+# дать женкинсу доступ к докеру
+usermod -a -G docker jenkins
+
+# очистить приватный репозиторий
+docker exec -it 31f917d75fcd bin/registry garbage-collect /etc/docker/registry/config.yml
+
+// https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-7
+firewall-cmd --permanent --zone=public --add-service=http
+firewall-cmd --permanent --zone=public --add-service=postgresql
+firewall-cmd --permanent --zone=trusted --add-interface=docker0
+firewall-cmd --permanent --zone=trusted --add-port=4243/tcp
+
+grep "iptables" /var/log/messages
+
+docker save -o <save image to path> <image name>
+docker load -i <path to image tar file>

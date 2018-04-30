@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SampleSolution.Core", "SampleSolution.Core\SampleSolution.Core.shproj", "{027144BE-86C1-4406-AB59-7D2A12C36DFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSolution.Web", "SampleSolution.Web\SampleSolution.Web.csproj", "{5F5F284F-2213-402C-901D-737E6C4DF21E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSolution.Backend", "SampleSolution.Backend\SampleSolution.Backend.csproj", "{72C9DE9A-41B0-4698-8F3A-EC02A2FF6437}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5522DCBE-6BAF-43B3-9658-7CACBC985A9B}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		SolutionItems\build.sh = SolutionItems\build.sh
+		SolutionItems\cleanRepo.js = SolutionItems\cleanRepo.js
+		SolutionItems\dockerHelp.txt = SolutionItems\dockerHelp.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SampleSolution.DAL", "SampleSolution.DAL\SampleSolution.DAL.shproj", "{3108F5BB-9B97-4D1F-9E56-1C83AD8EB2BF}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SampleSolution.Core\SampleSolution.Core.projitems*{027144be-86c1-4406-ab59-7d2a12c36dfe}*SharedItemsImports = 13
+		SampleSolution.DAL\SampleSolution.DAL.projitems*{3108f5bb-9b97-4d1f-9e56-1c83ad8eb2bf}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F5F284F-2213-402C-901D-737E6C4DF21E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F5F284F-2213-402C-901D-737E6C4DF21E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F5F284F-2213-402C-901D-737E6C4DF21E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F5F284F-2213-402C-901D-737E6C4DF21E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72C9DE9A-41B0-4698-8F3A-EC02A2FF6437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72C9DE9A-41B0-4698-8F3A-EC02A2FF6437}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72C9DE9A-41B0-4698-8F3A-EC02A2FF6437}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72C9DE9A-41B0-4698-8F3A-EC02A2FF6437}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E268DBEE-A423-4813-95C3-F0FADDBE1AD6}
+	EndGlobalSection
+EndGlobal

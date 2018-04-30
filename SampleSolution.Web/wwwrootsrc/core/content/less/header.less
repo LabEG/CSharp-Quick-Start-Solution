@@ -1,0 +1,147 @@
+@import './variables';
+
+.HeaderController
+{
+    margin: 0;
+    min-height: 9em;
+    padding: 0.5em 0;
+
+    [class*="col-"]
+    {
+        padding: 0;
+    }
+
+    & > div
+    {
+        padding-bottom: 0;
+    }
+
+    .title
+    {
+        padding: 0 2em;
+    }
+
+    .subtitle
+    {
+        padding: 0.5em 0 0 2.1em;
+    }
+
+    .buttons
+    {
+        text-align: right;
+        padding-right: 3em;
+
+        @media (max-width: @smallScreen)
+        {
+            padding-right: 0.5em;
+        }
+    }
+
+    .col-burger
+    {
+        text-align: center;
+        display: none;
+        flex-basis: 0;
+        max-width: 0;
+
+        @media (max-width: @middleScreen)
+        {
+            display: block;
+            flex-basis: 8.33333333%;
+            max-width: 8.33333333%;
+        }
+
+    }
+
+    .col-header
+    {
+        flex-basis: 83.33333333%;
+        max-width: 83.33333333%;
+
+        @media (max-width: @middleScreen)
+        {
+            flex-basis: 75%;
+            max-width: 75%;
+        }
+    }
+
+    .icon-button
+    {
+        padding: 0.25em 0.25em !important;
+        font-size: 1.5em !important;
+
+        @media (max-width: @middleScreen)
+        {
+            font-size: 2em !important;
+        }
+
+        &.burger
+        {
+            text-align: center;
+
+            @media (max-width: @middleScreen)
+            {
+                font-size: 2.5em !important;
+            }
+
+            @media (max-width: @smallScreen)
+            {
+                font-size: 3em !important;
+            }
+
+        }
+    }
+
+    .user
+    {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 1.1em;
+        margin: 0 0.5em;
+
+        & > span
+        {
+            color: rgb(25, 150, 228);
+            cursor: pointer;
+        }
+    }
+
+    .breadcrumb
+    {
+        list-style: none;
+        font-size: 1.7em;
+        line-height: 1.5em;
+        padding: 0;
+
+        & li
+        {
+            display: inline;
+            font-size: 1em;
+
+            & a
+            {
+                color: black;
+                text-decoration-skip: ink;
+                cursor: pointer;
+            }
+        }
+
+        & li:last-of-type
+        {
+            & a
+            {
+                text-decoration: none;
+                cursor: default;
+                pointer-events: none;
+            }
+        }
+
+        & li+li:before
+        {
+            padding-left: 0.3em;;
+            color: black;
+            content: "/\00a0";
+        }
+    }
+
+}
