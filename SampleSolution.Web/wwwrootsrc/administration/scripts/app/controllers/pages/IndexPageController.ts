@@ -1,10 +1,6 @@
 import {PageController} from '../../../../../core/scripts/app/controllers/_base/PageController';
 import {BaseController} from '../../../../../core/scripts/app/controllers/_base/BaseController';
 import {indexPageView} from '../../views/pages/IndexPageView';
-import {Breadcrumb} from '../../../../../core/scripts/app/models/ViewModels/Breadcrumb';
-import {Router} from '../../Router';
-import {BreadcrumbsService} from '../../../../../core/scripts/app/services/BreadcrumbsService';
-import {autowired} from '../../../../../core/scripts/app/decorators/properties/Autowired';
 // import * as alertify from 'alertify.js';
 
 export class IndexPage<P> extends PageController<P> {
@@ -25,11 +21,6 @@ export class IndexPage<P> extends PageController<P> {
 
 export class IndexPageController<P, S> extends BaseController<P, S> {
 
-    @autowired
-    private breadcrumbsService: BreadcrumbsService;
-
-    private breadcrumbs: Breadcrumb[] = [];
-
     constructor(props: P, context?: object) {
         super(
             props,
@@ -43,8 +34,7 @@ export class IndexPageController<P, S> extends BaseController<P, S> {
     }
 
     public componentWillMount(): void {
-        this.breadcrumbs.push(new Breadcrumb(Router.routs.indexPage.title, Router.routs.indexPage.getUrl()));
-        this.breadcrumbsService.setBreadcrumbs(this.breadcrumbs);
+
     }
 
     public activate(): void {

@@ -9,5 +9,12 @@
     <Import_RootNamespace>SampleSolution.DAL</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\CrudController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\DbCrudRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DBContexts\MainDBContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Base\DbCrudService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)DBContexts\" />
   </ItemGroup>
 </Project>

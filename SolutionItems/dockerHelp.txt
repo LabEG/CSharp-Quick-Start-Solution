@@ -10,14 +10,14 @@ docker run -d \
            --restart always \
            -v /srv/SampleSolution:/srv/SampleSolution \
            -p 30102:30102 \
-           docker.dev.local:5000/samplesolution/serverlocal:dev_latest
+           docker.dev.local:5000/samplesolution/samplesolution_backend:dev_latest
 
 docker run -d \
            --name samplesolution_web \
            --restart always \
            -v /srv/SampleSolution:/srv/SampleSolution \
            -p 30202:30202 \
-           docker.dev.local:5000/samplesolution/web:dev_latest
+           docker.dev.local:5000/samplesolution/samplesolution_web:dev_latest
 
 
 

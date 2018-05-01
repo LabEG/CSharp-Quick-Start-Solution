@@ -1,31 +1,17 @@
 import {BaseController} from './_base/BaseController';
 import {headerView} from '../views/HeaderView';
 import * as alertify from 'alertify.js';
-import {TouchTapEvent} from 'material-ui';
-import {SecurityService} from '../services/SecurityService';
-import {UserPrincipalEntity} from '../models/entities/UserPrincipalEntity';
 import {PageController} from './_base/PageController';
-import {autowired} from '../decorators/properties/Autowired';
-import {BreadcrumbsService} from '../services/BreadcrumbsService';
-import {Breadcrumb} from '../models/ViewModels/Breadcrumb';
 
 export class HeaderOptions {
-    public pages: PageController<object>[];
+    public pages: PageController<object>[] = [];
 }
 
 export class HeaderController<T extends HeaderOptions, S> extends BaseController<T, S> {
-    public isSettingOpen: boolean;
-    public isOpenNavigationMenu: boolean;
-    public settingsButtonElement: HTMLDivElement;
-    public user: UserPrincipalEntity = new UserPrincipalEntity();
+    public isSettingOpen: boolean = false;
+    public isOpenNavigationMenu: boolean = false;
+    public settingsButtonElement: HTMLDivElement | null = null;
     public pages: PageController<object>[] = [];
-
-    public breadCrumbs: Breadcrumb[] = [];
-
-    @autowired
-    private userService: SecurityService;
-    @autowired
-    private breadcrumbsService: BreadcrumbsService;
 
     constructor(props: T, context?: object) {
         super(
@@ -40,11 +26,6 @@ export class HeaderController<T extends HeaderOptions, S> extends BaseController
     public activate(): void {
         this.pages = this.props.pages || [];
         this.getCurrentUser();
-
-        this.breadcrumbsService.events.addEventListener('onBreadcrumbsChange', (e: CustomEvent) => {
-            this.breadCrumbs = e.detail;
-            this.redraw();
-        });
     }
 
     public update(): void {
@@ -53,7 +34,6 @@ export class HeaderController<T extends HeaderOptions, S> extends BaseController
 
     public async getCurrentUser(): Promise<void> {
         try {
-            this.user = await this.userService.getCurrentUser();
             this.redraw();
         } catch (err) {
             // alertify.error(`HeaderController.getCurrentUser: error on user request ${err}`);
@@ -71,7 +51,6 @@ export class HeaderController<T extends HeaderOptions, S> extends BaseController
                 'Вы действительно хотите выйти из аккаунта?',
                 async () => {
                     try {
-                        await this.userService.getLogout();
                     } catch (e) {
                     }
                     window.location.href = './login';
@@ -79,7 +58,7 @@ export class HeaderController<T extends HeaderOptions, S> extends BaseController
             );
     }
 
-    public async openSettingsMenu(event: TouchTapEvent): Promise<void> {
+    public async openSettingsMenu(event: Event): Promise<void> {
         event.preventDefault();
         this.settingsButtonElement = event.currentTarget as HTMLDivElement;
         this.isSettingOpen = true;

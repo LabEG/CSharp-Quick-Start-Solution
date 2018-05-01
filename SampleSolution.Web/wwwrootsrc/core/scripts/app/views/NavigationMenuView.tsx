@@ -14,9 +14,7 @@ export function navigationMenuView<T, S>(ctrl: NavigationMenuController<Navigati
             <div key={1} className="banner">
                 <a href="#">
                     <div key={2}>
-                        Система<br/>
-                        оценки качества<br/>
-                        обслуживания<br/>
+                        Панель администратора
                     </div>
                 </a>
             </div>

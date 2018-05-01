@@ -4,9 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import Drawer from 'material-ui/Drawer';
 import {NavigationMenuController} from '../controllers/NavigationMenuController';
 import SvgIcon from 'material-ui/SvgIcon';
-import {TouchTapEvent} from 'material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
-import {Breadcrumb} from '../models/ViewModels/Breadcrumb';
 
 const MenuIcon = (props: any) => (
     <SvgIcon {...props}>
@@ -22,7 +20,7 @@ export function headerView<T extends HeaderOptions, S>(ctrl: HeaderController<T,
                 <IconButton key={1}
                             touch={true}
                             className="icon-button burger"
-                            onTouchTap={(event: TouchTapEvent) => ctrl.openNavigationMenu()}>
+                            onClick={() => ctrl.openNavigationMenu()}>
                     <MenuIcon color="black"/>
                 </IconButton>
                 <Drawer
@@ -35,22 +33,12 @@ export function headerView<T extends HeaderOptions, S>(ctrl: HeaderController<T,
                 </Drawer>
             </div>
             <div key={2} className="col-6_md-5">
-                <div key={1} className="title">
-                    <ul className="breadcrumb">
-                    {ctrl.breadCrumbs ?
-                        ctrl.breadCrumbs.map((value: Breadcrumb, index: number) => {
-                        return (
-                            <li key={index}><a href={`#${value.url}`}>{value.label}</a></li>
-                        );
-                    }) : void 0}
-                    </ul>
-                </div>
             </div>
             <div key={3} className="buttons col-6">
-                <div key={10} className="user">Здравствуйте, <span>Иванов Иван Иванович</span>{ctrl.user.getFullName()}</div>
+                <div key={10} className="user">Здравствуйте, <span>Иванов Иван Иванович</span></div>
                 <RaisedButton key={20} className="mui-button--flat"
                               label="Выйти"
-                              onTouchTap={() => ctrl.onLogoutClick()}/>
+                              onClick={() => ctrl.onLogoutClick()}/>
             </div>
         </div>
     );

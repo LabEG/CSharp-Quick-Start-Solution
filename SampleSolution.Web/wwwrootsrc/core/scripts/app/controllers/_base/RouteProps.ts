@@ -1,8 +1,5 @@
-import {match, RouteComponentProps} from 'react-router';
-import * as H from 'history';
+import {RouteComponentProps} from 'react-router';
 
-export class RouteProps<P> implements RouteComponentProps<P> {
-    public match: match<P>;
-    public location: H.Location;
-    public history: H.History;
+export interface RouteProps<P> extends RouteComponentProps<P> {
+
 }

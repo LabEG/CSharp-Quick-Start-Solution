@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\CrudHttpRepositoryConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Base\Entity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Base\IEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Config.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Exceptions\ObjectNotFoundException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\Pagination\PagedList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\Pagination\PagedListQueryFilter.cs" />

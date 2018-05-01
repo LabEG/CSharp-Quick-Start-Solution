@@ -50,7 +50,7 @@ export function indexPageView<P, S>(ctrl: IndexPageController<P, S>, opts?: P): 
                                 className="button--flat"
                                 disabled={!ctrl.login || !ctrl.password}
                                 label="Войти"
-                                onTouchTap={() => ctrl.makeLogin()}/> :
+                                onClick={() => ctrl.makeLogin()}/> :
                             <CircularProgress size={60} thickness={7}/>
                     }
                 </form>

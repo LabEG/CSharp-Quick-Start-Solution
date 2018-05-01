@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,6 +14,12 @@ namespace SampleSolution.Backend
     {
         public static void Main(string[] args)
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+            Console.WriteLine("");
+            Console.WriteLine("SampleSolution - Backend. Build: {_date_}");
+            Console.WriteLine("");
+
             BuildWebHost(args).Run();
         }
 

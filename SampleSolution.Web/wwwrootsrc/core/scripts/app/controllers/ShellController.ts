@@ -9,7 +9,7 @@ import {Config} from '../Config';
 export class ShellOptions {
     public leftPanelConstructor?: new (props?: object, context?: object) => BaseController<object, object>;
     public headerPanelConstructor?: new (props?: object, context?: object) => BaseController<object, object>;
-    public routs: BaseRouter;
+    public routs: BaseRouter | null = null;
 }
 
 export class ShellController<T extends ShellOptions, S> extends BaseController<ShellOptions, S> {

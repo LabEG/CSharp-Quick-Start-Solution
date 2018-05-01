@@ -1,7 +1,5 @@
 import {BaseController} from './_base/BaseController';
 import {navigationMenuView} from '../views/NavigationMenuView';
-import {UserPrincipalEntity} from '../models/entities/UserPrincipalEntity';
-import {SecurityService} from '../services/SecurityService';
 // import * as alertify from 'alertify.js';
 import {PageController} from './_base/PageController';
 
@@ -17,17 +15,14 @@ export class MenuElement {
 }
 
 export class NavigationMenuOptions {
-    public pages: PageController<object>[];
+    public pages: PageController<object>[] = [];
     public elements?: MenuElement[];
 }
 
 export class NavigationMenuController<T extends NavigationMenuOptions, S> extends BaseController<NavigationMenuOptions, S> {
 
     public menuElements: MenuElement[] = [];
-    public user: UserPrincipalEntity = new UserPrincipalEntity();
     public pages: PageController<object>[] = [];
-
-    private userService: SecurityService = new SecurityService();
 
     constructor(props: T, context?: object) {
         super(
@@ -75,7 +70,6 @@ export class NavigationMenuController<T extends NavigationMenuOptions, S> extend
 
     public async getCurrentUser(): Promise<void> {
         try {
-            this.user = await this.userService.getCurrentUser();
             this.redraw();
         } catch (err) {
             // alertify.error(`NavigationMenuController.getCurrentUser: error on user request ${err}`);

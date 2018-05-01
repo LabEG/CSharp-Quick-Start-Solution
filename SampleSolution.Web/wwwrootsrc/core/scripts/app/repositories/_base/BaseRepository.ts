@@ -8,11 +8,11 @@ type RequestCredentials = 'omit' | 'same-origin' | 'include';
 export class BaseRequestInit implements RequestInit {
     public method: string;
     public credentials: RequestCredentials; // 'omit' | 'same-origin' | 'include';
-    public body?: Object;
+    public body?: Blob | FormData | string | null;
     public headers?: Headers | string[][];
 
     constructor(method?: string,
-                body?: Object,
+                body?: Blob | FormData | string | null,
                 headers?: Headers | string[][],
                 credentials?: RequestCredentials) {
 
@@ -43,7 +43,7 @@ export class BaseRepository {
         | void> {
         let response: Response = await fetch(
             url,
-            init || new BaseRequestInit('POST', data, [['Content-Type','application/json']])
+            init || new BaseRequestInit('POST', JSON.stringify(data), [['Content-Type','application/json']])
         );
         response = await this.handleError(response);
 
@@ -53,7 +53,7 @@ export class BaseRepository {
     protected async putAsync(url: string, data: Object, init?: RequestInit): Promise<void> {
         const response: Response = await fetch(
             url,
-            init || new BaseRequestInit('PUT', data, [['Content-Type','application/json']])
+            init || new BaseRequestInit('PUT', JSON.stringify(data), [['Content-Type','application/json']])
         );
         await this.handleError(response);
     }
