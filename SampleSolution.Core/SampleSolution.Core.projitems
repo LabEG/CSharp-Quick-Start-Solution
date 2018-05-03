@@ -26,7 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\ICrudFileRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\ICrudHttpRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\ICrudRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Base\CrudHttpService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Base\CrudService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Base\ICrudService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\CheckSumService.cs" />
   </ItemGroup>

@@ -11,8 +11,9 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\CrudController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DBContexts\MainDBContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\DbCrudRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudDbRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\ICrudDbRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Base\DbCrudService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Base\ICrudDbService.cs" />
   </ItemGroup>
 </Project>

@@ -14,18 +14,20 @@ using SampleSolution.Core.Controllers.Base;
 using SampleSolution.Core.Models.Entities.Base;
 using SampleSolution.Core.Models.Exceptions;
 using SampleSolution.Core.Models.ViewModels.Pagination;
+using SampleSolution.Core.Repositories.Base;
 using SampleSolution.Core.Services.Base;
 
 namespace SampleSolution.ServerCore.Controllers.Base
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class CrudController<TEntity, TId> : Controller, ICrudController<TEntity, TId>
-        where TEntity : class, IEntity<TId>
+    public class CrudController<TService, TEntity, TId> : Controller, ICrudController<TService, TEntity, TId>
+        where TService : class, ICrudService<ICrudRepository<TEntity, TId>, TEntity, TId>
+        where TEntity : class, IEntity<TId>, new()
     {
-        protected ICrudService<TEntity, TId> Service;
+        protected TService Service { get; }
 
-        public CrudController(ICrudService<TEntity, TId> service)
+        public CrudController(TService service)
         {
             this.Service = service;
         }

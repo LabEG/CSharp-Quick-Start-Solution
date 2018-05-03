@@ -30,8 +30,8 @@ namespace SampleSolution.Backend
                 // options.UseNpgsql("SampleSolution");
             });
 
-            services.AddScoped(typeof(ICrudRepository<,>), typeof(DbCrudRepository<,>));
-            services.AddScoped(typeof(ICrudService<,>), typeof(DbCrudService<,,,>));
+            services.AddScoped(typeof(ICrudDbRepository<,,>), typeof(CrudDbRepository<,,>));
+            services.AddScoped(typeof(ICrudDbService<,,,>), typeof(DbCrudService<,,,>));
 
 #if DEBUG
             services.AddCors();

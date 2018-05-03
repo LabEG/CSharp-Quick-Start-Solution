@@ -19,8 +19,5 @@
 
   <Import Project="..\SampleSolution.Core\SampleSolution.Core.projitems" Label="Shared" />
 
-  <Import Project="..\SampleSolution.DAL\SampleSolution.DAL.projitems" Label="Shared" />
-
   <Import Project="..\SampleSolution.ServerCore\SampleSolution.ServerCore.projitems" Label="Shared" />
-
 </Project>
