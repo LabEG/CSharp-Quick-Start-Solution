@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SampleSolution.Core", "SampleSolution.Core\SampleSolution.Core.shproj", "{027144BE-86C1-4406-AB59-7D2A12C36DFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSolution.Web", "SampleSolution.Web\SampleSolution.Web.csproj", "{5F5F284F-2213-402C-901D-737E6C4DF21E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleSolution.Web", "SampleSolution.Web\SampleSolution.Web.csproj", "{5F5F284F-2213-402C-901D-737E6C4DF21E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSolution.Backend", "SampleSolution.Backend\SampleSolution.Backend.csproj", "{72C9DE9A-41B0-4698-8F3A-EC02A2FF6437}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleSolution.Backend", "SampleSolution.Backend\SampleSolution.Backend.csproj", "{72C9DE9A-41B0-4698-8F3A-EC02A2FF6437}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5522DCBE-6BAF-43B3-9658-7CACBC985A9B}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,12 +19,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SampleSolution.DAL", "SampleSolution.DAL\SampleSolution.DAL.shproj", "{3108F5BB-9B97-4D1F-9E56-1C83AD8EB2BF}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SampleSolution.ServerCore", "SampleSolution.ServerCore\SampleSolution.ServerCore.shproj", "{3C2FD61B-5946-4A48-8FDD-5FB25511643E}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SampleSolution.Core\SampleSolution.Core.projitems*{027144be-86c1-4406-ab59-7d2a12c36dfe}*SharedItemsImports = 13
-		SampleSolution.DAL\SampleSolution.DAL.projitems*{3108f5bb-9b97-4d1f-9e56-1c83ad8eb2bf}*SharedItemsImports = 13
+		SampleSolution.ServerCore\SampleSolution.ServerCore.projitems*{3c2fd61b-5946-4a48-8fdd-5fb25511643e}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -15,12 +15,13 @@ using SampleSolution.Core.Repositories.Base;
 
 namespace SampleSolution.ServerCore.Repositories.Base
 {
-    public class DbCrudRepository<TEntity, TId> : ICrudRepository<TEntity, TId>
-        where TEntity : class, IEntity<TId>
+    public class DbCrudRepository<TDbContext, TEntity, TId> : ICrudDbRepository<TDbContext, TEntity, TId>
+        where TDbContext : DbContext
+        where TEntity : class, IEntity<TId>, new()
     {
-        public DbContext DBContext { get; set; }
+        protected TDbContext DBContext { get; }
 
-        public DbCrudRepository(DbContext dbContext = null)
+        public DbCrudRepository(TDbContext dbContext)
         {
             this.DBContext = dbContext;
         }

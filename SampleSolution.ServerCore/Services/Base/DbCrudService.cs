@@ -10,13 +10,15 @@ using SampleSolution.Core.Services.Base;
 
 namespace SampleSolution.ServerCore.Services.Base
 {
-    public class DbCrudService<TEntity, TId> : ICrudService<TEntity, TId>
+    public class DbCrudService<TDbContext, TCrudRepository, TEntity, TId> : ICrudService<TEntity, TId>
+    where TDbContext : DbContext
+    where TCrudRepository : class, ICrudRepository<TEntity, TId>
     where TEntity : class, IEntity<TId>, new()
     {
-        protected DbContext DBContext { get; set; }
-        protected ICrudRepository<TEntity, TId> Repository { get; set; }
+        protected TDbContext DBContext { get; set; }
+        protected TCrudRepository Repository { get; set; }
 
-        public DbCrudService(DbContext dbContext, ICrudRepository<TEntity, TId> repository)
+        public DbCrudService(TDbContext dbContext, TCrudRepository repository)
         {
             this.DBContext = dbContext;
             this.Repository = repository;

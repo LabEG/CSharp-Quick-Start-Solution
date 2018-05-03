@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using SampleSolution.Core.Repositories.Base;
 using SampleSolution.Core.Services.Base;
-using SampleSolution.DAL.DBContexts;
+using SampleSolution.ServerCore.DBContexts;
 using SampleSolution.ServerCore.Repositories.Base;
 using SampleSolution.ServerCore.Services.Base;
 
@@ -31,7 +31,7 @@ namespace SampleSolution.Backend
             });
 
             services.AddScoped(typeof(ICrudRepository<,>), typeof(DbCrudRepository<,>));
-            services.AddScoped(typeof(ICrudService<,>), typeof(DbCrudService<,>));
+            services.AddScoped(typeof(ICrudService<,>), typeof(DbCrudService<,,,>));
 
 #if DEBUG
             services.AddCors();

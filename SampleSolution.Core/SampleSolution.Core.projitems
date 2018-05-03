@@ -10,7 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\ICrudController.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\CrudHttpRepositoryConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Base\Entity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Base\IEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Config.cs" />
@@ -24,6 +23,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\Pagination\PageMeta.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudFileRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudHttpRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\ICrudFileRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\ICrudHttpRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\ICrudRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Base\CrudHttpService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Base\ICrudService.cs" />

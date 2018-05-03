@@ -7,7 +7,8 @@ using SampleSolution.Core.Models.ViewModels.Pagination;
 
 namespace SampleSolution.Core.Repositories.Base
 {
-    public interface ICrudRepository<TEntity, TId> where TEntity : class, IEntity<TId>//, new()
+    public interface ICrudRepository<TEntity, TId>
+        where TEntity : class, IEntity<TId>, new()
     {
         Task<TEntity> Create(TEntity entity);
 

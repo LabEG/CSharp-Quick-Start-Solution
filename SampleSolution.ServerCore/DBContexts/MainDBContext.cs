@@ -8,7 +8,7 @@ using SampleSolution.Core.Models.Entities.Base;
 // many-to-many
 // https://docs.microsoft.com/en-us/ef/core/modeling/relationships#many-to-many
 
-namespace SampleSolution.DAL.DBContexts
+namespace SampleSolution.ServerCore.DBContexts
 {
     public class MainDBContext : DbContext
     {

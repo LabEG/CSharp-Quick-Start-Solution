@@ -12,7 +12,8 @@ using SampleSolution.Core.Models.ViewModels.Pagination;
 
 namespace SampleSolution.Core.Repositories.Base
 {
-    public class CrudFileRepository<TEntity, TId> : ICrudRepository<TEntity, TId> where TEntity : class, IEntity<TId>//, new()
+    public class CrudFileRepository<TEntity, TId> : ICrudFileRepository<TEntity, TId>
+        where TEntity : class, IEntity<TId>, new()
     {
         protected long countId = 0;
         protected string folderPath;

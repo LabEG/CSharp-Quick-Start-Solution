@@ -16,25 +16,23 @@ using SampleSolution.Core.Models.ViewModels.Pagination;
 
 namespace SampleSolution.Core.Repositories.Base
 {
-    public class BaseRepository
+    public class CrudHttpRepository<TEntity, TId> : ICrudHttpRepository<TEntity, TId>
+        where TEntity : class, IEntity<TId>, new()
     {
-        public static HttpClient client = new HttpClient() { Timeout = TimeSpan.FromSeconds(10) };
-    }
+        protected string BaseAdress { get; }
+        protected string EndPoint { get; }
+        protected HttpClient Client { get; }
 
-    public class CrudHttpRepository<TEntity, TId> : ICrudRepository<TEntity, TId> where TEntity : class, IEntity<TId>//, new()
-    {
-        protected CrudHttpRepositoryConfig Config { get; set; }
-        protected string EndPoint { get; set; }
-
-        public CrudHttpRepository(CrudHttpRepositoryConfig config, string endPoint)
+        public CrudHttpRepository(string baseAddress, string endPoint)
         {
-            this.Config = config;
+            this.BaseAdress = baseAddress;
             this.EndPoint = endPoint;
+            this.Client = new HttpClient() { Timeout = TimeSpan.FromSeconds(10) };
         }
 
         public async Task<TEntity> Create(TEntity entity)
         {
-            return await this.CreateByUrl(entity, this.Config.BaseAdress + "/" + this.EndPoint);
+            return await this.CreateByUrl(entity, this.BaseAdress + "/" + this.EndPoint);
         }
 
         public async Task<TEntity> CreateByUrl(TEntity entity, string url)
@@ -51,23 +49,23 @@ namespace SampleSolution.Core.Repositories.Base
 
         public async Task Delete(TId id)
         {
-            await this.DeleteAsync(this.Config.BaseAdress + "/" + this.EndPoint + "/" + id);
+            await this.DeleteAsync(this.BaseAdress + "/" + this.EndPoint + "/" + id);
         }
 
         public async Task<TEntity> GetById(TId id)
         {
-            return await this.GetAsync(this.Config.BaseAdress + "/" + this.EndPoint + "/" + id);
+            return await this.GetAsync(this.BaseAdress + "/" + this.EndPoint + "/" + id);
         }
 
         public async Task<IList<TEntity>> GetAll()
         {
-            return await this.GetAllAsync(this.Config.BaseAdress + "/" + this.EndPoint);
+            return await this.GetAllAsync(this.BaseAdress + "/" + this.EndPoint);
         }
 
         public async Task Update(TId id, TEntity entity)
         {
             await this.PutAsync(
-                this.Config.BaseAdress + "/" + this.EndPoint + "/" + id,
+                this.BaseAdress + "/" + this.EndPoint + "/" + id,
                 new StringContent(
                     JsonConvert.SerializeObject(entity),
                     Encoding.UTF8,
@@ -146,8 +144,8 @@ namespace SampleSolution.Core.Repositories.Base
                 gets.Add($"graph={HttpUtility.UrlPathEncode(JsonConvert.SerializeObject(query.Graph))}");
             }
 
-            string url = this.Config.BaseAdress + "/" + this.EndPoint + "/paged?" + string.Join("&", gets);
-            HttpResponseMessage httpResponseMessage = await BaseRepository.client.GetAsync(url);
+            string url = this.BaseAdress + "/" + this.EndPoint + "/paged?" + string.Join("&", gets);
+            HttpResponseMessage httpResponseMessage = await this.Client.GetAsync(url);
             this.CheckResponseStatus(httpResponseMessage);
             string response = await httpResponseMessage.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<PagedList<TEntity>>(response);
@@ -156,7 +154,7 @@ namespace SampleSolution.Core.Repositories.Base
         public async Task<TEntity> GetGraph(TId id, JObject graph)
         {
             return await this.GetAsync(
-                this.Config.BaseAdress + "/" + this.EndPoint + "/" + id + "/graph?" +
+                this.BaseAdress + "/" + this.EndPoint + "/" + id + "/graph?" +
                 "graph=" + JsonConvert.SerializeObject(graph)
             );
         }
@@ -201,7 +199,7 @@ namespace SampleSolution.Core.Repositories.Base
         // DeleteAsync
         protected async Task DeleteAsync(string requestUri, CancellationToken cancellationToken = new CancellationToken())
         {
-            HttpResponseMessage httpResponseMessage = await BaseRepository.client.DeleteAsync(requestUri, cancellationToken);
+            HttpResponseMessage httpResponseMessage = await this.Client.DeleteAsync(requestUri, cancellationToken);
             this.CheckResponseStatus(httpResponseMessage);
         }
 
@@ -212,7 +210,7 @@ namespace SampleSolution.Core.Repositories.Base
             CancellationToken cancellationToken = new CancellationToken()
         )
         {
-            HttpResponseMessage httpResponseMessage = await BaseRepository.client.GetAsync(requestUri, completionOption, cancellationToken);
+            HttpResponseMessage httpResponseMessage = await this.Client.GetAsync(requestUri, completionOption, cancellationToken);
             this.CheckResponseStatus(httpResponseMessage);
             string response = await httpResponseMessage.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<TEntity>(response);
@@ -224,7 +222,7 @@ namespace SampleSolution.Core.Repositories.Base
             CancellationToken cancellationToken = new CancellationToken()
         )
         {
-            HttpResponseMessage httpResponseMessage = await BaseRepository.client.GetAsync(requestUri, completionOption, cancellationToken);
+            HttpResponseMessage httpResponseMessage = await this.Client.GetAsync(requestUri, completionOption, cancellationToken);
             this.CheckResponseStatus(httpResponseMessage);
             string response = await httpResponseMessage.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<TEntity[]>(response);
@@ -237,7 +235,7 @@ namespace SampleSolution.Core.Repositories.Base
             CancellationToken cancellationToken = new CancellationToken()
         )
         {
-            HttpResponseMessage httpResponseMessage = await BaseRepository.client.PostAsync(requestUri, content, cancellationToken);
+            HttpResponseMessage httpResponseMessage = await this.Client.PostAsync(requestUri, content, cancellationToken);
             this.CheckResponseStatus(httpResponseMessage);
             string response = await httpResponseMessage.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<TEntity>(response);
@@ -250,7 +248,7 @@ namespace SampleSolution.Core.Repositories.Base
             CancellationToken cancellationToken = new CancellationToken()
         )
         {
-            HttpResponseMessage httpResponseMessage = await BaseRepository.client.PutAsync(requestUri, content, cancellationToken);
+            HttpResponseMessage httpResponseMessage = await this.Client.PutAsync(requestUri, content, cancellationToken);
             this.CheckResponseStatus(httpResponseMessage);
             string response = await httpResponseMessage.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<TEntity>(response);
