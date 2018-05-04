@@ -7,8 +7,7 @@ using SampleSolution.Core.Repositories.Base;
 
 namespace SampleSolution.Core.Services.Base
 {
-    public interface ICrudService<TRepository, TEntity, TId>
-        where TRepository : class, ICrudRepository<TEntity, TId>
+    public interface ICrudService<TEntity, TId>
         where TEntity : class, IEntity<TId>, new()
     {
         Task<TEntity> Create(TEntity entity);

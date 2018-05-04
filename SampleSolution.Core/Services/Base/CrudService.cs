@@ -7,13 +7,12 @@ using SampleSolution.Core.Repositories.Base;
 
 namespace SampleSolution.Core.Services.Base
 {
-    public class CrudService<TRepository, TEntity, TId> : ICrudService<TRepository, TEntity, TId>
-        where TRepository : class, ICrudRepository<TEntity, TId>
+    public class CrudService<TEntity, TId> : ICrudService<TEntity, TId>
         where TEntity : class, IEntity<TId>, new()
     {
-        protected TRepository Repository { get; }
+        protected ICrudRepository<TEntity, TId> Repository { get; }
 
-        public CrudService(TRepository repository)
+        public CrudService(ICrudRepository<TEntity, TId> repository)
         {
             this.Repository = repository;
         }

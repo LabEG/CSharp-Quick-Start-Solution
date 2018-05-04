@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using SampleSolution.Core.Models.Entities.Base;
 using SampleSolution.Core.Models.ViewModels.Pagination;
 using SampleSolution.Core.Repositories.Base;
@@ -7,8 +8,7 @@ using SampleSolution.Core.Services.Base;
 
 namespace SampleSolution.Core.Controllers.Base
 {
-    public interface ICrudController<TService, TEntity, TId>
-        where TService : class, ICrudService<ICrudRepository<TEntity, TId>, TEntity, TId>
+    public interface ICrudController<TEntity, TId>
         where TEntity : class, IEntity<TId>, new()
     {
         Task<TEntity> Create(TEntity entity);

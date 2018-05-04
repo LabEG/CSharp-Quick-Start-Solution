@@ -8,6 +8,7 @@ using System.Web;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SampleSolution.Core.Controllers.Base;
@@ -21,13 +22,12 @@ namespace SampleSolution.ServerCore.Controllers.Base
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class CrudController<TService, TEntity, TId> : Controller, ICrudController<TService, TEntity, TId>
-        where TService : class, ICrudService<ICrudRepository<TEntity, TId>, TEntity, TId>
+    public class CrudController<TEntity, TId> : Controller, ICrudController<TEntity, TId>
         where TEntity : class, IEntity<TId>, new()
     {
-        protected TService Service { get; }
+        protected ICrudService<TEntity, TId> Service { get; }
 
-        public CrudController(TService service)
+        public CrudController(ICrudService<TEntity, TId> service)
         {
             this.Service = service;
         }

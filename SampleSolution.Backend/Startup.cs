@@ -26,12 +26,12 @@ namespace SampleSolution.Backend
         {
             services.AddDbContext<MainDBContext>(options =>
             {
-                options.UseInMemoryDatabase(Guid.NewGuid().ToString());
+                options.UseInMemoryDatabase("SampleSolution");
                 // options.UseNpgsql("SampleSolution");
             });
 
             services.AddScoped(typeof(ICrudDbRepository<,,>), typeof(CrudDbRepository<,,>));
-            services.AddScoped(typeof(ICrudDbService<,,,>), typeof(DbCrudService<,,,>));
+            services.AddScoped(typeof(ICrudDbService<,,>), typeof(CrudDbService<,,>));
 
 #if DEBUG
             services.AddCors();
