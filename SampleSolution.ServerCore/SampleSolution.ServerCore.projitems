@@ -9,7 +9,7 @@
     <Import_RootNamespace>SampleSolution.ServerCore</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\BaseConstroller.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\BaseController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\CrudController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbContexts\AuthDbContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbContexts\MainDbContext.cs" />

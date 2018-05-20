@@ -22,7 +22,7 @@ namespace SampleSolution.ServerCore.Controllers.Base
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class CrudController<TEntity, TId> : BaseConstroller, ICrudController<TEntity, TId>
+    public class CrudController<TEntity, TId> : BaseController, ICrudController<TEntity, TId>
         where TEntity : class, IEntity<TId>, new()
     {
         protected ICrudService<TEntity, TId> Service { get; }

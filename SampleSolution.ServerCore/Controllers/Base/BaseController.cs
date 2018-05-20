@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace SampleSolution.ServerCore.Controllers.Base
 {
-    public class BaseConstroller : Controller
+    public class BaseController : Controller
     {
         protected virtual async Task<bool> CheckIsCorrectModel()
         {
