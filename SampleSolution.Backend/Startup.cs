@@ -11,6 +11,7 @@ using SampleSolution.Core.Models;
 using SampleSolution.Core.Models.Entities;
 using SampleSolution.Core.Repositories.Base;
 using SampleSolution.Core.Services.Base;
+using SampleSolution.ServerCore.DbContexts;
 using SampleSolution.ServerCore.DBContexts;
 using SampleSolution.ServerCore.IServices;
 using SampleSolution.ServerCore.IServices.Base;
@@ -30,7 +31,7 @@ namespace SampleSolution.Backend
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -39,16 +40,24 @@ namespace SampleSolution.Backend
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MainDBContext>(options =>
+            services.AddDbContext<MainDbContext>(options =>
             {
-                options.UseInMemoryDatabase("sample_solution");
+                options.UseInMemoryDatabase("sample_solution_main");
                 // options.UseInMemoryDatabase(this.Configuration.GetConnectionString("MainDBConnection"));
                 // options.UseNpgsql(this.Configuration.GetConnectionString("MainDBConnection"));
                 // options.UseSqlServer(this.Configuration.GetConnectionString("MainDBConnection"));
             });
 
-            services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<MainDBContext>()
+            services.AddDbContext<AuthDbContext>(options =>
+            {
+                options.UseInMemoryDatabase("sample_solution_auth");
+                // options.UseInMemoryDatabase(this.Configuration.GetConnectionString("MainDBConnection"));
+                // options.UseNpgsql(this.Configuration.GetConnectionString("MainDBConnection"));
+                // options.UseSqlServer(this.Configuration.GetConnectionString("MainDBConnection"));
+            });
+
+            services.AddIdentity<AuthUser, IdentityRole>()
+                .AddEntityFrameworkStores<AuthDbContext>()
                 .AddDefaultTokenProviders();
 
             // Add application services.
@@ -94,8 +103,11 @@ namespace SampleSolution.Backend
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             // intialize DBs
-            MainDBContext mainDBContext = serviceProvider.GetService<MainDBContext>();
+            MainDbContext mainDBContext = serviceProvider.GetService<MainDbContext>();
             mainDBContext.Initialize();
+
+            AuthDbContext authDbContext = serviceProvider.GetService<AuthDbContext>();
+            authDbContext.Initialize();
 
             if (env.IsDevelopment())
             {

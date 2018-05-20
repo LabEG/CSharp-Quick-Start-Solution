@@ -10,7 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\CrudController.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DBContexts\MainDBContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\AuthDbContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DbContexts\MainDbContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IServices\IEmailSenderService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudDbRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IRepositories\Base\ICrudDbRepository.cs" />

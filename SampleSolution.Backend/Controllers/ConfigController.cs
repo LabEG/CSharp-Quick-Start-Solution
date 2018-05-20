@@ -13,7 +13,7 @@ namespace SampleSolution.Backend.Controllers
     [Route("api/config")]
     public class ConfigController : CrudController<Config, long>
     {
-        public ConfigController(ICrudDbService<MainDBContext, Config, long> service) : base(service)
+        public ConfigController(ICrudDbService<MainDbContext, Config, long> service) : base(service)
         {
         }
     }
