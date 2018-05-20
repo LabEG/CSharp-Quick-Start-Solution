@@ -51,9 +51,9 @@ namespace SampleSolution.Backend
             services.AddDbContext<AuthDbContext>(options =>
             {
                 options.UseInMemoryDatabase("sample_solution_auth");
-                // options.UseInMemoryDatabase(this.Configuration.GetConnectionString("MainDBConnection"));
-                // options.UseNpgsql(this.Configuration.GetConnectionString("MainDBConnection"));
-                // options.UseSqlServer(this.Configuration.GetConnectionString("MainDBConnection"));
+                // options.UseInMemoryDatabase(this.Configuration.GetConnectionString("AuthDBConnection"));
+                // options.UseNpgsql(this.Configuration.GetConnectionString("AuthDBConnection"));
+                // options.UseSqlServer(this.Configuration.GetConnectionString("AuthDBConnection"));
             });
 
             services.AddIdentity<AuthUser, IdentityRole>()

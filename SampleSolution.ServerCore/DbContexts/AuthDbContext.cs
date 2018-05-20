@@ -11,7 +11,7 @@ namespace SampleSolution.ServerCore.DbContexts
     public class AuthUser : IdentityUser, IEntity<string>
     {
         // add property here
-        public string Id { get; set; }
+        public new string Id { get; set; }
 
         public DateTime CreatedTime { get; set; }
         public DateTime LastUpdateTime { get; set; }
@@ -33,10 +33,15 @@ namespace SampleSolution.ServerCore.DbContexts
 
         public void Initialize()
         {
-            //this.Database.EnsureDeleted();
             if (this.Database.EnsureCreated())
             {
                 // init code
+
+                // AuthUser authUser = new AuthUser();
+                // authUser.UserName = "admin";
+                // this.Set<AuthUser>().Update(authUser);
+                //
+                // this.SaveChanges();
             }
         }
     }

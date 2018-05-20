@@ -9,10 +9,26 @@
     <Import_RootNamespace>SampleSolution.ServerCore</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\BaseConstroller.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\CrudController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbContexts\AuthDbContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbContexts\MainDbContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IServices\IEmailSenderService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\AccountViewModels\ExternalLoginViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\AccountViewModels\ForgotPasswordViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\AccountViewModels\LoginViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\AccountViewModels\LoginWith2faViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\AccountViewModels\LoginWithRecoveryCodeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\AccountViewModels\RegisterViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\AccountViewModels\ResetPasswordViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\ManageViewModels\ChangePasswordViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\ManageViewModels\EnableAuthenticatorViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\ManageViewModels\ExternalLoginsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\ManageViewModels\IndexViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\ManageViewModels\RemoveLoginViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\ManageViewModels\SetPasswordViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\ManageViewModels\ShowRecoveryCodesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\ManageViewModels\TwoFactorAuthenticationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudDbRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IRepositories\Base\ICrudDbRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Base\CrudDbService.cs" />
