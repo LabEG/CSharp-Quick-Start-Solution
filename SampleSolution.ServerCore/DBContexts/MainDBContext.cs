@@ -18,6 +18,9 @@ namespace SampleSolution.ServerCore.DBContexts
         }
 
         public DbSet<Config> Configs { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<ArticleBody> ArticleBodies { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,46 +33,60 @@ namespace SampleSolution.ServerCore.DBContexts
             // to snake case all tables with all columns
             foreach (IMutableEntityType entity in modelBuilder.Model.GetEntityTypes())
             {
-                string[] fullNames = entity.Name.Split('.'); // because Name with namespaces
-                string entityName = fullNames[fullNames.Length - 1];
-                string tableName = string
-                    .Concat(entityName.Select((x, i) => i > 0 && char.IsUpper(x) ? "_" + x.ToString() : x.ToString()))
-                    .ToLower();
-
-                modelBuilder.Entity(entity.Name).ToTable(tableName);
                 modelBuilder.Entity(entity.Name).Property(nameof(tEntity.Id)).ValueGeneratedOnAdd();
                 modelBuilder.Entity(entity.Name).Property(nameof(tEntity.CreatedTime))
                     .HasDefaultValueSql("CURRENT_TIMESTAMP").ValueGeneratedOnAdd();
                 modelBuilder.Entity(entity.Name).Property(nameof(tEntity.LastUpdateTime))
                     .HasDefaultValueSql("CURRENT_TIMESTAMP").ValueGeneratedOnAddOrUpdate();
 
-                entity.GetProperties().ToList().ForEach(p =>
+                // Replace table names
+                entity.Relational().TableName = entity.Relational().TableName.ToSnakeCase();
+
+                // Replace column names
+                foreach (IMutableProperty property in entity.GetProperties())
                 {
-                    modelBuilder.Entity(entity.Name).Property(p.Name).HasColumnName(ToSnakeCase(p.Name));
-                });
+                    property.Relational().ColumnName = property.Name.ToSnakeCase();
+                }
+
+                foreach (IMutableKey key in entity.GetKeys())
+                {
+                    key.Relational().Name = key.Relational().Name.ToSnakeCase();
+                }
+
+                foreach (IMutableForeignKey key in entity.GetForeignKeys())
+                {
+                    key.Relational().Name = key.Relational().Name.ToSnakeCase();
+                }
+
+                foreach (IMutableIndex index in entity.GetIndexes())
+                {
+                    index.Relational().Name = index.Relational().Name.ToSnakeCase();
+                }
             }
 
+            // Article
+            modelBuilder.Entity<Article>()
+                .HasOne(x => x.ArticleBody)
+                .WithOne()
+                .HasForeignKey<Article>(x => x.ArticleBodyId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Article>()
+                .HasOne(x => x.Author)
+                .WithMany()
+                .HasForeignKey(x => x.AuthorId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             // https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete
+            // https://andrewlock.net/customising-asp-net-core-identity-ef-core-naming-conventions-for-postgresql/
         }
 
         public void Initialize()
         {
-            //this.Database.EnsureDeleted();
             if (this.Database.EnsureCreated())
             {
                 // init code
             }
-        }
-
-        private string ToSnakeCase(string sourceString)
-        {
-            return string
-                .Concat(sourceString.Select((x, i) =>
-                {
-                    char ch = i > 0 ? sourceString.ToCharArray()[i - 1] : '\0';
-                    return i > 0 && char.IsUpper(x) && !char.IsUpper(ch) ? "_" + x.ToString() : x.ToString();
-                }))
-                .ToLower();
         }
     }
 }

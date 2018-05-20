@@ -11,10 +11,10 @@ using SampleSolution.ServerCore.Services.Base;
 namespace SampleSolution.Backend.Controllers
 {
     [Produces("application/json")]
-    [Route("api/user")]
-    public class UserController : CrudController<AuthUser, string>
+    [Route("api/authuser")]
+    public class AuthUserController : CrudController<AuthUser, string>
     {
-        public UserController(ICrudDbService<AuthDbContext, AuthUser, string> service) : base(service)
+        public AuthUserController(ICrudDbService<AuthDbContext, AuthUser, string> service) : base(service)
         {
         }
     }

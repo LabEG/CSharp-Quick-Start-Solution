@@ -42,17 +42,17 @@ namespace SampleSolution.Backend
         {
             services.AddDbContext<MainDbContext>(options =>
             {
-                options.UseInMemoryDatabase("sample_solution_main");
+                // options.UseInMemoryDatabase("sample_solution_main");
                 // options.UseInMemoryDatabase(this.Configuration.GetConnectionString("MainDBConnection"));
-                // options.UseNpgsql(this.Configuration.GetConnectionString("MainDBConnection"));
+                options.UseNpgsql(this.Configuration.GetConnectionString("MainDbConnection"));
                 // options.UseSqlServer(this.Configuration.GetConnectionString("MainDBConnection"));
             });
 
             services.AddDbContext<AuthDbContext>(options =>
             {
-                options.UseInMemoryDatabase("sample_solution_auth");
+                // options.UseInMemoryDatabase("sample_solution_auth");
                 // options.UseInMemoryDatabase(this.Configuration.GetConnectionString("AuthDBConnection"));
-                // options.UseNpgsql(this.Configuration.GetConnectionString("AuthDBConnection"));
+                options.UseNpgsql(this.Configuration.GetConnectionString("AuthDbConnection"));
                 // options.UseSqlServer(this.Configuration.GetConnectionString("AuthDBConnection"));
             });
 

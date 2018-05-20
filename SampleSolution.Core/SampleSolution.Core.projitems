@@ -10,12 +10,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\ICrudController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IRepositories\Base\ICrudFileRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IRepositories\Base\ICrudHttpRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IRepositories\Base\ICrudRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Article.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\ArticleBody.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Base\Entity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Base\IEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Config.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Exceptions\ObjectNotFoundException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\PaginationViewModels\PagedList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\PaginationViewModels\PagedListQueryFilter.cs" />
