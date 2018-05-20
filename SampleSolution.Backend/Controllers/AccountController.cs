@@ -218,18 +218,21 @@ namespace SampleSolution.Backend.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var user = await this.userManager.FindByEmailAsync(model.Email);
+                AuthUser user = await this.userManager.FindByEmailAsync(model.Email);
                 if (user == null || !(await this.userManager.IsEmailConfirmedAsync(user)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
-                    return Ok();
+                    return this.BadRequest("User does not exist.");
                 }
 
                 // For more information on how to enable account confirmation and password reset please
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 string code = await this.userManager.GeneratePasswordResetTokenAsync(user);
-                await this.emailSender.SendEmailAsync(model.Email, "Reset Password",
-                   $"Please reset your password by clicking here: <a href='url'>link</a>");
+                await this.emailSender.SendEmailAsync(
+                    model.Email,
+                    "Reset Password",
+                   $"Please reset your password by clicking here: <a href='url'>link</a>"
+                );
                 return Ok();
             }
             return BadRequest(this.ModelState);

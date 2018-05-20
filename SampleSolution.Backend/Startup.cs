@@ -107,7 +107,8 @@ namespace SampleSolution.Backend
             mainDBContext.Initialize();
 
             AuthDbContext authDbContext = serviceProvider.GetService<AuthDbContext>();
-            authDbContext.Initialize();
+            UserManager<AuthUser> userManager = serviceProvider.GetService<UserManager<AuthUser>>();
+            authDbContext.Initialize(userManager);
 
             if (env.IsDevelopment())
             {

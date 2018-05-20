@@ -31,17 +31,13 @@ namespace SampleSolution.ServerCore.DbContexts
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public void Initialize()
+        public void Initialize(UserManager<AuthUser> userManager)
         {
             if (this.Database.EnsureCreated())
             {
                 // init code
-
-                // AuthUser authUser = new AuthUser();
-                // authUser.UserName = "admin";
-                // this.Set<AuthUser>().Update(authUser);
-                //
-                // this.SaveChanges();
+                AuthUser admin = new AuthUser { UserName = "Admin", Email = "admin@admin.admin" };
+                userManager.CreateAsync(admin, "Qwert12345!@#$%").Wait();
             }
         }
     }
