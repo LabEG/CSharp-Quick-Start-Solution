@@ -62,9 +62,11 @@ namespace SampleSolution.ServerCore.DbContexts
 
         public void Initialize(UserManager<AuthUser> userManager)
         {
-            if (this.Database.EnsureCreated())
+            this.Database.Migrate();
+
+            AuthUser user = this.Users.FirstOrDefaultAsync(x => x.Email == "admin@admin.admin").Result;
+            if (user == null)
             {
-                // init code
                 AuthUser admin = new AuthUser { UserName = "Admin", Email = "admin@admin.admin" };
                 userManager.CreateAsync(admin, "Qwert12345!@#$%").Wait();
             }
