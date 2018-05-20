@@ -11,9 +11,15 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\CrudController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DBContexts\MainDBContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IServices\IEmailSenderService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudDbRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\ICrudDbRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IRepositories\Base\ICrudDbRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Base\CrudDbService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Base\ICrudDbService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IServices\Base\ICrudDbService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\EmailSenderService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)IRepositories\" />
+    <Folder Include="$(MSBuildThisFileDirectory)IServices\" />
   </ItemGroup>
 </Project>

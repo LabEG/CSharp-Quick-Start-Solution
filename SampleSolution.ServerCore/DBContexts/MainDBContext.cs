@@ -12,15 +12,18 @@ namespace SampleSolution.ServerCore.DBContexts
 {
     public class MainDBContext : DbContext
     {
-        public MainDBContext(DbContextOptions options) : base(options)
+        public MainDBContext(DbContextOptions<MainDBContext> options) : base(options)
         {
         }
 
         public DbSet<Config> Configs { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("sample_solution");
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.HasDefaultSchema("sample_solution_main");
 
             Entity<long> tEntity = new Entity<long>();
 

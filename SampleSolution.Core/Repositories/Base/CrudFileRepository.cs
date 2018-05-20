@@ -43,11 +43,10 @@ namespace SampleSolution.Core.Repositories.Base
 
             string fileName = "data_" + this.ExcapeFileName(entity.Id.ToString()) + ".json";
 
-            using (StreamWriter sw = new StreamWriter(Path.Combine(this.folderPath, fileName)))
-            {
-                string json = JsonConvert.SerializeObject(entity);
-                await sw.WriteAsync(json);
-            }
+            string json = JsonConvert.SerializeObject(entity);
+
+            // todo: check
+            File.WriteAllText(Path.Combine(this.folderPath, fileName), json);
 
             return await this.GetById(entity.Id);
         }
@@ -96,13 +95,13 @@ namespace SampleSolution.Core.Repositories.Base
 
         public async Task Update(TId id, TEntity entity)
         {
-            string fileName = "data_" + this.ExcapeFileName(id.ToString()) + ".json";
+            await Task.CompletedTask;
 
-            using (StreamWriter sw = new StreamWriter(Path.Combine(this.folderPath, fileName)))
-            {
-                string json = JsonConvert.SerializeObject(entity);
-                await sw.WriteAsync(json);
-            }
+            string fileName = "data_" + this.ExcapeFileName(id.ToString()) + ".json";
+            string json = JsonConvert.SerializeObject(entity);
+
+            // todo: check
+            File.WriteAllText(Path.Combine(this.folderPath, fileName), json);
         }
 
         public async Task<PagedList<TEntity>> GetPaged(PagedListQuery query, IQueryable<TEntity> data = null)
@@ -119,12 +118,11 @@ namespace SampleSolution.Core.Repositories.Base
 
         protected async Task<TEntity> GetByFileName(string fileName)
         {
-            using (StreamReader sr = new StreamReader(Path.Combine(this.folderPath, fileName)))
-            {
-                string json = await sr.ReadToEndAsync();
-                TEntity entity = JsonConvert.DeserializeObject<TEntity>(json);
-                return entity;
-            }
+            await Task.CompletedTask;
+
+            string json = File.ReadAllText(Path.Combine(this.folderPath, fileName));
+            TEntity entity = JsonConvert.DeserializeObject<TEntity>(json);
+            return entity;
         }
 
         protected void SetPath(string path)

@@ -7,7 +7,7 @@ using SampleSolution.Core.Models.ViewModels.Pagination;
 using SampleSolution.Core.Repositories.Base;
 using SampleSolution.Core.Services.Base;
 
-namespace SampleSolution.ServerCore.Services.Base
+namespace SampleSolution.ServerCore.IServices.Base
 {
     public interface ICrudDbService<TDbContext, TEntity, TId> : ICrudService<TEntity, TId>
         where TDbContext : DbContext

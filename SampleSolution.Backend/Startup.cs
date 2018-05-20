@@ -1,13 +1,21 @@
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using SampleSolution.Core.IRepositories.Base;
+using SampleSolution.Core.Models;
+using SampleSolution.Core.Models.Entities;
 using SampleSolution.Core.Repositories.Base;
 using SampleSolution.Core.Services.Base;
 using SampleSolution.ServerCore.DBContexts;
+using SampleSolution.ServerCore.IServices;
+using SampleSolution.ServerCore.IServices.Base;
 using SampleSolution.ServerCore.Repositories.Base;
+using SampleSolution.ServerCore.Services;
 using SampleSolution.ServerCore.Services.Base;
 
 #if DEBUG
@@ -20,15 +28,31 @@ namespace SampleSolution.Backend
 {
     public class Startup
     {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MainDBContext>(options =>
             {
-                options.UseInMemoryDatabase("SampleSolution");
-                // options.UseNpgsql("SampleSolution");
+                options.UseInMemoryDatabase("sample_solution");
+                // options.UseInMemoryDatabase(this.Configuration.GetConnectionString("MainDBConnection"));
+                // options.UseNpgsql(this.Configuration.GetConnectionString("MainDBConnection"));
+                // options.UseSqlServer(this.Configuration.GetConnectionString("MainDBConnection"));
             });
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<MainDBContext>()
+                .AddDefaultTokenProviders();
+
+            // Add application services.
+            services.AddTransient<IEmailSenderService, EmailSenderService>();
 
             services.AddScoped(typeof(ICrudDbRepository<,,>), typeof(CrudDbRepository<,,>));
             services.AddScoped(typeof(ICrudDbService<,,>), typeof(CrudDbService<,,>));
@@ -75,7 +99,13 @@ namespace SampleSolution.Backend
 
             if (env.IsDevelopment())
             {
+                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+            }
+            else
+            {
+                // app.UseExceptionHandler("/Home/Error"); // todo: make nice error page
             }
 
 #if DEBUG
@@ -84,7 +114,8 @@ namespace SampleSolution.Backend
                builder.AllowAnyOrigin()
                       .AllowAnyMethod()
                       .AllowAnyHeader()
-                      .AllowCredentials());
+                      .AllowCredentials()
+            );
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger(); // https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?tabs=visual-studio
@@ -95,6 +126,8 @@ namespace SampleSolution.Backend
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "SampleSolution Backend API V1");
             });
 #endif
+
+            app.UseAuthentication();
 
             app.UseMvc();
         }

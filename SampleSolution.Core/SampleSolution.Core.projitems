@@ -10,10 +10,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\ICrudController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IRepositories\Base\ICrudFileRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IRepositories\Base\ICrudHttpRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IRepositories\Base\ICrudRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Base\Entity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Base\IEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Config.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Exceptions\ObjectNotFoundException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\Pagination\PagedList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\Pagination\PagedListQueryFilter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\Pagination\PagedListQueryFilterMethod.cs" />
@@ -23,11 +27,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\Pagination\PageMeta.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudFileRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudHttpRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\ICrudFileRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\ICrudHttpRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\ICrudRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Base\CrudService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Base\ICrudService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IServices\Base\ICrudService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\CheckSumService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)IServices\Base\" />
   </ItemGroup>
 </Project>

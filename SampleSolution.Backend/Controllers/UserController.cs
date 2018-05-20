@@ -10,10 +10,10 @@ using SampleSolution.ServerCore.Services.Base;
 namespace SampleSolution.Backend.Controllers
 {
     [Produces("application/json")]
-    [Route("api/config")]
-    public class ConfigController : CrudController<Config, long>
+    [Route("api/user")]
+    public class UserController : CrudController<User, string>
     {
-        public ConfigController(ICrudDbService<MainDBContext, Config, long> service) : base(service)
+        public UserController(ICrudDbService<MainDBContext, User, string> service) : base(service)
         {
         }
     }

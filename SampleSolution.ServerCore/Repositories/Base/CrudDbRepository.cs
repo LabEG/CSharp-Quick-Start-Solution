@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json.Linq;
+using SampleSolution.Core.IRepositories.Base;
 using SampleSolution.Core.Models.Entities.Base;
 using SampleSolution.Core.Models.Exceptions;
 using SampleSolution.Core.Models.ViewModels.Pagination;
