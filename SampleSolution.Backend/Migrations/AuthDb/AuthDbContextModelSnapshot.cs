@@ -174,7 +174,9 @@ namespace SampleSolution.Backend.Migrations
                         .HasColumnName("concurrency_stamp");
 
                     b.Property<DateTime>("CreatedTime")
-                        .HasColumnName("created_time");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("created_time")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("Email")
                         .HasColumnName("email")
@@ -184,7 +186,9 @@ namespace SampleSolution.Backend.Migrations
                         .HasColumnName("email_confirmed");
 
                     b.Property<DateTime>("LastUpdateTime")
-                        .HasColumnName("last_update_time");
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnName("last_update_time")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnName("lockout_enabled");

@@ -33,6 +33,14 @@ namespace SampleSolution.ServerCore.DbContexts
 
             builder.HasDefaultSchema("sample_solution_auth");
 
+            Entity<long> tEntity = new Entity<long>();
+            builder.Entity<AuthUser>().Property(nameof(tEntity.Id))
+                .ValueGeneratedOnAdd();
+            builder.Entity<AuthUser>().Property(nameof(tEntity.CreatedTime))
+                .HasDefaultValueSql("CURRENT_TIMESTAMP").ValueGeneratedOnAdd();
+            builder.Entity<AuthUser>().Property(nameof(tEntity.LastUpdateTime))
+                .HasDefaultValueSql("CURRENT_TIMESTAMP").ValueGeneratedOnAddOrUpdate();
+
             foreach (IMutableEntityType entity in builder.Model.GetEntityTypes())
             {
                 // Replace table names
@@ -65,11 +73,14 @@ namespace SampleSolution.ServerCore.DbContexts
         {
             this.Database.Migrate();
 
-            AuthUser user = this.Users.FirstOrDefaultAsync(x => x.Email == "admin@admin.admin").Result;
-            if (user == null)
+            if (this.Database.EnsureCreated())
             {
-                AuthUser admin = new AuthUser { UserName = "Admin", Email = "admin@admin.admin" };
-                userManager.CreateAsync(admin, "Qwert12345!@#$%").Wait();
+                AuthUser user = this.Users.FirstOrDefaultAsync(x => x.Email == "admin@admin.admin").Result;
+                if (user == null)
+                {
+                    AuthUser admin = new AuthUser { UserName = "Admin", Email = "admin@admin.admin" };
+                    userManager.CreateAsync(admin, "Qwert12345!@#$%").Wait();
+                }
             }
         }
     }
