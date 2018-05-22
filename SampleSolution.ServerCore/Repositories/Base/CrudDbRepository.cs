@@ -273,7 +273,8 @@ namespace SampleSolution.ServerCore.Repositories.Base
             {
                 if (prop.Value.ToObject<object>() is object)
                 {
-                    this.ExtractIncludes((JObject)prop.Value, listOfProps, this.ToCamelCase(prop.Key));
+                    string deepProp = previosProp == null ? this.ToCamelCase(prop.Key) : (previosProp + "." + this.ToCamelCase(prop.Key));
+                    this.ExtractIncludes((JObject)prop.Value, listOfProps, deepProp);
                 }
                 else if (prop.Value.ToObject<object>() == null)
                 {
