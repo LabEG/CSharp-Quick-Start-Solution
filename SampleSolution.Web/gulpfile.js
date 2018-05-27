@@ -2,20 +2,15 @@
     'use strict';
 
     const gulp = require('gulp');
+    const semver = require('semver');
 
-    function dropException(message) {
-        throw new Error(message);
+    const minNodeVersion = '>=10.0.0';
+    if (!semver.satisfies(process.version, minNodeVersion)) {
+        throw new Error(
+            'Ошибка версии Node.js, минимальная версия ' + minNodeVersion +
+            ', текущая версия ' + process.version
+        );
     }
-
-    const minNodeVersion = [6, 0, 0];
-    const nodeVersion = process
-        .version
-        .substring(1, process.version.length)
-        .split('.')
-        .map(function (value, index) {
-            return Number(value) < minNodeVersion[index] ?
-                dropException('Ошибка версии Node.js, минимальная версия ' + minNodeVersion.join('.')) : value;
-        });
 
     process.env.NODE_ENV = 'development'; // development production
 
@@ -52,12 +47,11 @@
     }
 
     gulp.task('test', function () {
-
         const mocha = require('gulp-mocha');
 
         return gulp.src(
             [`test/units/**/*.ts`],
-            {read: false}
+            { read: false }
         )
             .pipe(mocha({
                 reporter: 'spec',
