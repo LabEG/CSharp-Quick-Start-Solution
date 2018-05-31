@@ -1,16 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using SampleSolution.ServerCore.Controllers.Base;
 using SampleSolution.ServerCore.DbContexts;
-using SampleSolution.ServerCore.IServices;
 using SampleSolution.ServerCore.Models.ViewModels.AccountViewModels;
 using SampleSolution.ServerCore.Services.IServices;
 

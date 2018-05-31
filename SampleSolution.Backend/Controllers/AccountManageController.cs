@@ -5,12 +5,10 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SampleSolution.ServerCore.DbContexts;
-using SampleSolution.ServerCore.IServices;
 using SampleSolution.ServerCore.Models.ViewModels.ManageViewModels;
 using SampleSolution.ServerCore.Services.IServices;
 
