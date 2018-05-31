@@ -83,10 +83,7 @@ namespace SampleSolution.ServerCore.DBContexts
 
         public void Initialize()
         {
-            if (this.Database.EnsureCreated())
-            {
-                // init code
-            }
+            this.Database.MigrateAsync().Wait();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SampleSolution.ServerCore.IServices
+namespace SampleSolution.ServerCore.Services.IServices
 {
     public interface IEmailSenderService
     {

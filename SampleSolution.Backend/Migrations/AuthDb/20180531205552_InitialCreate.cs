@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace SampleSolution.Backend.Migrations
 {
@@ -18,9 +17,9 @@ namespace SampleSolution.Backend.Migrations
                 columns: table => new
                 {
                     id = table.Column<string>(nullable: false),
-                    concurrency_stamp = table.Column<string>(nullable: true),
                     name = table.Column<string>(maxLength: 256, nullable: true),
-                    normalized_name = table.Column<string>(maxLength: 256, nullable: true)
+                    normalized_name = table.Column<string>(maxLength: 256, nullable: true),
+                    concurrency_stamp = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -32,23 +31,23 @@ namespace SampleSolution.Backend.Migrations
                 schema: "sample_solution_auth",
                 columns: table => new
                 {
-                    id = table.Column<string>(nullable: false),
-                    access_failed_count = table.Column<int>(nullable: false),
-                    concurrency_stamp = table.Column<string>(nullable: true),
-                    created_time = table.Column<DateTime>(nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    email = table.Column<string>(maxLength: 256, nullable: true),
-                    email_confirmed = table.Column<bool>(nullable: false),
-                    last_update_time = table.Column<DateTime>(nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    lockout_enabled = table.Column<bool>(nullable: false),
-                    lockout_end = table.Column<DateTimeOffset>(nullable: true),
-                    normalized_email = table.Column<string>(maxLength: 256, nullable: true),
+                    user_name = table.Column<string>(maxLength: 256, nullable: true),
                     normalized_user_name = table.Column<string>(maxLength: 256, nullable: true),
+                    email = table.Column<string>(maxLength: 256, nullable: true),
+                    normalized_email = table.Column<string>(maxLength: 256, nullable: true),
+                    email_confirmed = table.Column<bool>(nullable: false),
                     password_hash = table.Column<string>(nullable: true),
+                    security_stamp = table.Column<string>(nullable: true),
+                    concurrency_stamp = table.Column<string>(nullable: true),
                     phone_number = table.Column<string>(nullable: true),
                     phone_number_confirmed = table.Column<bool>(nullable: false),
-                    security_stamp = table.Column<string>(nullable: true),
                     two_factor_enabled = table.Column<bool>(nullable: false),
-                    user_name = table.Column<string>(maxLength: 256, nullable: true)
+                    lockout_end = table.Column<DateTimeOffset>(nullable: true),
+                    lockout_enabled = table.Column<bool>(nullable: false),
+                    access_failed_count = table.Column<int>(nullable: false),
+                    id = table.Column<string>(nullable: false),
+                    created_time = table.Column<DateTime>(nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    last_update_time = table.Column<DateTime>(nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -62,9 +61,9 @@ namespace SampleSolution.Backend.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    role_id = table.Column<string>(nullable: false),
                     claim_type = table.Column<string>(nullable: true),
-                    claim_value = table.Column<string>(nullable: true),
-                    role_id = table.Column<string>(nullable: false)
+                    claim_value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -85,9 +84,9 @@ namespace SampleSolution.Backend.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    user_id = table.Column<string>(nullable: false),
                     claim_type = table.Column<string>(nullable: true),
-                    claim_value = table.Column<string>(nullable: true),
-                    user_id = table.Column<string>(nullable: false)
+                    claim_value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

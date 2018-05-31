@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 using SampleSolution.Core.Models.Entities.Base;
 using SampleSolution.Core.Models.ViewModels.Pagination;
 
-namespace SampleSolution.Core.Repositories.Base
+namespace SampleSolution.Core.Repositories.IRepositories.Base
 {
     public interface ICrudRepository<TEntity, TId>
         where TEntity : class, IEntity<TId>, new()

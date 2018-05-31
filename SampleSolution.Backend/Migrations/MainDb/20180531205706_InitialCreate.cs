@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace SampleSolution.Backend.Migrations.MainDb
 {
@@ -19,9 +18,9 @@ namespace SampleSolution.Backend.Migrations.MainDb
                 {
                     id = table.Column<long>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    body = table.Column<string>(nullable: true),
                     created_time = table.Column<DateTime>(nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    last_update_time = table.Column<DateTime>(nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                    last_update_time = table.Column<DateTime>(nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    body = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -67,13 +66,13 @@ namespace SampleSolution.Backend.Migrations.MainDb
                 {
                     id = table.Column<long>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    annotation = table.Column<string>(nullable: true),
-                    article_body_id = table.Column<long>(nullable: false),
-                    author_id = table.Column<long>(nullable: false),
                     created_time = table.Column<DateTime>(nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     last_update_time = table.Column<DateTime>(nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    title = table.Column<string>(nullable: true),
                     sub_title = table.Column<string>(nullable: true),
-                    title = table.Column<string>(nullable: true)
+                    annotation = table.Column<string>(nullable: true),
+                    article_body_id = table.Column<long>(nullable: false),
+                    author_id = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {

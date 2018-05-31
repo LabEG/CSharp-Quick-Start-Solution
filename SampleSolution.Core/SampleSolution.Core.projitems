@@ -11,9 +11,9 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\ICrudController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IRepositories\Base\ICrudFileRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IRepositories\Base\ICrudHttpRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IRepositories\Base\ICrudRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repositories\IRepositories\Base\ICrudFileRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repositories\IRepositories\Base\ICrudHttpRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repositories\IRepositories\Base\ICrudRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Article.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\ArticleBody.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Base\Entity.cs" />
@@ -31,10 +31,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudFileRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudHttpRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Base\CrudService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IServices\Base\ICrudService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IServices\Base\ICrudService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\CheckSumService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)IServices\Base\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\IServices\" />
   </ItemGroup>
 </Project>

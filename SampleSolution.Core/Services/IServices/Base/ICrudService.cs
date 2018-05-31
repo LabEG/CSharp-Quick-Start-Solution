@@ -5,7 +5,7 @@ using SampleSolution.Core.Models.Entities.Base;
 using SampleSolution.Core.Models.ViewModels.Pagination;
 using SampleSolution.Core.Repositories.Base;
 
-namespace SampleSolution.Core.Services.Base
+namespace SampleSolution.Core.Services.IServices.Base
 {
     public interface ICrudService<TEntity, TId>
         where TEntity : class, IEntity<TId>, new()

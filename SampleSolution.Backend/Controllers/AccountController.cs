@@ -12,6 +12,7 @@ using SampleSolution.ServerCore.Controllers.Base;
 using SampleSolution.ServerCore.DbContexts;
 using SampleSolution.ServerCore.IServices;
 using SampleSolution.ServerCore.Models.ViewModels.AccountViewModels;
+using SampleSolution.ServerCore.Services.IServices;
 
 namespace SampleSolution.Backend.Controllers
 {

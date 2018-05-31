@@ -4,6 +4,8 @@ using Newtonsoft.Json.Linq;
 using SampleSolution.Core.Models.Entities.Base;
 using SampleSolution.Core.Models.ViewModels.Pagination;
 using SampleSolution.Core.Repositories.Base;
+using SampleSolution.Core.Repositories.IRepositories.Base;
+using SampleSolution.Core.Services.IServices.Base;
 
 namespace SampleSolution.Core.Services.Base
 {

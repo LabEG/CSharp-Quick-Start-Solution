@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using SampleSolution.ServerCore.IServices;
+using SampleSolution.ServerCore.Services.IServices;
 
 namespace SampleSolution.ServerCore.Services
 {

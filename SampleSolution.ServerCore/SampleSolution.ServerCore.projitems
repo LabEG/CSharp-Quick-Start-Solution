@@ -13,7 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\CrudController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbContexts\AuthDbContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbContexts\MainDbContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IServices\IEmailSenderService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IServices\IEmailSenderService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\AccountViewModels\ExternalLoginViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\AccountViewModels\ForgotPasswordViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\AccountViewModels\LoginViewModel.cs" />
@@ -30,13 +30,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\ManageViewModels\ShowRecoveryCodesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\ManageViewModels\TwoFactorAuthenticationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudDbRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IRepositories\Base\ICrudDbRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repositories\IRepositories\Base\ICrudDbRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Base\CrudDbService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IServices\Base\ICrudDbService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IServices\Base\ICrudDbService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\EmailSenderService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)IRepositories\" />
-    <Folder Include="$(MSBuildThisFileDirectory)IServices\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Repositories\IRepositories\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\IServices\" />
   </ItemGroup>
 </Project>

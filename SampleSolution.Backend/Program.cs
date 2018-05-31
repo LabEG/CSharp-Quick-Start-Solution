@@ -20,12 +20,11 @@ namespace SampleSolution.Backend
             Console.WriteLine("SampleSolution - Backend. Build: {_date_}");
             Console.WriteLine("");
 
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+                .UseStartup<Startup>();
     }
 }

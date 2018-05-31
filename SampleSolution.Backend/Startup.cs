@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using SampleSolution.Core.IRepositories.Base;
 using SampleSolution.Core.Models;
 using SampleSolution.Core.Models.Entities;
 using SampleSolution.Core.Repositories.Base;
+using SampleSolution.Core.Repositories.IRepositories.Base;
 using SampleSolution.Core.Services.Base;
 using SampleSolution.ServerCore.DbContexts;
 using SampleSolution.ServerCore.DBContexts;
@@ -18,6 +18,7 @@ using SampleSolution.ServerCore.IServices.Base;
 using SampleSolution.ServerCore.Repositories.Base;
 using SampleSolution.ServerCore.Services;
 using SampleSolution.ServerCore.Services.Base;
+using SampleSolution.ServerCore.Services.IServices;
 
 #if DEBUG
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using SampleSolution.Core.Models.Entities.Base;
 using SampleSolution.Core.Repositories.Base;
 
-namespace SampleSolution.Core.IRepositories.Base
+namespace SampleSolution.Core.Repositories.IRepositories.Base
 {
     public interface ICrudDbRepository<TDbContext, TEntity, TId> : ICrudRepository<TEntity, TId>
         where TDbContext : DbContext
