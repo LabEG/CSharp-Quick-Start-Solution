@@ -1,8 +1,5 @@
-using System.Linq;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 using SampleSolution.Core.Models.Entities;
 using SampleSolution.Core.Models.Entities.Base;
 

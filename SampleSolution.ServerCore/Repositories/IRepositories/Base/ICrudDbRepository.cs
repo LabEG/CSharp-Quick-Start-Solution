@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.EntityFrameworkCore;
 using SampleSolution.Core.Models.Entities.Base;
-using SampleSolution.Core.Repositories.Base;
 
 namespace SampleSolution.Core.Repositories.IRepositories.Base
 {

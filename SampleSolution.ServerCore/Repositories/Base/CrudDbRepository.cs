@@ -11,7 +11,6 @@ using Newtonsoft.Json.Linq;
 using SampleSolution.Core.Models.Entities.Base;
 using SampleSolution.Core.Models.Exceptions;
 using SampleSolution.Core.Models.ViewModels.Pagination;
-using SampleSolution.Core.Repositories.Base;
 using SampleSolution.Core.Repositories.IRepositories.Base;
 
 namespace SampleSolution.ServerCore.Repositories.Base

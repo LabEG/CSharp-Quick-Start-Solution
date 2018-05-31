@@ -2,21 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SampleSolution.Core.Controllers.Base;
 using SampleSolution.Core.Models.Entities.Base;
 using SampleSolution.Core.Models.Exceptions;
 using SampleSolution.Core.Models.ViewModels.Pagination;
-using SampleSolution.Core.Repositories.Base;
-using SampleSolution.Core.Services.Base;
 using SampleSolution.Core.Services.IServices.Base;
 
 namespace SampleSolution.ServerCore.Controllers.Base

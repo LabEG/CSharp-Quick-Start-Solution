@@ -1,9 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace SampleSolution.ServerCore.Models.ViewModels.ManageViewModels
 {
     public class RemoveLoginViewModel

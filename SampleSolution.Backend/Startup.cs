@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -97,7 +98,8 @@ namespace SampleSolution.Backend
                     // options.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
                     options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
                     // options.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
-                });
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -120,6 +122,7 @@ namespace SampleSolution.Backend
             else
             {
                 // app.UseExceptionHandler("/Home/Error"); // todo: make nice error page
+                // app.UseHsts();
             }
 
 #if DEBUG
@@ -140,6 +143,10 @@ namespace SampleSolution.Backend
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "SampleSolution Backend API V1");
             });
 #endif
+
+            // app.UseHttpsRedirection();
+            // app.UseStaticFiles();
+            // app.UseCookiePolicy();
 
             app.UseAuthentication();
 

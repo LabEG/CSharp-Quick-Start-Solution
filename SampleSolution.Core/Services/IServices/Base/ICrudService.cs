@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using SampleSolution.Core.Models.Entities.Base;
 using SampleSolution.Core.Models.ViewModels.Pagination;
-using SampleSolution.Core.Repositories.Base;
 
 namespace SampleSolution.Core.Services.IServices.Base
 {
