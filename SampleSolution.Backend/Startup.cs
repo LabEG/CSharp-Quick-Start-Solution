@@ -1,12 +1,14 @@
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using SampleSolution.Core.Repositories.IRepositories.Base;
 using SampleSolution.ServerCore.DbContexts;
 using SampleSolution.ServerCore.DBContexts;
@@ -37,6 +39,13 @@ namespace SampleSolution.Backend
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             services.AddDbContext<MainDbContext>(options =>
             {
                 // options.UseInMemoryDatabase("sample_solution_main");
@@ -95,6 +104,14 @@ namespace SampleSolution.Backend
                     // options.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            // previos for global
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                DateTimeZoneHandling = DateTimeZoneHandling.Local,
+                // ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -117,7 +134,7 @@ namespace SampleSolution.Backend
             else
             {
                 // app.UseExceptionHandler("/Home/Error"); // todo: make nice error page
-                // app.UseHsts();
+                app.UseHsts();
             }
 
 #if DEBUG
@@ -139,9 +156,9 @@ namespace SampleSolution.Backend
             });
 #endif
 
-            // app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             // app.UseStaticFiles();
-            // app.UseCookiePolicy();
+            app.UseCookiePolicy();
 
             app.UseAuthentication();
 
