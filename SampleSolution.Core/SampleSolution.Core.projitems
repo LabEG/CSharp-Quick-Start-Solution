@@ -29,10 +29,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\PaginationViewModels\PageListQuerySort.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\PaginationViewModels\PageMeta.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudFileRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Base\CrudHttpRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Base\CrudService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\IServices\Base\ICrudService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\CheckSumService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IServices\Base\ICrudService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Services\IServices\" />
