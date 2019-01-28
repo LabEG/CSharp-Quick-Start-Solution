@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using SampleSolution.Core.Repositories.IRepositories.Base;
@@ -80,7 +81,7 @@ namespace SampleSolution.Backend
             {
                 c.SwaggerDoc(
                     "v1",
-                    new Info
+                    new OpenApiInfo
                     {
                         Title = "SampleSolution Backend",
                         Version = "v1"
@@ -127,7 +128,6 @@ namespace SampleSolution.Backend
 
             if (env.IsDevelopment())
             {
-                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
