@@ -41,6 +41,9 @@ namespace SampleSolution.ServerCore.DbContexts
 
             foreach (IMutableEntityType entity in builder.Model.GetEntityTypes())
             {
+                /**
+                 * restore later
+                 * 
                 // Replace table names
                 entity.Relational().TableName = entity.Relational().TableName.ToSnakeCase();
 
@@ -64,12 +67,16 @@ namespace SampleSolution.ServerCore.DbContexts
                 {
                     index.Relational().Name = index.Relational().Name.ToSnakeCase();
                 }
+                */
             }
         }
 
         public void Initialize(UserManager<AuthUser> userManager)
         {
-            this.Database.MigrateAsync().Wait();
+            if (this.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory")
+            {
+                this.Database.MigrateAsync().Wait();
+            }
 
             AuthUser user = this.Users.FirstOrDefaultAsync(x => x.Email == "admin@admin.admin").Result;
             if (user == null)

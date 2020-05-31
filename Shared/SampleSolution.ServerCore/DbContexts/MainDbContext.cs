@@ -36,6 +36,9 @@ namespace SampleSolution.ServerCore.DBContexts
                 modelBuilder.Entity(entity.Name).Property(nameof(tEntity.LastUpdateTime))
                     .HasDefaultValueSql("CURRENT_TIMESTAMP").ValueGeneratedOnAddOrUpdate();
 
+                /**
+                 * restore later
+                 * 
                 // Replace table names
                 entity.Relational().TableName = entity.Relational().TableName.ToSnakeCase();
 
@@ -59,6 +62,7 @@ namespace SampleSolution.ServerCore.DBContexts
                 {
                     index.Relational().Name = index.Relational().Name.ToSnakeCase();
                 }
+                */
             }
 
             // Article
@@ -80,7 +84,10 @@ namespace SampleSolution.ServerCore.DBContexts
 
         public void Initialize()
         {
-            this.Database.MigrateAsync().Wait();
+            if (this.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory")
+            {
+                this.Database.MigrateAsync().Wait();
+            }
         }
     }
 }

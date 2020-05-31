@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -49,17 +50,17 @@ namespace SampleSolution.Backend
 
             services.AddDbContext<MainDbContext>(options =>
             {
-                // options.UseInMemoryDatabase("sample_solution_main");
+                options.UseInMemoryDatabase("sample_solution_main");
                 // options.UseInMemoryDatabase(this.Configuration.GetConnectionString("MainDBConnection"));
-                options.UseNpgsql(this.Configuration.GetConnectionString("MainDbConnection"));
+                // options.UseNpgsql(this.Configuration.GetConnectionString("MainDbConnection"));
                 // options.UseSqlServer(this.Configuration.GetConnectionString("MainDBConnection"));
             });
 
             services.AddDbContext<AuthDbContext>(options =>
             {
-                // options.UseInMemoryDatabase("sample_solution_auth");
+                options.UseInMemoryDatabase("sample_solution_auth");
                 // options.UseInMemoryDatabase(this.Configuration.GetConnectionString("AuthDBConnection"));
-                options.UseNpgsql(this.Configuration.GetConnectionString("AuthDbConnection"));
+                // options.UseNpgsql(this.Configuration.GetConnectionString("AuthDbConnection"));
                 // options.UseSqlServer(this.Configuration.GetConnectionString("AuthDBConnection"));
             });
 
@@ -103,8 +104,7 @@ namespace SampleSolution.Backend
                     // options.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
                      options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
                     // options.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
-                })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                });
 
             // previos for global
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings
@@ -116,7 +116,7 @@ namespace SampleSolution.Backend
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             // intialize DBs
             MainDbContext mainDBContext = serviceProvider.GetService<MainDbContext>();
@@ -143,7 +143,7 @@ namespace SampleSolution.Backend
                builder.AllowAnyOrigin()
                       .AllowAnyMethod()
                       .AllowAnyHeader()
-                      .AllowCredentials()
+                      // .AllowCredentials()
             );
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
@@ -158,11 +158,13 @@ namespace SampleSolution.Backend
 
             // app.UseHttpsRedirection();
             // app.UseStaticFiles();
+            app.UseRouting();
             app.UseCookiePolicy();
-
             app.UseAuthentication();
-
-            app.UseMvc();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
