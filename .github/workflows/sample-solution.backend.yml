@@ -18,10 +18,11 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies
-      run: dotnet restore ./SampleSolution.Backend
+      working-directory: Backends/SampleSolution.Backend
+      run: dotnet restore
     - name: Build
-      working-directory: SampleSolution.Backend
+      working-directory: Backends/SampleSolution.Backend
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      working-directory: SampleSolution.Backend
+      working-directory: Backends/SampleSolution.Backend
       run: dotnet test --no-restore --verbosity normal
