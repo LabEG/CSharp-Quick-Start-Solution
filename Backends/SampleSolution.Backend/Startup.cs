@@ -92,7 +92,7 @@ namespace SampleSolution.Backend
 
             // Add framework services.
             services
-                .AddMvc(mvcOptions =>
+                .AddControllers(mvcOptions =>
                 {
                 })
                 .AddJsonOptions((options) =>
@@ -101,7 +101,7 @@ namespace SampleSolution.Backend
                     // options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 
                     // options.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-                    options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+                    // options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
                     // options.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
