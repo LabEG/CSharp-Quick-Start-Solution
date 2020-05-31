@@ -95,13 +95,13 @@ namespace SampleSolution.Backend
                 .AddControllers(mvcOptions =>
                 {
                 })
-                .AddJsonOptions((options) =>
+                .AddNewtonsoftJson((options) =>
                 {
                     // options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
                     // options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 
                     // options.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-                    // options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+                     options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
                     // options.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
