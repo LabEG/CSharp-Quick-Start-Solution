@@ -41,33 +41,29 @@ namespace SampleSolution.ServerCore.DbContexts
 
             foreach (IMutableEntityType entity in builder.Model.GetEntityTypes())
             {
-                /**
-                 * restore later
-                 * 
                 // Replace table names
-                entity.Relational().TableName = entity.Relational().TableName.ToSnakeCase();
+                entity.SetTableName(entity.GetTableName().ToSnakeCase());
 
                 // Replace column names
                 foreach (IMutableProperty property in entity.GetProperties())
                 {
-                    property.Relational().ColumnName = property.Name.ToSnakeCase();
+                    property.SetColumnName(property.GetColumnName().ToSnakeCase());
                 }
 
                 foreach (IMutableKey key in entity.GetKeys())
                 {
-                    key.Relational().Name = key.Relational().Name.ToSnakeCase();
+                    key.SetName(key.GetName().ToSnakeCase());
                 }
 
                 foreach (IMutableForeignKey key in entity.GetForeignKeys())
                 {
-                    key.Relational().Name = key.Relational().Name.ToSnakeCase();
+                    key.SetConstraintName(key.GetConstraintName().ToSnakeCase());
                 }
 
                 foreach (IMutableIndex index in entity.GetIndexes())
                 {
-                    index.Relational().Name = index.Relational().Name.ToSnakeCase();
+                    index.SetName(index.GetName().ToSnakeCase());
                 }
-                */
             }
         }
 
