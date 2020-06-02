@@ -27,7 +27,7 @@ jobs:
       working-directory: ./Backends/SampleSolution.Backend
       run: dotnet test --no-restore --verbosity normal
     - name: Testtttt
-      run: ls -lah
+      run: docker -v
     - name: Deploy
       uses: docker/build-push-action@v1
       with:
