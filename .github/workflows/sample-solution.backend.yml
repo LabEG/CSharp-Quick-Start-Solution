@@ -33,3 +33,4 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: labeg/csharp-qss-backend
         tags: latest
+        dockerfile: ./Backends/SampleSolution.Backend
