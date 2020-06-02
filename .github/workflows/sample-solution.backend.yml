@@ -12,8 +12,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Testttttt
-      run: docker run --rm hello-world
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -36,11 +34,3 @@ jobs:
         repository: labeg/csharp-qss-backend
         tags: latest
         path: ./Backends/SampleSolution.Backend
-
-  second:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Setup .NET Core
-      run: ls -lah
