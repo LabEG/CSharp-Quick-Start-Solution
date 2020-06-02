@@ -36,3 +36,11 @@ jobs:
         repository: labeg/csharp-qss-backend
         tags: latest
         path: ./Backends/SampleSolution.Backend
+
+  second:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Setup .NET Core
+      run: ls -lah
