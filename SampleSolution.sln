@@ -27,11 +27,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
-		action.yml = action.yml
 		SolutionItems\build.sh = SolutionItems\build.sh
 		SolutionItems\cleanRepo.js = SolutionItems\cleanRepo.js
 		SolutionItems\dockerHelp.txt = SolutionItems\dockerHelp.txt
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{69FD9277-C96B-42B1-969E-3123148288DD}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\sample-solution.backend.yml = .github\workflows\sample-solution.backend.yml
 	EndProjectSection
 EndProject
 Global
@@ -195,6 +199,7 @@ Global
 		{982D6891-88A9-482D-B415-477BEEC9978A} = {FD03AFBE-8D8E-406D-9632-46D114ADB462}
 		{6414B34E-EB82-4FB2-B137-E75F3570BFED} = {FD03AFBE-8D8E-406D-9632-46D114ADB462}
 		{BE6E821A-FC39-4718-9992-73E79E91B23C} = {FD03AFBE-8D8E-406D-9632-46D114ADB462}
+		{69FD9277-C96B-42B1-969E-3123148288DD} = {5522DCBE-6BAF-43B3-9658-7CACBC985A9B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E268DBEE-A423-4813-95C3-F0FADDBE1AD6}
