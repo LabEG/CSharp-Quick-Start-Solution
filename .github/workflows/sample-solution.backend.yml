@@ -1,4 +1,4 @@
-name: .NET Core
+name: Backend and Web build
 
 on:
   push:

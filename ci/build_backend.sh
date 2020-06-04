@@ -3,6 +3,6 @@ set -ex # e - exit on error, x - print command before execution
 
 umask 000
 
-cd './Backend/SampleSolution.Backend'
+cd './Backends/SampleSolution.Backend'
 dotnet publish --configuration Release
 cd -
