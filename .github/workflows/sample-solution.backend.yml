@@ -13,10 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Test
-      run: ls -lah
     - name: Build backend
-      run: ./ci/build.sh
+      run: ./ci/build_release.sh
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
