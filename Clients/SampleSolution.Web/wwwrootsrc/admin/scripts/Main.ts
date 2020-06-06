@@ -1,13 +1,11 @@
-// tslint:disable-next-line:no-reference
-// / <reference path="./../../../typings/index.d.ts" />
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import { ShellController } from "../../core/scripts/app/controllers/ShellController";
+import { ShellController } from "../../core/scripts/components/shell/ShellController";
 import * as injectTapEventPlugin from "react-tap-event-plugin";
-import { Router } from "./app/Router";
-import * as alertify from "alertify.js";
+import { Router } from "./Router";
+import {alertify} from "@labeg/alertify.js";
 
 /*
  * Needed for onTouchTap

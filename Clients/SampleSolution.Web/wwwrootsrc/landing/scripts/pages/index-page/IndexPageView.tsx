@@ -1,10 +1,10 @@
-import { IndexPageController } from../../pages/IndexPage/IndexPageControllerer";
+import { IndexPageController } from "./IndexPageController";
 import * as React from "react";
 
-export function indexPageView<T, S>(ctrl: IndexPageController<T, S>, opts?: T): JSX.Element {
+export const indexPageView = <T, S>(ctrl: IndexPageController<T, S>, opts?: T): JSX.Element => {
     return (
         <div className="IndexPageController">
             Привет!
         </div>
     );
-}
+};

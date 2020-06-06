@@ -1,7 +1,7 @@
-import { PageController } from "../../../../../core/scripts/app/controllers/_base/PageController";
-import { BaseController } from "../../../../../core/scripts/app/controllers/_base/BaseController";
+import { PageController } from "../../../../core/scripts/components/_base/PageController";
+import { BaseController } from "../../../../core/scripts/components/_base/BaseController";
 import { indexPageView } from "./IndexPageView";
-// import * as alertify from 'alertify.js';
+import {alertify} from "@labeg/alertify.js";
 
 export class IndexPage<P> extends PageController<P> {
 
@@ -37,15 +37,15 @@ export class IndexPageController<P, S> extends BaseController<P, S> {
         this.activate();
     }
 
-    public componentWillMount(): void {
-
-    }
-
     public activate(): void {
         // code here
     }
 
     public update(props?: P): void {
+        // code here
+    }
+
+    public dispose(): void {
         // code here
     }
 

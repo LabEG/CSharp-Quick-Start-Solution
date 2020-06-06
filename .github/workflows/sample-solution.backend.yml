@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build backend
+    - name: Build
       run: sh ./ci/build_release.sh
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}

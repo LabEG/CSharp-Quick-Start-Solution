@@ -1,12 +1,12 @@
 import * as React from "react";
-import { IndexPageController } from "../../controllers/pages/IndexPageController";
+import { IndexPageController } from "./IndexPageController";
 import Paper from "material-ui/Paper";
 import ActionFlightTakeoff from "material-ui/svg-icons/action/account-circle";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import CircularProgress from "material-ui/CircularProgress";
 
-export function indexPageView<P, S>(ctrl: IndexPageController<P, S>, opts?: P): JSX.Element {
+export const indexPageView = <P, S>(ctrl: IndexPageController<P, S>, opts?: P): JSX.Element => {
     return (
         <div className="IndexPageController">
             <Paper key={10}

@@ -1,10 +1,9 @@
-import { ShellController, ShellOptions } from "./Shell/ShellController";
-import * as React from "./node_modules/react";
-import { HashRouter, Route, Switch, Redirect, RouteComponentProps } from "./node_modules/react-router-dom";
-import { PageController } from../components/_base/PageControllerer";
-import { Attributes } from "./node_modules/react";
+import { ShellController, ShellOptions } from "./ShellController";
+import React, { Attributes } from "react";
+import { HashRouter, Route, Switch, Redirect, RouteComponentProps } from "react-router-dom";
+import { PageController } from "../_base/PageController";
 
-export function shellView<T, S>(ctrl: ShellController<ShellOptions, S>, opts?: T): JSX.Element {
+export const shellView = <T, S>(ctrl: ShellController<ShellOptions, S>, _props?: T): JSX.Element => {
     return (
         <div key={1} className="ShellController grid-noGutter">
             <aside key={1} className="left-panel col-2">
@@ -35,4 +34,4 @@ export function shellView<T, S>(ctrl: ShellController<ShellOptions, S>, opts?: T
             </div>
         </div>
     );
-}
+};

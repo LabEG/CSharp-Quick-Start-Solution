@@ -1,8 +1,7 @@
-import * as React from "./node_modules/react";
-import { NavigationMenuController, NavigationMenuOptions, MenuElement } from../components/NavigationMenuControllerer";
+import React, {CSSProperties} from "react";
+import { NavigationMenuController, NavigationMenuOptions, MenuElement } from"./NavigationMenuController";
 import { List } from "material-ui/List";
 import ListItem from "material-ui/List/ListItem";
-import { CSSProperties } from "./node_modules/react";
 
 const noPadding: CSSProperties = {
     padding: 0

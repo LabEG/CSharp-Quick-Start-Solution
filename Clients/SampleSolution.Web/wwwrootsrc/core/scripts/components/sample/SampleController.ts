@@ -1,8 +1,8 @@
-import { BaseController } from../components/_base/BaseControllerer";
+import { BaseController } from "../_base/BaseController";
 import { sampleView } from "./SampleView";
 
 export class SampleOptions {
-    // todo: properties here
+    // code here
 }
 
 export class SampleController<T extends SampleOptions, S> extends BaseController<SampleOptions, S> {
@@ -18,10 +18,14 @@ export class SampleController<T extends SampleOptions, S> extends BaseController
     }
 
     public activate(): void {
-        // todo: logic here
+        // code here
     }
 
-    public update(props?: T): void {
+    public update(_props?: T): void {
+        // code here
+    }
+
+    public dispose(): void {
         // code here
     }
 

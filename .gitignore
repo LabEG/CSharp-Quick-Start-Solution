@@ -4,6 +4,8 @@
 # Other
 .vscode/
 **/node_modules/**
+Clients/SampleSolution.Web/wwwroot/
+Clients/SampleSolution.Web/wwwroot.tmp/
 
 # User-specific files
 *.suo

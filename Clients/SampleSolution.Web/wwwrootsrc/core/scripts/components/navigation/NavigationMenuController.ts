@@ -1,7 +1,7 @@
-import { BaseController } from../components/_base/BaseControllerer";
+import { BaseController } from "../_base/BaseController";
 import { navigationMenuView } from "./NavigationMenuView";
-// import * as alertify from 'alertify.js';
-import { PageController } from../components/_base/PageControllerer";
+import { PageController } from "../_base/PageController";
+import {alertify} from "@labeg/alertify.js";
 
 export class MenuElement {
 
@@ -58,6 +58,10 @@ export class NavigationMenuController<T extends NavigationMenuOptions, S> extend
         // code here
     }
 
+    public dispose(): void {
+        // code here
+    }
+
     public async createMenuElements(): Promise<void> {
         await this.getCurrentUser();
 
@@ -75,11 +79,11 @@ export class NavigationMenuController<T extends NavigationMenuOptions, S> extend
         this.redraw();
     }
 
-    public async getCurrentUser(): Promise<void> {
+    public getCurrentUser(): void {
         try {
             this.redraw();
         } catch (err) {
-            // alertify.error(`NavigationMenuController.getCurrentUser: error on user request ${err}`);
+            alertify.error(`NavigationMenuController.getCurrentUser: error on user request ${err}`);
         }
     }
 

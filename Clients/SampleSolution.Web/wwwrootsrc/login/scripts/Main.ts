@@ -1,20 +1,10 @@
-// tslint:disable-next-line:no-reference
-// / <reference path="./../../../typings/index.d.ts" />
-
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import { ShellController } from "../../core/scripts/app/controllers/ShellController";
-import * as injectTapEventPlugin from "react-tap-event-plugin";
-import { Router } from "./app/Router";
-import * as alertify from "alertify.js";
-import { EmptyController } from "../../core/scripts/app/controllers/components/EmptyController";
-
-/*
- * Needed for onTouchTap
- * http://stackoverflow.com/a/34015469/988941
- */
-injectTapEventPlugin();
+import { EmptyController } from "../../core/scripts/components/empty/EmptyController";
+import { ShellController } from "../../core/scripts/components/shell/ShellController";
+import { Router } from "./Router";
+import {alertify} from "@labeg/alertify.js";
 
 // alertify setup
 alertify
@@ -38,5 +28,5 @@ ReactDOM.render(
             }
         )
     ),
-    document.getElementById("app") || document.body
+    document.getElementById("app") ?? document.body
 );

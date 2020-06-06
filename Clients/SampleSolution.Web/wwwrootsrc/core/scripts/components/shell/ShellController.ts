@@ -1,9 +1,9 @@
-import { BaseController } from../components/_base/BaseControllerer";
-import { shellView } from "./ShellView";
 import { NavigationMenuController } from "../navigation/NavigationMenuController";
 import { HeaderController } from "../header/HeaderController";
+import { PageController } from "../_base/PageController";
+import { BaseController } from "../_base/BaseController";
 import { BaseRouter } from "../../BaseRouter";
-import { PageController } from../components/_base/PageControllerer";
+import { shellView } from "./ShellView";
 import { Config } from "../../Config";
 
 export class ShellOptions {
@@ -50,11 +50,15 @@ export class ShellController<T extends ShellOptions, S> extends BaseController<S
         // code here
     }
 
+    public dispose(): void {
+        // code here
+    }
+
     private runFontResizer(): void {
         const screenSize: number = window.innerWidth;
         let fontSize: number = 1;
         if (screenSize < Config.instance.smallScreen) {
-            fontSize = screenSize / 520;
+            fontSize = screenSize / 360;
         } else if (Config.instance.smallScreen <= screenSize && screenSize < Config.instance.middleScreen) {
             fontSize = screenSize / 1024;
         } else if (Config.instance.middleScreen <= screenSize && screenSize < Config.instance.bigScreen) {

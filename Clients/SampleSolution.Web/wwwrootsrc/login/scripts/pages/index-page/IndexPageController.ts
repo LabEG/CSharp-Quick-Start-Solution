@@ -1,7 +1,7 @@
-import { PageController } from "../../../../../core/scripts/app/controllers/_base/PageController";
-import { indexPageView } from "../../views/pages/IndexPageView";
-import { BaseController } from "../../../../../core/scripts/app/controllers/_base/BaseController";
-import * as alertify from "alertify.js";
+import { PageController } from "../../../../core/scripts/components/_base/PageController";
+import { indexPageView } from "./IndexPageView";
+import { BaseController } from "../../../../core/scripts/components/_base/BaseController";
+import {alertify} from "@labeg/alertify.js";
 
 export class IndexPage<P> extends PageController<P> {
 
@@ -45,11 +45,15 @@ export class IndexPageController<P, S> extends BaseController<P, S> {
         this.checkLogin();
     }
 
-    public update(props?: P): void {
+    public update(_props?: P): void {
         // code here
     }
 
-    public async checkLogin(): Promise<void> {
+    public dispose(): void {
+        // code here
+    }
+
+    public checkLogin(): void {
         try {
             location.href = "./";
         } catch (err) {
@@ -57,7 +61,7 @@ export class IndexPageController<P, S> extends BaseController<P, S> {
         }
     }
 
-    public async makeLogin(): Promise<void> {
+    public makeLogin(): void {
         try {
             this.isProgress = true;
             this.redraw();

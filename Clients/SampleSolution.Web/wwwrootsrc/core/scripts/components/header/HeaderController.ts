@@ -1,7 +1,7 @@
-import { BaseController } from../components/_base/BaseControllerer";
+import { BaseController } from "../_base/BaseController";
 import { headerView } from "./HeaderView";
-import * as alertify from "alertify.js";
-import { PageController } from../components/_base/PageControllerer";
+import {alertify} from "@labeg/alertify.js";
+import { PageController } from "../_base/PageController";
 
 export class HeaderOptions {
 
@@ -35,6 +35,10 @@ export class HeaderController<T extends HeaderOptions, S> extends BaseController
     }
 
     public update(): void {
+        // code here
+    }
+
+    public dispose(): void {
         // code here
     }
 

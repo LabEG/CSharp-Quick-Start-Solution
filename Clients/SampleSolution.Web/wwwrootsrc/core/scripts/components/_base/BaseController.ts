@@ -2,35 +2,32 @@ import * as React from "react";
 
 export abstract class BaseController<P, S> extends React.Component<P, S> {
 
-    private readonly _css?: string;
+    private readonly css?: string;
 
-    private readonly _view: (ctrl: BaseController<P, S>, options?: P) => JSX.Element;
+    private readonly view: (ctrl: BaseController<P, S>, props?: P) => JSX.Element;
 
-    constructor(props: P, context?: object, css?: string, view?: (ctrl: BaseController<P, S>, options?: P) => JSX.Element) {
+    constructor(props: P, context?: object, css?: string, view?: (ctrl: BaseController<P, S>, props?: P) => JSX.Element) {
         super(props, context);
 
-        this._css = css || void 0;
-        this._view = view || ((ctrl: BaseController<P, S>, options?: P) => React.createElement("div", void 0, "не определено"));
+        this.css = css ?? void 0;
+        this.view = view ?? ((_ctrl: BaseController<P, S>, _props?: P) => React.createElement("div", void 0, "не определено"));
 
         this.insertCss();
     }
 
-    public abstract activate(): void;
-
-    public abstract update(props?: P): void | boolean;
-
     public render(): JSX.Element {
-        return this._view(this, this.props);
+        return this.view(this, this.props);
     }
 
     public redraw(): void {
+        // eslint-disable-next-line no-console
         console.time("redraw");
         this.forceUpdate();
+        // eslint-disable-next-line no-console
         console.timeEnd("redraw");
     }
 
     public shouldComponentUpdate(nextProps: P, nextState: S, nextContext: any): boolean {
-        this.props = nextProps || void 0;
         const result: void | boolean = this.update(nextProps);
 
         return typeof result === "boolean" ? result : true;
@@ -38,13 +35,13 @@ export abstract class BaseController<P, S> extends React.Component<P, S> {
 
     private hashCode(data: string): number {
         let hash: number = 0;
-        let i: number;
-        let chr: number;
-        let len: number;
+        let i: number = 0;
+        let chr: number = 0;
+        let len: number = 0;
         if (data.length === 0) {
             return hash;
         }
-        for (i = 0, len = data.length; i < len; i++) {
+        for (i = 0, len = data.length; i < len; i += 1) {
             chr = data.charCodeAt(i);
             hash = ((hash << 5) - hash) + chr;
             hash |= 0; // Convert to 32bit integer
@@ -54,15 +51,21 @@ export abstract class BaseController<P, S> extends React.Component<P, S> {
     }
 
     private insertCss(): void {
-        if (this._css) {
-            const hashcode: number = this.hashCode(this._css);
+        if (this.css) {
+            const hashcode: number = this.hashCode(this.css);
             if (!document.getElementById(`as_${hashcode}`)) {
                 const style: HTMLStyleElement = document.createElement("style");
                 style.id = `as_${hashcode}`;
-                style.textContent = this._css;
+                style.textContent = this.css;
                 document.head.appendChild(style);
             }
         }
     }
+
+    public abstract activate(): void;
+
+    public abstract update(props?: P): void | boolean;
+
+    public abstract dispose(): void;
 
 }

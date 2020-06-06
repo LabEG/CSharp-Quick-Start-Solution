@@ -1,5 +1,5 @@
-import { BaseController } from../../components/_base/BaseControllerer";
-import * as React from "./node_modules/react";
+import { BaseController } from"../../components/_base/BaseController";
+import React from "react";
 
 export class EmptyController<T, S> extends BaseController<T, S> {
 
@@ -14,10 +14,14 @@ export class EmptyController<T, S> extends BaseController<T, S> {
     }
 
     public activate(): void {
-        // todo: logic here
+        // code here
     }
 
-    public update(props?: T): void {
+    public update(_props?: T): void {
+        // code here
+    }
+
+    public dispose(): void {
         // code here
     }
 
