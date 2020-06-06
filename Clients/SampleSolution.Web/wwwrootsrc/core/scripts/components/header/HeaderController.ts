@@ -1,7 +1,8 @@
 import { BaseController } from "../_base/BaseController";
 import { headerView } from "./HeaderView";
-import {alertify} from "@labeg/alertify.js";
+import { alertify } from "@labeg/alertify.js";
 import { PageController } from "../_base/PageController";
+import style from "./HeaderStyles.scss";
 
 export class HeaderOptions {
 
@@ -20,13 +21,7 @@ export class HeaderController<T extends HeaderOptions, S> extends BaseController
     public pages: PageController<object>[] = [];
 
     constructor(props: T, context?: object) {
-        super(
-            props,
-            context,
-            require("./../../../content/less/header.less"),
-            headerView
-        );
-        this.activate();
+        super(props, context, style, headerView);
     }
 
     public activate(): void {
@@ -59,12 +54,12 @@ export class HeaderController<T extends HeaderOptions, S> extends BaseController
             .cancelBtn("Отмена")
             .confirm(
                 "Вы действительно хотите выйти из аккаунта?",
-                async() => {
+                async () => {
                     try {
                     } catch (e) {
                     }
                     window.location.href = "./login";
-                    
+
                 }
             );
     }

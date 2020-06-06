@@ -8,7 +8,7 @@ export class EmptyController<T, S> extends BaseController<T, S> {
             props,
             context,
             void 0,
-            (ctrl: BaseController<T, S>, options?: T) => React.createElement("div", void 0, "")
+            () => React.createElement("div", void 0, "")
         );
         this.activate();
     }

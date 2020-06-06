@@ -1,0 +1,20 @@
+@import './../../../content/scss/reset';
+@import './../../../content/scss/variables';
+@import './../../../content/scss/utility';
+
+$gl-mq-list: (lg: $bigScreen,
+md: $middleScreen,
+sm: $smallScreen,
+xs: 20em);
+
+$gl-gutter: 2em;
+
+@import "./../../../../../../node_modules/gridlex/src/gridlex-preprocessing";
+@import "./../../../../../../node_modules/gridlex/src/gridlex-mixins";
+@import "./../../../../../../node_modules/gridlex/src/gridlex-classes";
+
+.ShellController
+{
+    height: 100%;
+    min-height: 100vh;
+}

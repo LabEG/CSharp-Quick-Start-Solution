@@ -1,7 +1,8 @@
 import { PageController } from "../../../../core/scripts/components/_base/PageController";
 import { indexPageView } from "./IndexPageView";
 import { BaseController } from "../../../../core/scripts/components/_base/BaseController";
-import {alertify} from "@labeg/alertify.js";
+import { alertify } from "@labeg/alertify.js";
+import style from "./IndexPageStyles.scss";
 
 export class IndexPage<P> extends PageController<P> {
 
@@ -32,13 +33,7 @@ export class IndexPageController<P, S> extends BaseController<P, S> {
     public password: string = "";
 
     constructor(props: P, context?: object) {
-        super(
-            props,
-            context,
-            require("./../../../../content/less/IndexPage.less"),
-            indexPageView
-        );
-        this.activate();
+        super(props, context, style, indexPageView);
     }
 
     public activate(): void {

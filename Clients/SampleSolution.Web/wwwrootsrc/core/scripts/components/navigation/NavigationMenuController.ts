@@ -1,7 +1,8 @@
 import { BaseController } from "../_base/BaseController";
 import { navigationMenuView } from "./NavigationMenuView";
 import { PageController } from "../_base/PageController";
-import {alertify} from "@labeg/alertify.js";
+import { alertify } from "@labeg/alertify.js";
+import style from "./NavigationMenu.scss";
 
 export class MenuElement {
 
@@ -33,14 +34,7 @@ export class NavigationMenuController<T extends NavigationMenuOptions, S> extend
     public pages: PageController<object>[] = [];
 
     constructor(props: T, context?: object) {
-        super(
-            props,
-            context,
-            require("./../../../content/less/navigation_menu.less"),
-            navigationMenuView
-        );
-        this.activate();
-        this.update();
+        super(props, context, style, navigationMenuView);
     }
 
     public activate(): void {

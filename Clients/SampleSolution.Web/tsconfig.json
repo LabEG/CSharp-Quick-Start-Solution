@@ -33,7 +33,8 @@
   },
   "include": [
     "wwwrootsrc/**/*",
-    "test/**/*"
+    "test/**/*",
+    "typings/index.d.ts"
   ],
   "exclude": [
   ]

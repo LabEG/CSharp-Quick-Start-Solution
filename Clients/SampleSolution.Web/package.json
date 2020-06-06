@@ -118,6 +118,12 @@
     "postinstall": "npm dedupe && npm prune",
     "pre-test": "concurrently \"npm run build:scripts\" \"npm run build:styles\""
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "node ./buildscripts/write-task-name.js",
+      "pre-commit": "npm run pre-test"
+    }
+  },
   "repository": {
     "type": "git",
     "url": " git@github.com:LabEG/CSharp-Bootstrap-Solution.git"

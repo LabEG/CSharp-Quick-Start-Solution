@@ -5,6 +5,7 @@ import { BaseController } from "../_base/BaseController";
 import { BaseRouter } from "../../BaseRouter";
 import { shellView } from "./ShellView";
 import { Config } from "../../Config";
+import style from "./Shell.scss";
 
 export class ShellOptions {
 
@@ -25,12 +26,7 @@ export class ShellController<T extends ShellOptions, S> extends BaseController<S
     public routs: PageController<object>[] = [];
 
     constructor(props: T, context?: object) {
-        super(
-            props,
-            context,
-            require("./../../../content/less/schell.less"),
-            shellView
-        );
+        super(props, context, style, shellView);
 
         this.leftPanelConstructor = props && props.leftPanelConstructor || NavigationMenuController;
         this.headerPanelConstructor = props && props.headerPanelConstructor || HeaderController;
@@ -59,9 +55,9 @@ export class ShellController<T extends ShellOptions, S> extends BaseController<S
         let fontSize: number = 1;
         if (screenSize < Config.instance.smallScreen) {
             fontSize = screenSize / 360;
-        } else if (Config.instance.smallScreen <= screenSize && screenSize < Config.instance.middleScreen) {
+        } else if (screenSize < Config.instance.middleScreen) {
             fontSize = screenSize / 1024;
-        } else if (Config.instance.middleScreen <= screenSize && screenSize < Config.instance.bigScreen) {
+        } else if (screenSize < Config.instance.bigScreen) {
             fontSize = screenSize / 1366;
         } else {
             fontSize = screenSize / 1920;
