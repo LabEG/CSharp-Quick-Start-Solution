@@ -1,0 +1,11 @@
+{
+    "extends": "./node_modules/@labeg/code-style/.stylelintrc",
+    "fix": true,
+    "plugins": [
+        "stylelint-scss"
+    ],
+    "rules": {
+        // override here
+    },
+    "syntax": "scss"
+}

@@ -1,27 +1,34 @@
 {
   "compilerOptions": {
-    "target": "ES5",
-    "module": "commonjs",
+    "target": "es2015",
+    "module": "ESNext",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "declaration": false,
     "checkJs": true,
     "diagnostics": true,
     "downlevelIteration": true,
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "jsx": "React",
+    "jsx": "react",
     "lib": [
       "ES2017",
       "DOM",
       "DOM.Iterable",
       "ScriptHost"
     ],
+    "importHelpers": true,
+    "noEmitHelpers": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "preserveConstEnums": false,
     "pretty": true,
     "strict": true,
     "strictFunctionTypes": false,
+    "sourceMap": true,
+    "outDir": "./wwwtroot.tmp",
+    "noEmitOnError": true,
     "suppressImplicitAnyIndexErrors": true
   },
   "include": [
