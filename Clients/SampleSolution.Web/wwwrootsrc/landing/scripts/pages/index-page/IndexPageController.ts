@@ -1,7 +1,6 @@
 import { PageController } from "../../../../core/scripts/components/_base/PageController";
 import { BaseController } from "../../../../core/scripts/components/_base/BaseController";
 import { indexPageView } from "./IndexPageView";
-import {alertify} from "@labeg/alertify.js";
 
 export class IndexPage<P> extends PageController<P> {
 

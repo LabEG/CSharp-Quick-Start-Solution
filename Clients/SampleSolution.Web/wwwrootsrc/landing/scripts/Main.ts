@@ -2,13 +2,13 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { ShellController } from "../../core/scripts/components/shell/ShellController";
-import { Router } from "./Router";
 import { alertify } from "@labeg/alertify.js";
+import { Router } from "./Router";
 
 // alertify setup
 alertify
-    .maxLogItems(10)
-    .logPosition("top right");
+    .setMaxLogItems(10)
+    .setLogPosition("top right");
 
 window.onerror = (msg: string, url: string, line: number, col: number, error: Error) => {
     alertify.error(`Ошибка в работе программы: \r\n ${msg}`);

@@ -8,8 +8,8 @@ import { ShellController } from "../../core/scripts/components/shell/ShellContro
 
 // alertify setup
 alertify
-    .maxLogItems(10)
-    .logPosition("top right");
+    .setMaxLogItems(10)
+    .setLogPosition("top right");
 
 window.onerror = (msg: string, url: string, line: number, col: number, error: Error) => {
     alertify.error(`Ошибка в работе программы: \r\n ${msg}`);

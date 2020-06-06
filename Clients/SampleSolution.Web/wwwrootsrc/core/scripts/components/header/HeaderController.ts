@@ -64,6 +64,7 @@ export class HeaderController<T extends HeaderOptions, S> extends BaseController
                     } catch (e) {
                     }
                     window.location.href = "./login";
+                    
                 }
             );
     }

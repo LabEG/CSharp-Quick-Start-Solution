@@ -27,7 +27,7 @@
     "strict": true,
     "strictFunctionTypes": false,
     "sourceMap": true,
-    "outDir": "./wwwtroot.tmp",
+    "outDir": "./wwwroot.tmp",
     "noEmitOnError": true,
     "suppressImplicitAnyIndexErrors": true
   },

@@ -8,8 +8,8 @@ import {alertify} from "@labeg/alertify.js";
 
 // alertify setup
 alertify
-    .maxLogItems(10)
-    .logPosition("top right");
+    .setMaxLogItems(10)
+    .setLogPosition("top right");
 
 window.onerror = (message: string, filename?: string, lineno?: number, colno?: number, error?: Error) => {
     alertify.error(`Ошибка в работе программы: \r\n ${message}`);
