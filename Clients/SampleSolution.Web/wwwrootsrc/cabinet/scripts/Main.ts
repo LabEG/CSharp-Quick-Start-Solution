@@ -3,7 +3,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { Router } from "./Router";
-import {alertify} from "@labeg/alertify.js";
+import { alertify } from "@labeg/alertify.js";
 import { ShellController } from "../../core/scripts/components/shell/ShellController";
 
 // alertify setup

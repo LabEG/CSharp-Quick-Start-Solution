@@ -1,8 +1,8 @@
 import * as React from "react";
-import { HeaderController, HeaderOptions } from"./HeaderController";
+import { HeaderController, HeaderOptions } from "./HeaderController";
 import IconButton from "material-ui/IconButton";
 import Drawer from "material-ui/Drawer";
-import { NavigationMenuController } from"../navigation/NavigationMenuController";
+import { NavigationMenuController } from "../navigation/NavigationMenuController";
 import SvgIcon from "material-ui/SvgIcon";
 import RaisedButton from "material-ui/RaisedButton";
 

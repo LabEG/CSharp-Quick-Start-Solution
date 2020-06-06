@@ -1,100 +1,86 @@
 // Floats
-.right
-{
+
+.right {
     float: right;
 }
 
-.left
-{
+.left {
     float: left;
 }
 
-.clear
-{
+.clear {
     clear: both;
 }
 
 // Display
-.inline
-{
+
+.inline {
     display: inline;
 }
 
-.inline-block
-{
+.inline-block {
     display: inline-block;
 }
 
-.block
-{
+.block {
     display: block;
 }
 
-.fixed
-{
+.fixed {
     display: fixed;
 }
 
-.none
-{
+.none {
     display: none;
 }
 
 // Margin and Padding
-.no-pad
-{
+
+.no-pad {
     padding: 0;
 }
 
-.no-margin-vertical
-{
+.no-margin-vertical {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.no-margin
-{
+.no-margin {
     margin: 0;
 }
 
 // Center
-.center
-{
+
+.center {
     margin: 0 auto;
 }
 
-.text-left
-{
+.text-left {
     text-align: left;
 }
 
-.text-center
-{
+.text-center {
     text-align: center;
 }
 
-.text-right
-{
+.text-right {
     text-align: right;
 }
 
-.full-width
-{
+.full-width {
     width: 100%;
 }
 
 // fonts size
-.text-small
-{
+
+.text-small {
     font-size: 0.8em;
 }
 
-.pointer
-{
+.pointer {
     cursor: pointer;
 }
 
-.align-self-center
-{
+.align-self-center {
     align-self: center;
 }

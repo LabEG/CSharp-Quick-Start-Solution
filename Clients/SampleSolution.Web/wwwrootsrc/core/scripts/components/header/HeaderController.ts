@@ -54,12 +54,11 @@ export class HeaderController<T extends HeaderOptions, S> extends BaseController
             .cancelBtn("Отмена")
             .confirm(
                 "Вы действительно хотите выйти из аккаунта?",
-                async () => {
+                async() => {
                     try {
                     } catch (e) {
                     }
                     window.location.href = "./login";
-
                 }
             );
     }

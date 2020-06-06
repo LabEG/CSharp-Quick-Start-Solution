@@ -1,4 +1,4 @@
-import { BaseController } from"../../components/_base/BaseController";
+import { BaseController } from "../../components/_base/BaseController";
 import React from "react";
 
 export class EmptyController<T, S> extends BaseController<T, S> {

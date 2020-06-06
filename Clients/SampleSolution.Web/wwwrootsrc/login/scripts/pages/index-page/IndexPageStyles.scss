@@ -1,12 +1,10 @@
-@import "./../../../../core/content/scss/variables.scss";
+@import "./../../../../core/content/scss/variables";
 
-.IndexPageController
-{
-    .login-form
-    {
+.IndexPageController {
+
+    .login-form {
         width: 24em;
         padding: 2em;
-
         text-align: center;
     }
 }

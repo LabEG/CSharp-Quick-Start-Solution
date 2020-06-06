@@ -1,6 +1,7 @@
-@import './../../../content/scss/reset';
-@import './../../../content/scss/variables';
-@import './../../../content/scss/utility';
+@import "./../../../content/scss/reset";
+@import "./../../../content/scss/variables";
+@import "./../../../../../node_modules/gridlex/src/gridlex-vars";
+@import "./../../../content/scss/utility";
 
 $gl-mq-list: (lg: $bigScreen,
 md: $middleScreen,
@@ -9,12 +10,11 @@ xs: 20em);
 
 $gl-gutter: 2em;
 
-@import "./../../../../../../node_modules/gridlex/src/gridlex-preprocessing";
-@import "./../../../../../../node_modules/gridlex/src/gridlex-mixins";
-@import "./../../../../../../node_modules/gridlex/src/gridlex-classes";
+@import "./../../../../../node_modules/gridlex/src/gridlex-preprocessing";
+@import "./../../../../../node_modules/gridlex/src/gridlex-mixins";
+@import "./../../../../../node_modules/gridlex/src/gridlex-classes";
 
-.ShellController
-{
+.ShellController {
     height: 100%;
     min-height: 100vh;
 }

@@ -4,15 +4,15 @@ $middleScreen: 66em;
 $bigScreen: 86em;
 
 // font
-$font-family: 'Roboto', sans-serif;
+$font-family: "Roboto", sans-serif;
 
 // base color
 $color-primary: #35373d;
 $color-secondary: #1996e4;
-$color-tertiary: #eeeeee;
-$color-quaternary: #ED7E2D;
+$color-tertiary: #eee;
+$color-quaternary: #ed7e2d;
 
-$color-success: #66AC3C;
+$color-success: #66ac3c;
 $color-info: $color-secondary;
 $color-warning: $color-tertiary;
 $color-danger: $color-quaternary;
@@ -20,7 +20,7 @@ $color-disabled: #eee;
 $color-highlighted: $color-primary;
 
 // animation
-$transition-primary: .3s cubic-bezier(.64, .09, .08, 1);
+$transition-primary: 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
 
 // text colors
 $text-color-primary: black;

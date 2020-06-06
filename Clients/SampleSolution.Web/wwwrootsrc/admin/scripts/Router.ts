@@ -1,4 +1,4 @@
-import { IndexPage } from"./pages/index-page/IndexPageController";
+import { IndexPage } from "./pages/index-page/IndexPageController";
 import { BaseRouter } from "../../core/scripts/BaseRouter";
 
 export class Router extends BaseRouter {

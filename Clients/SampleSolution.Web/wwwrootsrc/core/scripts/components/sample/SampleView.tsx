@@ -1,5 +1,5 @@
 
-import { SampleController, SampleOptions } from"./SampleController";
+import { SampleController, SampleOptions } from "./SampleController";
 import * as React from "react";
 
 export function sampleView<T extends SampleOptions, S>(ctrl: SampleController<T, S>, opts: T): JSX.Element {

@@ -1,5 +1,5 @@
-import React, {CSSProperties} from "react";
-import { NavigationMenuController, NavigationMenuOptions, MenuElement } from"./NavigationMenuController";
+import React, { CSSProperties } from "react";
+import { NavigationMenuController, NavigationMenuOptions, MenuElement } from "./NavigationMenuController";
 import { List } from "material-ui/List";
 import ListItem from "material-ui/List/ListItem";
 

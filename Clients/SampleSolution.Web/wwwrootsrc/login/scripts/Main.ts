@@ -4,7 +4,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { EmptyController } from "../../core/scripts/components/empty/EmptyController";
 import { ShellController } from "../../core/scripts/components/shell/ShellController";
 import { Router } from "./Router";
-import {alertify} from "@labeg/alertify.js";
+import { alertify } from "@labeg/alertify.js";
 
 // alertify setup
 alertify

@@ -11,6 +11,7 @@ export class CRUDService<T1 extends Serializable, T2 extends CRUDRepository<T1>>
 
     constructor(repository: new () => T2) {
         super();
+        // eslint-disable-next-line new-cap
         this.repository = new repository();
     }
 
