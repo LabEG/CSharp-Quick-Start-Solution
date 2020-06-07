@@ -1,5 +1,5 @@
 FROM nginx:stable
-EXPOSE 30202
+EXPOSE 32202
 
 RUN ln -snf /usr/share/zoneinfo/Europe/Moscow /etc/localtime && echo Europe/Moscow > /etc/timezone
 RUN rm -rvf /etc/nginx/conf.d/default.conf

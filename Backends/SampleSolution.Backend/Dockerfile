@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim
 
 WORKDIR /app
-ENV ASPNETCORE_URLS=http://0.0.0.0:30102
-EXPOSE 30102
+ENV ASPNETCORE_URLS=http://0.0.0.0:32102
+EXPOSE 32102
 
 RUN ls -lah ../
 
