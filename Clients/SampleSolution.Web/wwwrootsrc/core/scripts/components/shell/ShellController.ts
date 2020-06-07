@@ -5,7 +5,7 @@ import { BaseController } from "../_base/BaseController";
 import { BaseRouter } from "../../BaseRouter";
 import { shellView } from "./ShellView";
 import { Config } from "../../Config";
-import style from "./Shell.scss";
+import style from "./ShellStyles.scss";
 
 export class ShellOptions {
 

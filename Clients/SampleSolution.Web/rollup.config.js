@@ -1,14 +1,10 @@
-import nodeResolve from "rollup-plugin-node-resolve";
-import commonJs from "rollup-plugin-commonjs";
+import nodeResolve from "@rollup/plugin-node-resolve";
+import commonJs from "@rollup/plugin-commonjs";
 import visualizer from "rollup-plugin-visualizer";
 import replace from "rollup-plugin-replace";
 import { terser } from "rollup-plugin-terser";
 import { string } from "rollup-plugin-string";
 import babel from "rollup-plugin-babel";
-import react from 'react';
-import reactDom from 'react-dom';
-import reactRouterDom from 'react-router-dom';
-import tslib from 'tslib';
 
 const isSourceMap = false;
 const isRelease = process.env.NODE_ENV === "production";
@@ -24,18 +20,6 @@ const getPlugins = (config) => {
     }));
 
     plugins.push(commonJs({
-        namedExports: {
-            "react-is": ["isValidElementType"],
-            "react": Object.keys(react),
-            "react-dom": Object.keys(reactDom),
-            "react-router-dom": Object.keys(reactRouterDom),
-            "class-validator": [
-                "validate", "Validate", "ValidatorConstraint", "IsOptional", "MaxLength", "ValidationError",
-                "ValidatorConstraintInterface", "ValidationArguments"
-            ],
-            "tslib": Object.keys(tslib),
-            "classnames": ["classnames"]
-        },
         include: "node_modules/**"
     }));
 
@@ -85,7 +69,6 @@ const getPlugins = (config) => {
                 max_line_len: 500
             },
             toplevel: true,
-            sourcemap: isSourceMap,
             ecma: isESNext ? 2015 : 5
         }));
     }
@@ -113,7 +96,7 @@ if (app === "Landing_es2015") {
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "LandingES2015", isESNext: true }),
+        plugins: getPlugins({ appName: "LandingES2015", isESNext: true })
     });
 }
 
@@ -125,7 +108,7 @@ if (app === "Landing_es5") {
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "LandingES5", isESNext: false }),
+        plugins: getPlugins({ appName: "LandingES5", isESNext: false })
     });
 }
 
@@ -137,7 +120,7 @@ if (app === "Cabinet_es2015") {
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "CabinetES2015", isESNext: true }),
+        plugins: getPlugins({ appName: "CabinetES2015", isESNext: true })
     });
 }
 
@@ -149,7 +132,7 @@ if (app === "Cabinet_es5") {
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "CabinetES5", isESNext: false }),
+        plugins: getPlugins({ appName: "CabinetES5", isESNext: false })
     });
 }
 
@@ -161,7 +144,7 @@ if (app === "Admin_es2015") {
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "AdminES2015", isESNext: true }),
+        plugins: getPlugins({ appName: "AdminES2015", isESNext: true })
     });
 }
 
@@ -173,7 +156,7 @@ if (app === "Admin_es5") {
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "AdminES5", isESNext: false }),
+        plugins: getPlugins({ appName: "AdminES5", isESNext: false })
     });
 }
 
@@ -185,7 +168,7 @@ if (app === "Polyfills_es2015") {
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "PolyfillsES2015", isESNext: true }),
+        plugins: getPlugins({ appName: "PolyfillsES2015", isESNext: true })
     });
 }
 
@@ -197,7 +180,7 @@ if (app === "Polyfills_es5") {
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "PolyfillsES5", isESNext: false }),
+        plugins: getPlugins({ appName: "PolyfillsES5", isESNext: false })
     });
 }
 
