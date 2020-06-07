@@ -17,7 +17,7 @@ cd -
 docker rmi -f labeg/csharp-qss-backend:$tag
 
 # build frontend
-cd './Backends/SampleSolution.Backend'
+cd './Clients/SampleSolution.Web'
 docker build --network=host -t labeg/csharp-qss-frontend:$tag .
 docker push labeg/csharp-qss-frontend:$tag
 cd -

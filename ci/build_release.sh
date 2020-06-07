@@ -32,6 +32,10 @@ echo ""
 echo " ====== Make docker: SampleSolution Dockers ====== "
 echo ""
 
+ls -lah
+ls -lah ./Backends/SampleSolution.Backend
+ls -lah ./Backends/SampleSolution.Backend/bin/Release/netcoreapp3.1/publish
+
 docker run -t \
            -w /app \
            --network=host \
