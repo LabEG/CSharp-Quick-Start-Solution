@@ -8,10 +8,19 @@ docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 tag="latest"
 
 # build backend
-cd './Backend/SampleSolution.Backend'
+cd './Backends/SampleSolution.Backend'
 docker build --network=host -t labeg/csharp-qss-backend:$tag .
 docker push labeg/csharp-qss-backend:$tag
 cd -
 
 # clean repository
 docker rmi -f labeg/csharp-qss-backend:$tag
+
+# build frontend
+cd './Backends/SampleSolution.Backend'
+docker build --network=host -t labeg/csharp-qss-frontend:$tag .
+docker push labeg/csharp-qss-frontend:$tag
+cd -
+
+# clean repository
+docker rmi -f labeg/csharp-qss-frontend:$tag
