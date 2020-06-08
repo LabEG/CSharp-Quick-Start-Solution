@@ -160,6 +160,30 @@ if (app === "Admin_es5") {
     });
 }
 
+if (app === "Login_es2015") {
+    tasks.push({
+        input: "wwwroot.tmp/login/scripts/Main.js",
+        output: {
+            file: "wwwroot/login/scripts/main.es2015.min.js",
+            format: "iife",
+            sourcemap: isSourceMap
+        },
+        plugins: getPlugins({ appName: "LoginES2015", isESNext: true })
+    });
+}
+
+if (app === "Login_es5") {
+    tasks.push({
+        input: "wwwroot.tmp/login/scripts/Main.js",
+        output: {
+            file: "wwwroot/login/scripts/main.es5.min.js",
+            format: "iife",
+            sourcemap: isSourceMap
+        },
+        plugins: getPlugins({ appName: "LoginES5", isESNext: false })
+    });
+}
+
 if (app === "Polyfills_es2015") {
     tasks.push({
         input: "wwwroot.tmp/core/scripts/polyfills.es2015.js",
