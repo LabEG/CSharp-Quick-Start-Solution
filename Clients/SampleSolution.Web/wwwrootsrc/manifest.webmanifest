@@ -1,0 +1,47 @@
+{
+  "name": "C# Quick Start Solution",
+  "short_name": "C# QSS",
+  "scope": "./",
+  "start_url" : "./",
+  "display" : "standalone",
+  "theme_color": "#425566",
+  "background_color" : "#fff",
+  "dir" : "ltr",
+  "lang" : "ru-RU",
+  "description" : "C# Quick Start Solution",
+  "orientation" : "any",
+  "icons": [
+      {
+        "src": "/core/content/images/manifest/icons/icon-72x72.png",
+        "sizes": "72x72"
+      },
+      {
+        "src": "/core/content/images/manifest/icons/icon-96x96.png",
+        "sizes": "96x96"
+      },
+      {
+        "src": "/core/content/images/manifest/icons/icon-128x128.png",
+        "sizes": "128x128"
+      },
+      {
+        "src": "/core/content/images/manifest/icons/icon-144x144.png",
+        "sizes": "144x144"
+      },
+      {
+        "src": "/core/content/images/manifest/icons/icon-152x152.png",
+        "sizes": "152x152"
+      },
+      {
+        "src": "/core/content/images/manifest/icons/icon-192x192.png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/core/content/images/manifest/icons/icon-384x384.png",
+        "sizes": "384x384"
+      },
+      {
+        "src": "/core/content/images/manifest/icons/icon-512x512.png",
+        "sizes": "512x512"
+      }
+    ]
+}
