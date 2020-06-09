@@ -28,5 +28,5 @@ ReactDOM.render(
             }
         )
     ),
-    document.getElementById("app") ?? document.body
+    document.body
 );

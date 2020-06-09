@@ -6,7 +6,7 @@
     "allowSyntheticDefaultImports": true,
     "declaration": false,
     "checkJs": true,
-    "diagnostics": true,
+    "diagnostics": false,
     "downlevelIteration": true,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,

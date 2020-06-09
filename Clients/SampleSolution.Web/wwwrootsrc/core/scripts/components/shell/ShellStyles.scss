@@ -13,6 +13,7 @@ $gl-gutter: 2em;
 @import "./../../../../../node_modules/gridlex/src/gridlex-preprocessing";
 @import "./../../../../../node_modules/gridlex/src/gridlex-mixins";
 @import "./../../../../../node_modules/gridlex/src/gridlex-classes";
+@import "./../../../content/scss/alertify";
 
 .ShellController {
     height: 100%;
