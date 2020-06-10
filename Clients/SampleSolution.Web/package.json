@@ -48,7 +48,7 @@
     "@types/faker": "=4.1.12",
     "@types/material-ui": "=0.21.7",
     "@types/mocha": "=7.0.2",
-    "@types/react": "=16.9.35",
+    "@types/react": "=16.9.36",
     "@types/react-dom": "=16.9.8",
     "@types/react-router-dom": "=5.1.5",
     "autoprefixer": "=9.8.0",
@@ -62,6 +62,7 @@
     "http-proxy-middleware": "=1.0.4",
     "husky": "=4.2.5",
     "faker": "=4.1.0",
+    "lint-staged": "=10.2.9",
     "mocha": "=7.2.0",
     "node-sass": "=4.14.1",
     "postcss-cli": "=7.1.1",
@@ -88,6 +89,7 @@
     "packages:fullupdate": "ncu -u && npm run packages:reinstall",
     "cs:eslint": "eslint --fix -c .eslintrc.js --ext .tsx,.ts,.jsx,.js ./wwwrootsrc/",
     "cs:stylelint": "stylelint --fix ./wwwrootsrc/**/*.scss",
+    "cs:staged": "lint-staged",
     "cs": "concurrently \"npm run cs:eslint\" \"npm run cs:stylelint\"",
     "serve:browser-sync": "browser-sync start --config bs-config.js",
     "serve:styles": "postcss ./wwwrootsrc/**/*.scss --watch --base ./wwwrootsrc/ --dir ./wwwroot.tmp/",
@@ -119,13 +121,20 @@
     "build:bundle_polyfills_es2015": "rollup --config --environment NODE_ENV:production,APP:Polyfills_es2015",
     "build:bundle_polyfills_es5": "rollup --config --environment NODE_ENV:production,APP:Polyfills_es5",
     "build": "rm -rvf wwwroot/ && rm -rvf wwwroot.tmp/ && concurrently \"npm run build:styles\" \"npm run build:scripts\" && concurrently \"npm run build:static\" \"npm run build:images\" \"npm run build:html\" \"npm run build:bundle_landing_es2015\" \"npm run build:bundle_landing_es5\" \"npm run build:bundle_polyfills_es2015\" \"npm run build:bundle_polyfills_es5\" \"npm run build:bundle_cabinete_es2015\" \"npm run build:bundle_cabinete_es5\" \"npm run build:bundle_admin_es2015\" \"npm run build:bundle_admin_es5\" \"npm run build:bundle_login_es2015\" \"npm run build:bundle_login_es5\"",
-    "postinstall": "npm dedupe && npm prune",
-    "pre-test": "concurrently \"npm run build:scripts\" \"npm run build:styles\""
+    "postinstall": "npm dedupe && npm prune"
+  },
+  "lint-staged": {
+    "./wwwrootsrc/**/*.(ts|tsx|js|jsx)": [
+      "eslint --fix -c .eslintrc.js --ext .tsx,.ts,.jsx,.js"
+    ],
+    "./wwwrootsrc/**/*.(css|scss)": [
+      "stylelint --fix"
+    ]
   },
   "husky": {
     "hooks": {
       "commit-msg!": "node ./buildscripts/write-task-name.js",
-      "pre-commit": "npm run pre-test"
+      "pre-commit": "lint-staged"
     }
   },
   "repository": {
