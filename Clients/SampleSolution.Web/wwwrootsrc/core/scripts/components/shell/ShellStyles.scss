@@ -17,5 +17,5 @@ $gl-gutter: 2em;
 @import "./../../../content/scss/alertify";
 
 .ShellController {
-    min-height: 100vh;
+    display: block;
 }

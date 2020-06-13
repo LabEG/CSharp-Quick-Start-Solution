@@ -29,3 +29,6 @@ ReactDOM.render(
     ),
     document.querySelector("body > #app") ?? document.body
 );
+
+const loader = document.querySelector("body > #init");
+document.body.removeChild(loader as HTMLElement);

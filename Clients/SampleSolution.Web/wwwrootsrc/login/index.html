@@ -111,62 +111,62 @@
             }
         </style>
         <div class="loader"></div>
-    </div>
-    <script async>
-
-        window.onerror = function (errorMsg, source, lineno, colno, error) {
-            document.body.innerHTML = [
-                "<div style='background-color: #f4f0f1; border: 1px solid #e30611; color: #e30611; margin: 10em auto; max-width: 50em; padding: 4em; border-radius: 0.5em; font-family: MTSSans, Arial, sans-serif'>",
-                "<h3>При запуске программы произошла непредвиденная ошибка:</h3>",
-                "<p>",
-                errorMsg,
-                "</p>",
-                "<small>",
-                source + ":" + lineno + ":" + colno,
-                "<br/>",
-                error && error.stack.replace(/\n/g, "<br />"),
-                "</small>",
-                "</div>"
-            ].join("")
-        };
-
-        // 1. Подключаем ServiceWorker, подробнее рассмотрим в блоке PWA
-        if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations && !navigator.serviceWorker.controller) {
-            // navigator.serviceWorker.register('/pwa.serviceworker.min.js', {scope: './'});
-
-            navigator.serviceWorker.getRegistrations().then(function (registrations) {
-                for (var i = 0; i < registrations.length; i++) {
-                    registrations[i].unregister();
-                }
+        <script async>
+    
+            window.onerror = function (errorMsg, source, lineno, colno, error) {
+                document.body.innerHTML = [
+                    "<div style='background-color: #f4f0f1; border: 1px solid #e30611; color: #e30611; margin: 10em auto; max-width: 50em; padding: 4em; border-radius: 0.5em; font-family: MTSSans, Arial, sans-serif'>",
+                    "<h3>При запуске программы произошла непредвиденная ошибка:</h3>",
+                    "<p>",
+                    errorMsg,
+                    "</p>",
+                    "<small>",
+                    source + ":" + lineno + ":" + colno,
+                    "<br/>",
+                    error && error.stack.replace(/\n/g, "<br />"),
+                    "</small>",
+                    "</div>"
+                ].join("")
+            };
+    
+            // 1. Подключаем ServiceWorker, подробнее рассмотрим в блоке PWA
+            if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations && !navigator.serviceWorker.controller) {
+                // navigator.serviceWorker.register('/pwa.serviceworker.min.js', {scope: './'});
+    
+                navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                    for (var i = 0; i < registrations.length; i++) {
+                        registrations[i].unregister();
+                    }
+                });
+            }
+    
+            // 2. Подключаем необходимые стили
+            [].forEach(function (url) {
+                var style = document.createElement("link");
+                style.href = url;
+                style.rel = "stylesheet";
+                document.head.appendChild(style);
             });
-        }
-
-        // 2. Подключаем необходимые стили
-        [].forEach(function (url) {
-            var style = document.createElement("link");
-            style.href = url;
-            style.rel = "stylesheet";
-            document.head.appendChild(style);
-        });
-
-        // 3. Подключаем необходимые скрипты
-        var esVersion = ".es2015";
-        try {
-            new Function("(a = 0) => (a,{...{a:0}});const b=1;");
-        } catch (err) {
-            esVersion = ".es5";
-        }
-        [
-            "/core/scripts/polyfills" + esVersion + ".min.js?v={_VERSION_}",
-            "/login/scripts/main" + esVersion + ".min.js?v={_VERSION_}"
-        ].forEach(function (url) {
-            const script = document.createElement("script");
-            script.src = url;
-            script.async = false;
-            document.head.appendChild(script);
-        });
-
-    </script>
+    
+            // 3. Подключаем необходимые скрипты
+            var esVersion = ".es2015";
+            try {
+                new Function("(a = 0) => (a,{...{a:0}});const b=1;");
+            } catch (err) {
+                esVersion = ".es5";
+            }
+            [
+                "/core/scripts/polyfills" + esVersion + ".min.js?v={_VERSION_}",
+                "/login/scripts/main" + esVersion + ".min.js?v={_VERSION_}"
+            ].forEach(function (url) {
+                const script = document.createElement("script");
+                script.src = url;
+                script.async = false;
+                document.head.appendChild(script);
+            });
+    
+        </script>
+    </div>
 </body>
 
 </html>
