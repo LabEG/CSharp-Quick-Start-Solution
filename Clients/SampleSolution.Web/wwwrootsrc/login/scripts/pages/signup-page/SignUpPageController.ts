@@ -1,18 +1,18 @@
 import { PageController } from "../../../../core/scripts/components/_base/PageController";
-import { indexPageView } from "./IndexPageView";
+import { signUpPageView } from "./SignUpPageView";
 import { BaseController } from "../../../../core/scripts/components/_base/BaseController";
 import { alertify } from "@labeg/alertify.js";
-import style from "./IndexPageStyles.scss";
+import style from "./SignUpPageStyles.scss";
 
-export class IndexPage<P> extends PageController<P> {
+export class SignUpPage<P> extends PageController<P> {
 
     public isShowInNavigation: boolean = false;
 
     public title: string = "Логин";
 
-    public route: string = "/";
+    public route: string = "/sign-up";
 
-    public pageConstructor: new (props: P, context?: Object) => BaseController<P, Object> = IndexPageController;
+    public pageConstructor: new (props: P, context?: Object) => BaseController<P, Object> = SignUpPageController;
 
     public open(): void {
         this.openLocation(this.route);
@@ -24,7 +24,7 @@ export class IndexPage<P> extends PageController<P> {
 
 }
 
-export class IndexPageController<P, S> extends BaseController<P, S> {
+export class SignUpPageController<P, S> extends BaseController<P, S> {
 
     public isProgress: boolean = false;
 
@@ -33,7 +33,7 @@ export class IndexPageController<P, S> extends BaseController<P, S> {
     public password: string = "";
 
     constructor(props: P, context?: S) {
-        super(props, context, style, indexPageView);
+        super(props, context, style, signUpPageView);
     }
 
     public activate(): void {
