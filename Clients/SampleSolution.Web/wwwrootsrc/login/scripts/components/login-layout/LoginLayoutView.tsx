@@ -1,17 +1,16 @@
 
 import { LoginLayoutController, LoginLayoutOptions } from "./LoginLayoutController";
-import * as React from "react";
-import { HashRouter, Switch, Redirect, RouteComponentProps, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Redirect, RouteComponentProps, Route } from "react-router-dom";
 import { PageController } from "../../../../core/scripts/components/_base/PageController";
 import Paper from "material-ui/Paper";
+import * as React from "react";
 
 // https://reacttraining.com/react-router/web/api/Route
 export const loginLayoutView = <T extends LoginLayoutOptions, S>(ctrl: LoginLayoutController<T, S>, props: T): JSX.Element => (
     <div className="LoginLayoutController">
-        <Paper key={10}
-            className="login-form"
+        <Paper className="login-form"
             zDepth={4}>
-            <HashRouter key={1}>
+            <BrowserRouter basename="/login/">
                 <Switch key={location.pathname}>
                     {
                         props.routs
@@ -25,7 +24,7 @@ export const loginLayoutView = <T extends LoginLayoutOptions, S>(ctrl: LoginLayo
                     }
                     <Redirect to="/" />
                 </Switch>
-            </HashRouter>
+            </BrowserRouter>
         </Paper>
     </div>
 );

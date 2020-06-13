@@ -10,7 +10,7 @@ export class SignInPage<P> extends PageController<P> {
 
     public title: string = "Логин";
 
-    public route: string = "/sign-in";
+    public route: string = "/";
 
     public pageConstructor: new (props: P, context?: Object) => BaseController<P, Object> = SignInPageController;
 

@@ -10,7 +10,7 @@ export class RestorePage<P> extends PageController<P> {
 
     public title: string = "Логин";
 
-    public route: string = "/";
+    public route: string = "/restore";
 
     public pageConstructor: new (props: P, context?: Object) => BaseController<P, Object> = RestorePageController;
 

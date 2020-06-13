@@ -4,6 +4,7 @@ import ActionFlightTakeoff from "material-ui/svg-icons/action/account-circle";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import CircularProgress from "material-ui/CircularProgress";
+import { Link } from "react-router-dom";
 
 export const signInPageView = <P, S>(ctrl: SignInPageController<P, S>, _props?: P): JSX.Element => (
     <div className="SignInPageController">
@@ -45,13 +46,13 @@ export const signInPageView = <P, S>(ctrl: SignInPageController<P, S>, _props?: 
                     <CircularProgress size={60} thickness={7} />
             }
             <br />
-            <a href="#/sign-up">
+            <Link to="/sign-up">
                 Sign Up
-            </a>
+            </Link>
             <br />
-            <a href="#/restore">
+            <Link to="/restore">
                 Restore
-            </a>
+            </Link>
         </form>
     </div>
 );

@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
 
     <title>CSharp Sample Solution / Login</title>
+    <base href="/login/">
 
     <meta name="title" content="CSharp Sample Solution Title">
     <meta name="description" content="CSharp Sample Solution Description">
@@ -156,8 +157,8 @@
                 esVersion = ".es5";
             }
             [
-                "/core/scripts/polyfills" + esVersion + ".min.js?v={_VERSION_}",
-                "/login/scripts/main" + esVersion + ".min.js?v={_VERSION_}"
+                "./../core/scripts/polyfills" + esVersion + ".min.js?v={_VERSION_}",
+                "./scripts/main" + esVersion + ".min.js?v={_VERSION_}"
             ].forEach(function (url) {
                 const script = document.createElement("script");
                 script.src = url;

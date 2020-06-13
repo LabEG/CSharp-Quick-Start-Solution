@@ -14,6 +14,7 @@
  */
 
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const historyApiFallback = require('connect-history-api-fallback');
 const proxy = createProxyMiddleware(
     (pathname, req) => pathname.match('^/api'),
     {
@@ -38,7 +39,19 @@ module.exports = {
                     res.end();
                     next();
                 }
-            }
+            },
+            historyApiFallback({
+                verbose: false,
+                htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
+                rewrites: [
+                    {
+                      from: /^\/(\w+?)\/.*$/,
+                      to: function(context) {
+                        return `/${context.match[1]}/index.html`;
+                      }
+                    }
+                  ]
+              })
         ]
     }
 };
