@@ -5,7 +5,6 @@
         "stylelint-scss"
     ],
     "rules": {
-        // override here
     },
     "syntax": "scss"
 }

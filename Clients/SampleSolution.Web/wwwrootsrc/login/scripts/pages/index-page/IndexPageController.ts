@@ -32,7 +32,7 @@ export class IndexPageController<P, S> extends BaseController<P, S> {
 
     public password: string = "";
 
-    constructor(props: P, context?: object) {
+    constructor(props: P, context?: S) {
         super(props, context, style, indexPageView);
     }
 

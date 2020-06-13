@@ -20,7 +20,7 @@ export class HeaderController<T extends HeaderOptions, S> extends BaseController
 
     public pages: PageController<object>[] = [];
 
-    constructor(props: T, context?: object) {
+    constructor(props: T, context?: S) {
         super(props, context, style, headerView);
     }
 

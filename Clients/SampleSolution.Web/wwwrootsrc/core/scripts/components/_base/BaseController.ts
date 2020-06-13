@@ -6,7 +6,7 @@ export abstract class BaseController<P, S> extends React.Component<P, S> {
 
     private readonly view: (ctrl: BaseController<P, S>, props?: P) => JSX.Element;
 
-    constructor(props: P, context?: object, css?: string, view?: (ctrl: BaseController<P, S>, props?: P) => JSX.Element) {
+    constructor(props: P, context?: S, css?: string, view?: (ctrl: BaseController<P, S>, props?: P) => JSX.Element) {
         super(props, context);
 
         this.css = css ?? void 0;

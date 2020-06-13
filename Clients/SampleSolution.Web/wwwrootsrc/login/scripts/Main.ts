@@ -1,10 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import { EmptyController } from "../../core/scripts/components/empty/EmptyController";
 import { ShellController } from "../../core/scripts/components/shell/ShellController";
 import { Router } from "./Router";
 import { alertify } from "@labeg/alertify.js";
+import { LoginLayoutController } from "./components/login-layout/LoginLayoutController";
 
 // alertify setup
 alertify
@@ -23,10 +23,9 @@ ReactDOM.render(
             ShellController,
             {
                 routs: Router.routs,
-                leftPanelConstructor: EmptyController,
-                headerPanelConstructor: EmptyController
+                layout: LoginLayoutController
             }
         )
     ),
-    document.body
+    document.querySelector("body > #app") ?? document.body
 );

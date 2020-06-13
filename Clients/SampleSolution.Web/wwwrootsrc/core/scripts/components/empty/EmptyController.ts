@@ -3,7 +3,7 @@ import React from "react";
 
 export class EmptyController<T, S> extends BaseController<T, S> {
 
-    constructor(props: T, context?: object) {
+    constructor(props: T, context?: S) {
         super(
             props,
             context,

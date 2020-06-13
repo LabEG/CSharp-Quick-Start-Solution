@@ -1,38 +1,21 @@
-import { NavigationMenuController } from "../navigation/NavigationMenuController";
-import { HeaderController } from "../header/HeaderController";
-import { PageController } from "../_base/PageController";
 import { BaseController } from "../_base/BaseController";
 import { BaseRouter } from "../../BaseRouter";
 import { shellView } from "./ShellView";
 import { Config } from "../../Config";
 import style from "./ShellStyles.scss";
+import { BaseLayoutController, BaseLayoutOptions } from "../base-layout/BaseLayoutController";
 
-export class ShellOptions {
+export interface ShellOptions {
 
-    public leftPanelConstructor?: new (props?: object, context?: object) => BaseController<object, object>;
-
-    public headerPanelConstructor?: new (props?: object, context?: object) => BaseController<object, object>;
-
-    public routs: BaseRouter | null = null;
+    routs: BaseRouter;
+    layout: new <T extends BaseLayoutOptions, S>(props: T, context: S) => BaseLayoutController<T, S>;
 
 }
 
 export class ShellController<T extends ShellOptions, S> extends BaseController<ShellOptions, S> {
 
-    public leftPanelConstructor: new (props?: object, context?: object) => BaseController<object, object>;
-
-    public headerPanelConstructor: new (props?: object, context?: object) => BaseController<object, object>;
-
-    public routs: PageController<object>[] = [];
-
-    constructor(props: T, context?: object) {
+    constructor(props: T, context?: S) {
         super(props, context, style, shellView);
-
-        this.leftPanelConstructor = props && props.leftPanelConstructor || NavigationMenuController;
-        this.headerPanelConstructor = props && props.headerPanelConstructor || HeaderController;
-        this.routs = props && props.routs && props.routs.getRouts() || [];
-
-        this.activate();
 
         window.addEventListener("resize", () => this.runFontResizer());
         this.runFontResizer();
@@ -71,13 +54,16 @@ export class ShellController<T extends ShellOptions, S> extends BaseController<S
     private async addOuterCss(): Promise<void> {
         await Promise.resolve();
 
-        const cssUrls: string[] = ["https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic"];
+        const cssUrls: string[] = [
+            "https://fonts.googleapis.com/css?" +
+                "family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic"
+        ];
 
         for (const url of cssUrls) {
-            const style: HTMLLinkElement = document.createElement("link");
-            style.href = url;
-            style.rel = "stylesheet";
-            document.head.appendChild(style);
+            const link: HTMLLinkElement = document.createElement("link");
+            link.href = url;
+            link.rel = "stylesheet";
+            document.head.appendChild(link);
         }
     }
 

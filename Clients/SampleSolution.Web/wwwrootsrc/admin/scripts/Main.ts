@@ -5,6 +5,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { ShellController } from "../../core/scripts/components/shell/ShellController";
 import { Router } from "./Router";
 import { alertify } from "@labeg/alertify.js";
+import { BaseLayoutController } from "../../core/scripts/components/base-layout/BaseLayoutController";
 
 // alertify setup
 alertify
@@ -21,7 +22,13 @@ ReactDOM.render(
     React.createElement(
         MuiThemeProvider,
         void 0,
-        React.createElement(ShellController, { routs })
+        React.createElement(
+            ShellController,
+            {
+                routs,
+                layout: BaseLayoutController
+            }
+        )
     ),
-    document.getElementById("app") || document.body
+    document.querySelector("body > #app") ?? document.body
 );

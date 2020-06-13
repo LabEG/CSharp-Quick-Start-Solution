@@ -1,5 +1,5 @@
 {
-  "name": "C# Quick Start Solution",
+  "name": "C# Sample Solution",
   "short_name": "C# QSS",
   "scope": "./",
   "start_url" : "./",
@@ -8,7 +8,7 @@
   "background_color" : "#fff",
   "dir" : "ltr",
   "lang" : "ru-RU",
-  "description" : "C# Quick Start Solution",
+  "description" : "C# Sample Solution",
   "orientation" : "any",
   "icons": [
       {

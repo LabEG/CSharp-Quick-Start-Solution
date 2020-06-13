@@ -33,7 +33,7 @@ export class NavigationMenuController<T extends NavigationMenuOptions, S> extend
 
     public pages: PageController<object>[] = [];
 
-    constructor(props: T, context?: object) {
+    constructor(props: T, context?: S) {
         super(props, context, style, navigationMenuView);
     }
 

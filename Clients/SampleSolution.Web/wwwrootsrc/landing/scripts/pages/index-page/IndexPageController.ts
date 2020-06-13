@@ -25,7 +25,7 @@ export class IndexPage<P> extends PageController<P> {
 
 export class IndexPageController<P, S> extends BaseController<P, S> {
 
-    constructor(props: P, context?: object) {
+    constructor(props: P, context?: S) {
         super(props, context, style, indexPageView);
         window.scrollTo(0, 0);
     }

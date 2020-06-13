@@ -1,5 +1,6 @@
-import { BaseController } from "../_base/BaseController";
+import { BaseController } from "../../../../core/scripts/components/_base/BaseController";
 import { sampleView } from "./SampleView";
+import style from "./SampleStyles.scss";
 
 export class SampleOptions {
     // code here
@@ -7,14 +8,8 @@ export class SampleOptions {
 
 export class SampleController<T extends SampleOptions, S> extends BaseController<SampleOptions, S> {
 
-    constructor(props: T, context?: object) {
-        super(
-            props,
-            context,
-            require("./../../../content/less/components/sample.less"),
-            sampleView
-        );
-        this.activate();
+    constructor(props: T, context?: S) {
+        super(props, context, style, sampleView);
     }
 
     public activate(): void {
