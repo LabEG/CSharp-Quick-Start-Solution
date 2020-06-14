@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 export abstract class BaseController<P, S> extends React.Component<P, S> {
 

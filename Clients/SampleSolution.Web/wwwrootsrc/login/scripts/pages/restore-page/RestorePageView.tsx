@@ -1,9 +1,9 @@
-import * as React from "react";
+import React from "react";
 import { RestorePageController } from "./RestorePageController";
-import ActionFlightTakeoff from "material-ui/svg-icons/action/account-circle";
-import TextField from "material-ui/TextField";
-import RaisedButton from "material-ui/RaisedButton";
-import CircularProgress from "material-ui/CircularProgress";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { Link } from "react-router-dom";
 
 export const restorePageView = <P, S>(ctrl: RestorePageController<P, S>, _props?: P): JSX.Element => (
@@ -12,23 +12,22 @@ export const restorePageView = <P, S>(ctrl: RestorePageController<P, S>, _props?
             <h2 className="text-center">
                 Restore Login
             </h2>
-            <ActionFlightTakeoff key={10}
-                color="rgba(0,0,0,0.3)"
+            <AccountCircle key={10}
                 style={{ width: "100%", height: "16em" }} />
             <TextField key={20}
                 name="login"
-                floatingLabelText="Логин"
-                onChange={(e: React.FormEvent<object>, value: string) => {
-                    ctrl.login = value;
+                label="Логин"
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    ctrl.login = event.target.value;
                     ctrl.redraw();
                 }}
                 onKeyPress={(event: KeyboardEventInit) => ctrl.onEnterKeyPress(event)} />
             <TextField key={30}
                 name="password"
-                floatingLabelText="Пароль"
+                label="Пароль"
                 type="password"
-                onChange={(e: React.FormEvent<object>, value: string) => {
-                    ctrl.password = value;
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    ctrl.password = event.target.value;
                     ctrl.redraw();
                 }}
                 onKeyPress={(event: KeyboardEventInit) => ctrl.onEnterKeyPress(event)} />
@@ -38,12 +37,18 @@ export const restorePageView = <P, S>(ctrl: RestorePageController<P, S>, _props?
             </div>
             {
                 !ctrl.isProgress ?
-                    <RaisedButton key={40}
-                        className="button--flat"
-                        disabled={!ctrl.login || !ctrl.password}
-                        label="Войти"
-                        onClick={() => ctrl.makeLogin()} /> :
-                    <CircularProgress size={60} thickness={7} />
+                    (
+                        <Button key={40}
+                            variant="contained"
+                            color="primary"
+                            disabled={!ctrl.login || !ctrl.password}
+                            onClick={() => ctrl.makeLogin()} >
+                            Войти
+                        </Button>
+                    ) :
+                    (
+                        <CircularProgress size={60} thickness={7} />
+                    )
             }
             <br />
             <Link to="/sign-up">

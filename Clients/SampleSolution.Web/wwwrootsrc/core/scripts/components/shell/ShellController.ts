@@ -56,7 +56,7 @@ export class ShellController<T extends ShellOptions, S> extends BaseController<S
 
         const cssUrls: string[] = [
             "https://fonts.googleapis.com/css?" +
-                "family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic"
+                "family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap&amp;subset=cyrillic"
         ];
 
         for (const url of cssUrls) {

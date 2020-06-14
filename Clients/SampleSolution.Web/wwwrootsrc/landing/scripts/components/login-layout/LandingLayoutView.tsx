@@ -2,7 +2,7 @@
 import { LandingLayoutController, LandingLayoutOptions } from "./LandingLayoutController";
 import { HashRouter, Switch, Redirect, Route, RouteComponentProps } from "react-router-dom";
 import { PageController } from "../../../../core/scripts/components/_base/PageController";
-import * as React from "react";
+import React from "react";
 
 export const landingLayoutView = <T extends LandingLayoutOptions, S>(ctrl: LandingLayoutController<T, S>, props: T): JSX.Element => (
     <div className="LandingLayoutController">

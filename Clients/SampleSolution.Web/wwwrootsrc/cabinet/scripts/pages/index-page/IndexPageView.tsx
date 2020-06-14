@@ -1,5 +1,5 @@
 import { IndexPageController } from "./IndexPageController";
-import * as React from "react";
+import React from "react";
 
 export function indexPageView<T, S>(ctrl: IndexPageController<T, S>, opts?: T): JSX.Element {
     return (

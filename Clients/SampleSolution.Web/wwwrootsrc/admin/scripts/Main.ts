@@ -1,7 +1,7 @@
 
-import * as React from "react";
+import React from "react";
 import * as ReactDOM from "react-dom";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { MuiThemeProvider } from "@material-ui/core/styles";
 import { ShellController } from "../../core/scripts/components/shell/ShellController";
 import { Router } from "./Router";
 import { alertify } from "@labeg/alertify.js";

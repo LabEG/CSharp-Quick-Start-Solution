@@ -2,14 +2,14 @@
 import { LoginLayoutController, LoginLayoutOptions } from "./LoginLayoutController";
 import { BrowserRouter, Switch, Redirect, RouteComponentProps, Route } from "react-router-dom";
 import { PageController } from "../../../../core/scripts/components/_base/PageController";
-import Paper from "material-ui/Paper";
-import * as React from "react";
+import Paper from "@material-ui/core/Paper";
+import React from "react";
 
 // https://reacttraining.com/react-router/web/api/Route
 export const loginLayoutView = <T extends LoginLayoutOptions, S>(ctrl: LoginLayoutController<T, S>, props: T): JSX.Element => (
     <div className="LoginLayoutController">
         <Paper className="login-form"
-            zDepth={4}>
+            elevation={4}>
             <BrowserRouter basename="/login/">
                 <Switch key={location.pathname}>
                     {
