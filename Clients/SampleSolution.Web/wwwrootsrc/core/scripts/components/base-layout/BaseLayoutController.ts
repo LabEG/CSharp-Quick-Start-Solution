@@ -17,7 +17,7 @@ export class BaseLayoutController<T extends BaseLayoutOptions, S> extends BaseCo
         // code here
     }
 
-    public update(_props?: T): void {
+    public update(_props: T): void {
         // code here
     }
 

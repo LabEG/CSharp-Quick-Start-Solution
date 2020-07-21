@@ -2,12 +2,12 @@
 @import "./../../../content/scss/variables";
 @import "./../../../../../node_modules/gridlex/src/gridlex-vars";
 @import "./../../../content/scss/utility";
+@import "./../../../content/scss/material";
 
-$gl-mq-list: (
-lg: $bigScreen,
-md: $middleScreen,
-sm: $smallScreen,
-xs: 20em);
+$gl-mq-list: (lg: $bigScreen,
+    md: $middleScreen,
+    sm: $smallScreen,
+    xs: 20em);
 
 $gl-gutter: 2em;
 

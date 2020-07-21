@@ -16,7 +16,7 @@ export class SampleController<T extends SampleOptions, S> extends BaseController
         // code here
     }
 
-    public update(_props?: T): void {
+    public update(_props: T): void {
         // code here
     }
 

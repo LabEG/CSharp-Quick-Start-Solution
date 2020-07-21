@@ -55,8 +55,7 @@ export class ShellController<T extends ShellOptions, S> extends BaseController<S
         await Promise.resolve();
 
         const cssUrls: string[] = [
-            "https://fonts.googleapis.com/css?" +
-                "family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap&amp;subset=cyrillic"
+            "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
         ];
 
         for (const url of cssUrls) {

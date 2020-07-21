@@ -14,6 +14,8 @@ export class Config {
 
     public serverUrl: string = "setup before use";
 
+    public isShowDiagnostic: boolean = true;
+
     constructor() {
         const isBrowser: Function = new Function("try {return this===window;}catch(e){ return false;}");
 

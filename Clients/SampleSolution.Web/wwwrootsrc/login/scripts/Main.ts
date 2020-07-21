@@ -1,6 +1,7 @@
 import React from "react";
 import * as ReactDOM from "react-dom";
-import { MuiThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { blue } from "@material-ui/core/colors";
 import { ShellController } from "../../core/scripts/components/shell/ShellController";
 import { Router } from "./Router";
 import { alertify } from "@labeg/alertify.js";
@@ -15,17 +16,26 @@ window.onerror = (message: string, filename?: string, lineno?: number, colno?: n
     alertify.error(`Ошибка в работе программы: \r\n ${message}`);
 };
 
+const muiTheme = createMuiTheme({
+    palette: {
+        primary: blue
+    }
+});
+
 ReactDOM.render(
+    // eslint-disable-next-line react/no-children-prop
     React.createElement(
-        MuiThemeProvider,
-        void 0,
-        React.createElement(
-            ShellController,
-            {
-                routs: Router.routs,
-                layout: LoginLayoutController
-            }
-        )
+        ThemeProvider,
+        {
+            theme: muiTheme,
+            children: React.createElement(
+                ShellController,
+                {
+                    routs: Router.routs,
+                    layout: LoginLayoutController
+                }
+            )
+        }
     ),
     document.querySelector("body > #app") ?? document.body
 );
