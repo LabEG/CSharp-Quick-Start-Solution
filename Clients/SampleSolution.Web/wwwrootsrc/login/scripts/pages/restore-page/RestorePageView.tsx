@@ -13,7 +13,7 @@ export const restorePageView = <P, S>(ctrl: RestorePageController<P, S>, _props?
                 Restore Login
             </h2>
             <AccountCircle key={10}
-                style={{ width: "100%", height: "16em" }} />
+                style={{ width: "100%", height: "10em" }} />
             <TextField key={20}
                 name="login"
                 label="Логин"

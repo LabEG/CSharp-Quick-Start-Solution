@@ -50,7 +50,7 @@ export class RestorePageController<P, S> extends BaseController<P, S> {
 
     public checkLogin(): void {
         try {
-            location.href = "./";
+            // location.href = "./";
         } catch (err) {
             // nothing do
         }
