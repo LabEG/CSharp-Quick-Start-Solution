@@ -68,6 +68,7 @@ export class SignInPageController<P, S> extends BaseController<P, S> {
             } else {
                 alertify.error(`При попытке залогиниться произошла ошибка: ${err}`);
             }
+        } finally {
             this.isProgress = false;
             this.redraw();
         }

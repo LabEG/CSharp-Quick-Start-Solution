@@ -60,7 +60,7 @@ export const signInPageView = <P, S>(ctrl: SignInPageController<P, S>, _props?: 
                                     color="primary"
                                     disabled={!ctrl.login || !ctrl.password}
                                     onClick={() => ctrl.makeLogin()} >
-                                    Login
+                                    Sign In
                                 </Button>
                             ) :
                             (
