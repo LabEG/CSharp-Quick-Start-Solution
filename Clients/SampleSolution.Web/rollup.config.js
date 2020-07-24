@@ -15,8 +15,8 @@ const getPlugins = (config) => {
     const isESNext = config.isESNext;
 
     plugins.push(nodeResolve({
-        mainFields: isESNext ? ["module", "jsnext:main", "main"] : ["main"],
-        extensions: isESNext ? [".mjs", ".js", ".jsx", ".json"] : [".js", ".jsx", ".json"]
+        mainFields: ["module", "jsnext:main", "main"],
+        extensions: [".mjs", ".js", ".jsx", ".json"]
     }));
 
     plugins.push(commonJs({
