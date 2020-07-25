@@ -18,7 +18,8 @@ const historyApiFallback = require('connect-history-api-fallback');
 const proxy = createProxyMiddleware(
     (pathname, req) => pathname.match('^/api'),
     {
-        target: "https://qss.labeg.ru"
+        target: "https://localhost:30103", // https://qss.labeg.ru https://localhost:30103
+        secure: false
     }
 );
 

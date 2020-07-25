@@ -6,6 +6,8 @@ import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export const signInPageView = <P, S>(ctrl: SignInPageController<P, S>, _props?: P): JSX.Element => (
     <div className="SignInPageController">
@@ -49,7 +51,10 @@ export const signInPageView = <P, S>(ctrl: SignInPageController<P, S>, _props?: 
                         onKeyPress={(event: KeyboardEventInit) => ctrl.onEnterKeyPress(event)} />
                 </div>
                 <div className="col-12">
-                    &nbsp;
+                    <FormControlLabel label="Remember Me"
+                        control={<Checkbox checked={ctrl.rememberMe}
+                            onChange={(event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => ctrl.setRememberMe(checked)}
+                            color="primary" />} />
                 </div>
                 <div className="col-12">
                     {

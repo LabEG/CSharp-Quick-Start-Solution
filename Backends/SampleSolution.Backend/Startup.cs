@@ -64,7 +64,7 @@ namespace SampleSolution.Backend
                 // options.UseSqlServer(this.Configuration.GetConnectionString("AuthDBConnection"));
             });
 
-            services.AddIdentity<AuthUser, IdentityRole>()
+            services.AddIdentity<AuthUser, IdentityRole>((options) => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<AuthDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -75,8 +75,6 @@ namespace SampleSolution.Backend
             services.AddScoped(typeof(ICrudDbService<,,>), typeof(CrudDbService<,,>));
 
 #if DEBUG
-            services.AddCors();
-
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -160,7 +158,10 @@ namespace SampleSolution.Backend
             // app.UseStaticFiles();
             app.UseRouting();
             app.UseCookiePolicy();
+
             app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

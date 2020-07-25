@@ -3,6 +3,8 @@ import { signInPageView } from "./SignInPageView";
 import { BaseController } from "../../../../core/scripts/components/_base/BaseController";
 import { alertify } from "@labeg/alertify.js";
 import style from "./SignInPageStyles.scss";
+import { autowired } from "first-di";
+import { AccountService } from "../../../../core/scripts/services/AccountService";
 
 export class SignInPage<P> extends PageController<P> {
 
@@ -32,6 +34,11 @@ export class SignInPageController<P, S> extends BaseController<P, S> {
 
     public password: string = "";
 
+    public rememberMe: boolean = false;
+
+    @autowired()
+    private readonly accountService!: AccountService;
+
     constructor(props: P, context?: S) {
         super(props, context, style, signInPageView);
     }
@@ -56,12 +63,12 @@ export class SignInPageController<P, S> extends BaseController<P, S> {
         }
     }
 
-    public makeLogin(): void {
+    public async makeLogin(): Promise<void> {
         try {
             this.isProgress = true;
             this.redraw();
 
-            location.href = "./";
+            await this.accountService.login();
         } catch (err) {
             if (err.message === "401 - Unauthorized") {
                 alertify.error("При попытке залогиниться произошла ошибка: неверный логин или пароль");
@@ -76,6 +83,11 @@ export class SignInPageController<P, S> extends BaseController<P, S> {
 
     public onEnterKeyPress(event: KeyboardEventInit): void {
         event.key === "Enter" ? this.makeLogin() : null;
+    }
+
+    public setRememberMe(value: boolean): void {
+        this.rememberMe = value;
+        this.redraw();
     }
 
 }
