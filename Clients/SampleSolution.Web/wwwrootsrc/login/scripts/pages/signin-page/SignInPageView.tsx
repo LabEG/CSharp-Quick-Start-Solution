@@ -32,10 +32,7 @@ export const signInPageView = <P, S>(ctrl: SignInPageController<P, S>, _props?: 
                         fullWidth
                         name="login"
                         label="Login"
-                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                            ctrl.login = event.target.value;
-                            ctrl.redraw();
-                        }}
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => ctrl.setLogin(event.target.value)}
                         onKeyPress={(event: KeyboardEventInit) => ctrl.onEnterKeyPress(event)} />
                 </div>
                 <div className="col-12">
@@ -44,17 +41,20 @@ export const signInPageView = <P, S>(ctrl: SignInPageController<P, S>, _props?: 
                         name="password"
                         label="Password"
                         type="password"
-                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                            ctrl.password = event.target.value;
-                            ctrl.redraw();
-                        }}
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => ctrl.setPassword(event.target.value)}
                         onKeyPress={(event: KeyboardEventInit) => ctrl.onEnterKeyPress(event)} />
                 </div>
                 <div className="col-12">
-                    <FormControlLabel label="Remember Me"
-                        control={<Checkbox checked={ctrl.rememberMe}
-                            onChange={(event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => ctrl.setRememberMe(checked)}
-                            color="primary" />} />
+                    <FormControlLabel label={
+                        <small>
+                            Remember Me
+                        </small>
+                    }
+                        control={
+                            <Checkbox name="remember"
+                                onChange={(event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => ctrl.setRememberMe(checked)}
+                                color="primary" />
+                        } />
                 </div>
                 <div className="col-12">
                     {

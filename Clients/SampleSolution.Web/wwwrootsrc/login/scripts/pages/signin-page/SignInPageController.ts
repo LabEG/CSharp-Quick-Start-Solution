@@ -5,6 +5,7 @@ import { alertify } from "@labeg/alertify.js";
 import style from "./SignInPageStyles.scss";
 import { autowired } from "first-di";
 import { AccountService } from "../../../../core/scripts/services/AccountService";
+import { LoginDto } from "../../../../core/scripts/models/Dto/AccountsDto/LoginDto";
 
 export class SignInPage<P> extends PageController<P> {
 
@@ -68,7 +69,12 @@ export class SignInPageController<P, S> extends BaseController<P, S> {
             this.isProgress = true;
             this.redraw();
 
-            await this.accountService.login();
+            const login = new LoginDto();
+            login.email = this.login;
+            login.password = this.password;
+            login.rememberMe = this.rememberMe;
+
+            await this.accountService.login(login);
         } catch (err) {
             if (err.message === "401 - Unauthorized") {
                 alertify.error("При попытке залогиниться произошла ошибка: неверный логин или пароль");
@@ -82,7 +88,19 @@ export class SignInPageController<P, S> extends BaseController<P, S> {
     }
 
     public onEnterKeyPress(event: KeyboardEventInit): void {
-        event.key === "Enter" ? this.makeLogin() : null;
+        if (event.key === "Enter") {
+            this.makeLogin();
+        }
+    }
+
+    public setLogin(value: string): void {
+        this.login = value;
+        this.redraw();
+    }
+
+    public setPassword(value: string): void {
+        this.password = value;
+        this.redraw();
     }
 
     public setRememberMe(value: boolean): void {
