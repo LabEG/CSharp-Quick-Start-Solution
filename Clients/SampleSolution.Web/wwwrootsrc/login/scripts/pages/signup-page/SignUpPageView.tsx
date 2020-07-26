@@ -31,6 +31,9 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                     <TextField fullWidth
                         name="login"
                         label="Login"
+                        required
+                        error={ctrl.formErrors.ve.login.isHaveError}
+                        helperText={ctrl.formErrors.ve.login.errorText}
                         onInput={(event: React.FormEvent<HTMLInputElement>) => {
                             ctrl.registration.login = (event.target as HTMLInputElement).value;
                             ctrl.handleInput("login");
@@ -43,6 +46,9 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                         name="email"
                         label="Email"
                         type="email"
+                        required
+                        error={ctrl.formErrors.ve.email.isHaveError}
+                        helperText={ctrl.formErrors.ve.email.errorText}
                         onInput={(event: React.FormEvent<HTMLInputElement>) => {
                             ctrl.registration.email = (event.target as HTMLInputElement).value;
                             ctrl.handleInput("email");
@@ -55,6 +61,9 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                         name="password"
                         label="Password"
                         type="password"
+                        required
+                        error={ctrl.formErrors.ve.password.isHaveError}
+                        helperText={ctrl.formErrors.ve.password.errorText}
                         onInput={(event: React.FormEvent<HTMLInputElement>) => {
                             ctrl.registration.password = (event.target as HTMLInputElement).value;
                             ctrl.handleInput("password");
@@ -67,6 +76,9 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                         name="password"
                         label="Confirm Password"
                         type="password"
+                        required
+                        error={ctrl.formErrors.ve.confirmPassword.isHaveError}
+                        helperText={ctrl.formErrors.ve.confirmPassword.errorText}
                         onInput={(event: React.FormEvent<HTMLInputElement>) => {
                             ctrl.registration.confirmPassword = (event.target as HTMLInputElement).value;
                             ctrl.handleInput("confirmPassword");
