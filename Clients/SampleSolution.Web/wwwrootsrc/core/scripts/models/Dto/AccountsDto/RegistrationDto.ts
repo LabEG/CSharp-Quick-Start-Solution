@@ -35,7 +35,6 @@ export class RegistrationDto extends BaseModel {
     @sMinLength(8)
     @sMaxLength(40)
     @match("password", { message: "password and confirmation password do not match" })
-    @jsonIgnore()
     public confirmPassword: string = "";
 
     @sEquals(true)

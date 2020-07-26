@@ -1,6 +1,7 @@
 import { reflection } from "first-di";
 import { AccountRepository } from "../repositories/AccountRepository";
 import { LoginDto } from "../models/Dto/AccountsDto/LoginDto";
+import { RegistrationDto } from "../models/Dto/AccountsDto/RegistrationDto";
 
 @reflection
 export class AccountService {
@@ -23,8 +24,8 @@ export class AccountService {
         return await this.accountRepository.recovery();
     }
 
-    public async register(): Promise<void> {
-        return await this.accountRepository.register();
+    public async register(registration: RegistrationDto): Promise<void> {
+        return await this.accountRepository.register(registration);
     }
 
     public async logut(): Promise<void> {

@@ -4,6 +4,8 @@ import { BaseController } from "../../../../core/scripts/components/_base/BaseCo
 import style from "./SignUpPageStyles.scss";
 import { FormErrors } from "../../../../core/scripts/models/ViewModels/FormErrors";
 import { RegistrationDto } from "../../../../core/scripts/models/Dto/AccountsDto/RegistrationDto";
+import { autowired } from "first-di";
+import { AccountService } from "../../../../core/scripts/services/AccountService";
 
 export class SignUpPage<P> extends PageController<P> {
 
@@ -29,9 +31,14 @@ export class SignUpPageController<P, S> extends BaseController<P, S> {
 
     public isProgress: boolean = false;
 
+    public errorMessage: string | null = null;
+
     public registration: RegistrationDto;
 
     public formErrors: FormErrors<RegistrationDto>;
+
+    @autowired()
+    private readonly accountService!: AccountService;
 
     constructor(props: P, context?: S) {
         super(props, context, style, signUpPageView);
@@ -52,8 +59,18 @@ export class SignUpPageController<P, S> extends BaseController<P, S> {
         // code here
     }
 
-    public makeLogin(): void {
-        // code here
+    public async makeLogin(): Promise<void> {
+        try {
+            this.isProgress = true;
+            this.redraw();
+
+            await this.accountService.register(this.registration);
+        } catch (e) {
+            this.errorMessage = (e as Error).message;
+        } finally {
+            this.isProgress = false;
+            this.redraw();
+        }
     }
 
     public async handleInput(prop: keyof RegistrationDto): Promise<void> {

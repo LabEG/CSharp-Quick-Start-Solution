@@ -149,7 +149,7 @@ namespace SampleSolution.Backend.Controllers
                 return BadRequest(this.ModelState);
             }
 
-            AuthUser user = new AuthUser { UserName = model.Email, Email = model.Email };
+            AuthUser user = new AuthUser { UserName = model.Login, Email = model.Email };
             IdentityResult result = await this.userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {

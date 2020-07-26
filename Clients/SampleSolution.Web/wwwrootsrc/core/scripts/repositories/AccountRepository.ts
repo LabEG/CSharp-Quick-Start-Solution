@@ -2,6 +2,7 @@ import { reflection } from "first-di";
 import { Config } from "../Config";
 import { BaseHttpRepository } from "./_base/BaseHttpRepository";
 import { LoginDto } from "../models/Dto/AccountsDto/LoginDto";
+import { RegistrationDto } from "../models/Dto/AccountsDto/RegistrationDto";
 
 @reflection
 export class AccountRepository extends BaseHttpRepository {
@@ -23,8 +24,8 @@ export class AccountRepository extends BaseHttpRepository {
         return await this.customRequest("POST", `${this.apiRoot}/recovery`, void 0, void 0);
     }
 
-    public async register(): Promise<void> {
-        return await this.customRequest("POST", `${this.apiRoot}/register`, void 0, void 0);
+    public async register(registration: RegistrationDto): Promise<void> {
+        return await this.customRequest("POST", `${this.apiRoot}/register`, registration, void 0);
     }
 
     public async logut(): Promise<void> {
