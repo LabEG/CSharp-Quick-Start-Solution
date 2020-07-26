@@ -1,6 +1,6 @@
 import React from "react";
 import { SignUpPageController } from "./SignUpPageController";
-import AccountCircle from "@material-ui/icons/AccountCircle";
+import PersonAdd from "@material-ui/icons/PersonAdd";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -15,7 +15,7 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
             <h2 className="text-center">
                 Sign Up
             </h2>
-            <AccountCircle key={10} className="avatar" />
+            <PersonAdd key={10} className="avatar" />
             <div className="grid input-block">
                 <div className="col-6 text-left link-block">
                     <Link to="/sign-in" component={RouterLink}>
