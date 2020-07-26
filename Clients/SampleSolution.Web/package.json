@@ -6,7 +6,6 @@
   "private": true,
   "browserify-shim": {},
   "dependencies": {
-    "@labeg/alertify.js": "=2.0.42",
     "@labeg/webapp-core": "=0.1.59",
     "@material-ui/core": "=4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -120,7 +119,8 @@
     "build:bundle_polyfills_es2015": "rollup --config --environment NODE_ENV:production,APP:Polyfills_es2015",
     "build:bundle_polyfills_es5": "rollup --config --environment NODE_ENV:production,APP:Polyfills_es5",
     "build": "rm -rvf wwwroot/ && rm -rvf wwwroot.tmp/ && concurrently \"npm run build:styles\" \"npm run build:scripts\" && concurrently \"npm run build:static\" \"npm run build:images\" \"npm run build:html\" \"npm run build:bundle_landing_es2015\" \"npm run build:bundle_landing_es5\" \"npm run build:bundle_polyfills_es2015\" \"npm run build:bundle_polyfills_es5\" \"npm run build:bundle_cabinete_es2015\" \"npm run build:bundle_cabinete_es5\" \"npm run build:bundle_admin_es2015\" \"npm run build:bundle_admin_es5\" \"npm run build:bundle_login_es2015\" \"npm run build:bundle_login_es5\"",
-    "postinstall": "npm dedupe && npm prune"
+    "postinstall": "npm dedupe && npm prune && npm run fix:lpn",
+    "fix:lpn": "node ./buildscripts/make-noob-libphonenumber.js"
   },
   "lint-staged": {
     "./wwwrootsrc/**/*.(ts|tsx|js|jsx)": [

@@ -1,8 +1,9 @@
 import { PageController } from "../../../../core/scripts/components/_base/PageController";
 import { signUpPageView } from "./SignUpPageView";
 import { BaseController } from "../../../../core/scripts/components/_base/BaseController";
-import { alertify } from "@labeg/alertify.js";
 import style from "./SignUpPageStyles.scss";
+import { FormErrors } from "../../../../core/scripts/models/ViewModels/FormErrors";
+import { RegistrationDto } from "../../../../core/scripts/models/Dto/AccountsDto/RegistrationDto";
 
 export class SignUpPage<P> extends PageController<P> {
 
@@ -28,16 +29,19 @@ export class SignUpPageController<P, S> extends BaseController<P, S> {
 
     public isProgress: boolean = false;
 
-    public login: string = "";
+    public registration: RegistrationDto;
 
-    public password: string = "";
+    public formErrors: FormErrors<RegistrationDto>;
 
     constructor(props: P, context?: S) {
         super(props, context, style, signUpPageView);
+
+        this.registration = new RegistrationDto();
+        this.formErrors = new FormErrors(this.registration);
     }
 
     public activate(): void {
-        this.checkLogin();
+        // code here
     }
 
     public update(_props?: P): void {
@@ -48,33 +52,24 @@ export class SignUpPageController<P, S> extends BaseController<P, S> {
         // code here
     }
 
-    public checkLogin(): void {
-        try {
-            // location.href = "./";
-        } catch (err) {
-            // nothing do
-        }
+    public makeLogin(): void {
+        // code here
     }
 
-    public makeLogin(): void {
-        try {
-            this.isProgress = true;
-            this.redraw();
+    public async handleInput(prop: keyof RegistrationDto): Promise<void> {
+        await this.formErrors.onChangeProp(prop);
+        this.redraw();
+    }
 
-            location.href = "./";
-        } catch (err) {
-            if (err.message === "401 - Unauthorized") {
-                alertify.error("При попытке залогиниться произошла ошибка: неверный логин или пароль");
-            } else {
-                alertify.error(`При попытке залогиниться произошла ошибка: ${err}`);
-            }
-            this.isProgress = false;
-            this.redraw();
-        }
+    public async handleBlur(prop: keyof RegistrationDto): Promise<void> {
+        await this.formErrors.onTouchProp(prop);
+        this.redraw();
     }
 
     public onEnterKeyPress(event: KeyboardEventInit): void {
-        event.key === "Enter" ? this.makeLogin() : null;
+        if (event.key === "Enter") {
+            this.makeLogin();
+        }
     }
 
 }

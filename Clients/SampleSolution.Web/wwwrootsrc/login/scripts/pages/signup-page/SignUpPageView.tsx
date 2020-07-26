@@ -31,7 +31,11 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                     <TextField fullWidth
                         name="login"
                         label="Login"
-                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => null}
+                        onInput={(event: React.FormEvent<HTMLInputElement>) => {
+                            ctrl.registration.login = (event.target as HTMLInputElement).value;
+                            ctrl.handleInput("login");
+                        }}
+                        onBlur={() => ctrl.handleBlur("login")}
                         onKeyPress={(event: KeyboardEventInit) => ctrl.onEnterKeyPress(event)} />
                 </div>
                 <div className="col-12">
@@ -39,7 +43,11 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                         name="email"
                         label="Email"
                         type="email"
-                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => null}
+                        onInput={(event: React.FormEvent<HTMLInputElement>) => {
+                            ctrl.registration.email = (event.target as HTMLInputElement).value;
+                            ctrl.handleInput("email");
+                        }}
+                        onBlur={() => ctrl.handleBlur("email")}
                         onKeyPress={(event: KeyboardEventInit) => ctrl.onEnterKeyPress(event)} />
                 </div>
                 <div className="col-12">
@@ -47,7 +55,11 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                         name="password"
                         label="Password"
                         type="password"
-                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => null}
+                        onInput={(event: React.FormEvent<HTMLInputElement>) => {
+                            ctrl.registration.password = (event.target as HTMLInputElement).value;
+                            ctrl.handleInput("password");
+                        }}
+                        onBlur={() => ctrl.handleBlur("password")}
                         onKeyPress={(event: KeyboardEventInit) => ctrl.onEnterKeyPress(event)} />
                 </div>
                 <div className="col-12">
@@ -55,7 +67,11 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                         name="password"
                         label="Confirm Password"
                         type="password"
-                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => null}
+                        onInput={(event: React.FormEvent<HTMLInputElement>) => {
+                            ctrl.registration.confirmPassword = (event.target as HTMLInputElement).value;
+                            ctrl.handleInput("confirmPassword");
+                        }}
+                        onBlur={() => ctrl.handleBlur("confirmPassword")}
                         onKeyPress={(event: KeyboardEventInit) => ctrl.onEnterKeyPress(event)} />
                 </div>
                 <div className="col-12">
@@ -66,7 +82,11 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                     }
                         control={
                             <Checkbox name="remember"
-                                onChange={(event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => null}
+                                onChange={(event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+                                    ctrl.registration.isAgree = checked;
+                                    ctrl.handleInput("isAgree");
+                                    ctrl.handleBlur("isAgree");
+                                }}
                                 color="primary" />
                         } />
                 </div>
@@ -77,7 +97,7 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                                 <Button key={40}
                                     variant="contained"
                                     color="primary"
-                                    disabled={!ctrl.login || !ctrl.password}
+                                    disabled={!ctrl.formErrors.isValid}
                                     onClick={() => ctrl.makeLogin()} >
                                     Sign Up
                                 </Button>
