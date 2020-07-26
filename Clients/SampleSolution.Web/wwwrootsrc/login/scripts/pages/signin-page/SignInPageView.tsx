@@ -7,7 +7,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 export const signInPageView = <P, S>(ctrl: SignInPageController<P, S>, _props?: P): JSX.Element => (
     <div className="SignInPageController">

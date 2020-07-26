@@ -35,133 +35,137 @@ namespace SampleSolution.Backend.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody]LoginViewModel model)
+        public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
-            if (this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await this.signInManager
-                    .PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-
-                if (result.Succeeded)
-                {
-                    this.logger.LogInformation("User logged in.");
-                    return this.Ok();
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    return this.BadRequest("Requires two factor identification.");
-                }
-                if (result.IsLockedOut)
-                {
-                    this.logger.LogWarning("User account locked out.");
-                    return this.BadRequest("User account locked out.");
-                }
-                else
-                {
-                    return this.BadRequest("Wrong login or password.");
-                }
+                return BadRequest(this.ModelState);
             }
-            return BadRequest(this.ModelState);
+
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+            var result = await this.signInManager
+                .PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+
+            if (result.Succeeded)
+            {
+                this.logger.LogInformation("User logged in.");
+                return this.Ok();
+            }
+            if (result.RequiresTwoFactor)
+            {
+                return this.BadRequest("Requires two factor identification.");
+            }
+            if (result.IsLockedOut)
+            {
+                this.logger.LogWarning("User account locked out.");
+                return this.BadRequest("User account locked out.");
+            }
+            else
+            {
+                return this.BadRequest("Wrong login or password.");
+            }
         }
 
         [AllowAnonymous]
         [HttpPost("login2fa")]
-        public async Task<IActionResult> LoginWith2fa([FromBody]LoginWith2faViewModel model)
+        public async Task<IActionResult> LoginWith2fa([FromBody] LoginWith2faViewModel model)
         {
-            if (this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                AuthUser user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
-                if (user == null)
-                {
-                    throw new ApplicationException($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
-                }
-
-                string authenticatorCode = model.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
-
-                var result = await this.signInManager
-                    .TwoFactorAuthenticatorSignInAsync(authenticatorCode, model.RememberMe, model.RememberMachine);
-
-                if (result.Succeeded)
-                {
-                    this.logger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
-                    return Ok();
-                }
-                else if (result.IsLockedOut)
-                {
-                    this.logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
-                    return this.BadRequest($"User with ID {user.Id} account locked out.");
-                }
-                else
-                {
-                    this.logger.LogWarning("Invalid authenticator code entered for user with ID {UserId}.", user.Id);
-                    return this.BadRequest("Invalid authenticator code.");
-                }
+                return BadRequest(this.ModelState);
             }
-            return this.BadRequest(this.ModelState);
+
+            AuthUser user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
+            }
+
+            string authenticatorCode = model.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
+
+            var result = await this.signInManager
+                .TwoFactorAuthenticatorSignInAsync(authenticatorCode, model.RememberMe, model.RememberMachine);
+
+            if (result.Succeeded)
+            {
+                this.logger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
+                return Ok();
+            }
+            else if (result.IsLockedOut)
+            {
+                this.logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
+                return this.BadRequest($"User with ID {user.Id} account locked out.");
+            }
+            else
+            {
+                this.logger.LogWarning("Invalid authenticator code entered for user with ID {UserId}.", user.Id);
+                return this.BadRequest("Invalid authenticator code.");
+            }
         }
 
         [AllowAnonymous]
         [HttpPost("recovery")]
-        public async Task<IActionResult> LoginWithRecoveryCode([FromBody]LoginWithRecoveryCodeViewModel model)
+        public async Task<IActionResult> LoginWithRecoveryCode([FromBody] LoginWithRecoveryCodeViewModel model)
         {
-            if (await this.CheckIsCorrectModel())
+            if (!this.ModelState.IsValid)
             {
-                var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
-                if (user == null)
-                {
-                    throw new ApplicationException($"Unable to load two-factor authentication user.");
-                }
-
-                var recoveryCode = model.RecoveryCode.Replace(" ", string.Empty);
-
-                var result = await this.signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
-
-                if (result.Succeeded)
-                {
-                    this.logger.LogInformation("User with ID {UserId} logged in with a recovery code.", user.Id);
-                    return Ok();
-                }
-                if (result.IsLockedOut)
-                {
-                    this.logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
-                    throw new Exception($"User with ID {user.Id} account locked out.");
-                }
-                else
-                {
-                    this.logger.LogWarning("Invalid recovery code entered for user with ID {UserId}", user.Id);
-                    return this.StatusCode(400, "Invalid recovery code entered.");
-                }
+                return BadRequest(this.ModelState);
             }
-            throw new ApplicationException($"Unable.");
+
+            var user = await this.signInManager.GetTwoFactorAuthenticationUserAsync();
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load two-factor authentication user.");
+            }
+
+            var recoveryCode = model.RecoveryCode.Replace(" ", string.Empty);
+
+            var result = await this.signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
+
+            if (result.Succeeded)
+            {
+                this.logger.LogInformation("User with ID {UserId} logged in with a recovery code.", user.Id);
+                return Ok();
+            }
+            if (result.IsLockedOut)
+            {
+                this.logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
+                throw new Exception($"User with ID {user.Id} account locked out.");
+            }
+            else
+            {
+                this.logger.LogWarning("Invalid recovery code entered for user with ID {UserId}", user.Id);
+                return this.StatusCode(400, "Invalid recovery code entered.");
+            }
         }
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody]RegisterViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Register([FromBody] RegisterViewModel model, string returnUrl = null)
         {
-            if (this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                AuthUser user = new AuthUser { UserName = model.Email, Email = model.Email };
-                IdentityResult result = await this.userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    this.logger.LogInformation($"User {model.Email} created a new account with password.");
-
-                    string code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
-                    await this.emailSender.SendEmailAsync(model.Email, "Регистрация", "Вы зарегистрированны.");
-
-                    await this.signInManager.SignInAsync(user, isPersistent: false);
-                    this.logger.LogInformation("User created a new account with password.");
-                    return Ok();
-                }
-                else
-                {
-                    return BadRequest(result.Errors);
-                }
+                return BadRequest(this.ModelState);
             }
-            return BadRequest(this.ModelState);
+
+            AuthUser user = new AuthUser { UserName = model.Email, Email = model.Email };
+            IdentityResult result = await this.userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                this.logger.LogInformation($"User {model.Email} created a new account with password.");
+
+                string code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+                await this.emailSender.SendEmailAsync(model.Email, "Регистрация", "Вы зарегистрированны.");
+
+                await this.signInManager.SignInAsync(user, isPersistent: false);
+                this.logger.LogInformation("User created a new account with password.");
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(result.Errors);
+            }
         }
 
         [HttpPost("logout")]
@@ -182,7 +186,7 @@ namespace SampleSolution.Backend.Controllers
 
         [AllowAnonymous]
         [HttpPost("externalloginconfirm")]
-        public async Task<IActionResult> ExternalLoginConfirmation([FromBody]ExternalLoginViewModel model)
+        public async Task<IActionResult> ExternalLoginConfirmation([FromBody] ExternalLoginViewModel model)
         {
             if (this.ModelState.IsValid)
             {
@@ -210,7 +214,7 @@ namespace SampleSolution.Backend.Controllers
 
         [AllowAnonymous]
         [HttpPost("forgot")]
-        public async Task<IActionResult> ForgotPassword([FromBody]ForgotPasswordViewModel model)
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordViewModel model)
         {
             if (this.ModelState.IsValid)
             {
@@ -236,7 +240,7 @@ namespace SampleSolution.Backend.Controllers
 
         [AllowAnonymous]
         [HttpPost("reset")]
-        public async Task<IActionResult> ResetPassword([FromBody]ResetPasswordViewModel model)
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordViewModel model)
         {
             if (this.ModelState.IsValid)
             {
