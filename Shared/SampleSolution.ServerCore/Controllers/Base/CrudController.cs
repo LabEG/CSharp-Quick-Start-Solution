@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SampleSolution.Core.Controllers.Base;
@@ -31,11 +33,12 @@ namespace SampleSolution.ServerCore.Controllers.Base
         [HttpPost]
         public virtual async Task<TEntity> Create([FromBody]TEntity entity)
         {
-            if (await this.CheckIsCorrectModel())
+            if (!this.ModelState.IsValid)
             {
-                return await this.Service.Create(entity);
+                throw new ValidationException();
             }
-            return null;
+
+            return await this.Service.Create(entity);
         }
 
         [HttpGet]
@@ -65,10 +68,12 @@ namespace SampleSolution.ServerCore.Controllers.Base
         [HttpPut("{id}")]
         public virtual async Task Update(TId id, [FromBody]TEntity entity)
         {
-            if (await this.CheckIsCorrectModel())
+            if (!this.ModelState.IsValid)
             {
-                await this.Service.Update(id, entity);
+                throw new ValidationException();
             }
+
+            await this.Service.Update(id, entity);
         }
 
         [HttpDelete("{id}")]
