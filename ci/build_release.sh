@@ -11,7 +11,7 @@ docker run -t \
            --network=host \
            --rm \
            -v ${PWD}:/app \
-           mcr.microsoft.com/dotnet/core/sdk:5.0-alpine \
+           mcr.microsoft.com/dotnet/sdk:5.0-alpine \
            sh ./ci/build_backend.sh
 
 echo ""

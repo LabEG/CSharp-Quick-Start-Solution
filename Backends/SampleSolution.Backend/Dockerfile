@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:5.0-buster-slim
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim
 
 WORKDIR /app
 ENV ASPNETCORE_URLS=http://0.0.0.0:32102
