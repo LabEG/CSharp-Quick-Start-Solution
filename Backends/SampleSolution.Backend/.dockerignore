@@ -1,2 +1,2 @@
 *
-!bin/Release/netcoreapp5.0/publish/*
+!bin/Release/net5.0/publish/*

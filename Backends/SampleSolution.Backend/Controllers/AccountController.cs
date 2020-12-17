@@ -161,8 +161,6 @@ namespace SampleSolution.Backend.Controllers
                 // await UserManager<AuthUser>.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 await this.emailSender.SendEmailAsync(model.Email, "Регистрация", "Вы зарегистрированны.");
 
-                // await this.signInManager.SignInAsync(user, isPersistent: false);
-                // this.logger.LogInformation("User created a new account with password.");
                 return Ok();
             }
             else
