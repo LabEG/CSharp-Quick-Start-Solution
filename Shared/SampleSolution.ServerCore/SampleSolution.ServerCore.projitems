@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\Base\CrudController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbContexts\AuthDbContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DbContexts\MainDbContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Settings\SmtpSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IServices\IEmailSenderService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\AccountViewModels\ExternalLoginViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ViewModels\AccountViewModels\ForgotPasswordViewModel.cs" />

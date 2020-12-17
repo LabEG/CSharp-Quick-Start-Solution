@@ -15,6 +15,7 @@ using SampleSolution.Core.Repositories.IRepositories.Base;
 using SampleSolution.ServerCore.DbContexts;
 using SampleSolution.ServerCore.DBContexts;
 using SampleSolution.ServerCore.IServices.Base;
+using SampleSolution.ServerCore.Models.Settings;
 using SampleSolution.ServerCore.Repositories.Base;
 using SampleSolution.ServerCore.Services;
 using SampleSolution.ServerCore.Services.Base;
@@ -41,6 +42,8 @@ namespace SampleSolution.Backend
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<SmtpSettings>(Configuration.GetSection("Smtp"));
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

@@ -154,12 +154,15 @@ namespace SampleSolution.Backend.Controllers
             if (result.Succeeded)
             {
                 this.logger.LogInformation($"User {model.Email} created a new account with password.");
+                await this.signInManager.SignInAsync(user, isPersistent: false);
 
                 string code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+                // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                // await UserManager<AuthUser>.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 await this.emailSender.SendEmailAsync(model.Email, "Регистрация", "Вы зарегистрированны.");
 
-                await this.signInManager.SignInAsync(user, isPersistent: false);
-                this.logger.LogInformation("User created a new account with password.");
+                // await this.signInManager.SignInAsync(user, isPersistent: false);
+                // this.logger.LogInformation("User created a new account with password.");
                 return Ok();
             }
             else

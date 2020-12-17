@@ -74,11 +74,11 @@ namespace SampleSolution.ServerCore.DbContexts
                 this.Database.MigrateAsync().Wait();
             }
 
-            AuthUser user = this.Users.FirstOrDefaultAsync(x => x.Email == "admin@admin.admin").Result;
+            AuthUser user = this.Users.FirstOrDefaultAsync(x => x.Email == "demo@example.com").Result;
             if (user == null)
             {
-                AuthUser admin = new AuthUser { UserName = "Admin", Email = "admin@admin.admin" };
-                userManager.CreateAsync(admin, "Qwert12345!@#$%").Wait();
+                AuthUser admin = new AuthUser { UserName = "demo", Email = "demo@example.com" };
+                userManager.CreateAsync(admin, "demo").Wait();
             }
         }
     }
