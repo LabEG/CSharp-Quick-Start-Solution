@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSolution.Android", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSolution.iOS", "Clients\SampleSolution.iOS\SampleSolution.iOS.csproj", "{6414B34E-EB82-4FB2-B137-E75F3570BFED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSolution.UWP", "Clients\SampleSolution.UWP\SampleSolution.UWP.csproj", "{BE6E821A-FC39-4718-9992-73E79E91B23C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{8C56552D-7065-4A4A-BDD1-4F454513C8D6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backends", "Backends", "{FEBA0386-D464-418E-AF40-7B3CBBA52446}"
@@ -54,7 +52,6 @@ Global
 		Shared\SampleSolution.Core\SampleSolution.Core.projitems*{72c9de9a-41b0-4698-8f3a-ec02a2ff6437}*SharedItemsImports = 5
 		Shared\SampleSolution.ServerCore\SampleSolution.ServerCore.projitems*{72c9de9a-41b0-4698-8f3a-ec02a2ff6437}*SharedItemsImports = 5
 		Shared\SampleSolution.Core\SampleSolution.Core.projitems*{982d6891-88a9-482d-b415-477beec9978a}*SharedItemsImports = 4
-		Shared\SampleSolution.Core\SampleSolution.Core.projitems*{be6e821a-fc39-4718-9992-73e79e91b23c}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -171,30 +168,6 @@ Global
 		{6414B34E-EB82-4FB2-B137-E75F3570BFED}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{6414B34E-EB82-4FB2-B137-E75F3570BFED}.Release|x64.ActiveCfg = Release|iPhone
 		{6414B34E-EB82-4FB2-B137-E75F3570BFED}.Release|x86.ActiveCfg = Release|iPhone
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Debug|ARM.ActiveCfg = Debug|ARM
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Debug|ARM.Build.0 = Debug|ARM
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Debug|ARM.Deploy.0 = Debug|ARM
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Debug|iPhone.ActiveCfg = Debug|x86
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Debug|iPhoneSimulator.ActiveCfg = Debug|x86
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Debug|x64.ActiveCfg = Debug|x64
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Debug|x64.Build.0 = Debug|x64
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Debug|x64.Deploy.0 = Debug|x64
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Debug|x86.ActiveCfg = Debug|x86
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Debug|x86.Build.0 = Debug|x86
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Debug|x86.Deploy.0 = Debug|x86
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Release|Any CPU.ActiveCfg = Release|x86
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Release|ARM.ActiveCfg = Release|ARM
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Release|ARM.Build.0 = Release|ARM
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Release|ARM.Deploy.0 = Release|ARM
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Release|iPhone.ActiveCfg = Release|x86
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Release|iPhoneSimulator.ActiveCfg = Release|x86
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Release|x64.ActiveCfg = Release|x64
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Release|x64.Build.0 = Release|x64
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Release|x64.Deploy.0 = Release|x64
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Release|x86.ActiveCfg = Release|x86
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Release|x86.Build.0 = Release|x86
-		{BE6E821A-FC39-4718-9992-73E79E91B23C}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -206,7 +179,6 @@ Global
 		{3C2FD61B-5946-4A48-8FDD-5FB25511643E} = {8C56552D-7065-4A4A-BDD1-4F454513C8D6}
 		{982D6891-88A9-482D-B415-477BEEC9978A} = {FD03AFBE-8D8E-406D-9632-46D114ADB462}
 		{6414B34E-EB82-4FB2-B137-E75F3570BFED} = {FD03AFBE-8D8E-406D-9632-46D114ADB462}
-		{BE6E821A-FC39-4718-9992-73E79E91B23C} = {FD03AFBE-8D8E-406D-9632-46D114ADB462}
 		{69FD9277-C96B-42B1-969E-3123148288DD} = {5522DCBE-6BAF-43B3-9658-7CACBC985A9B}
 		{D49D5814-FDD7-4DF9-B14C-2D639F7E828E} = {5522DCBE-6BAF-43B3-9658-7CACBC985A9B}
 	EndGlobalSection
