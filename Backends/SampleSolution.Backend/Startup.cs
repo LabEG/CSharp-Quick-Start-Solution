@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -103,7 +102,7 @@ namespace SampleSolution.Backend
                     // options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 
                     // options.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-                     options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+                    options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
                     // options.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
                 });
 
@@ -144,7 +143,7 @@ namespace SampleSolution.Backend
                builder.AllowAnyOrigin()
                       .AllowAnyMethod()
                       .AllowAnyHeader()
-                      // .AllowCredentials()
+            // .AllowCredentials()
             );
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
