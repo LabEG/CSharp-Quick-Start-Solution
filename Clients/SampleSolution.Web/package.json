@@ -4,7 +4,6 @@
   "description": "SampleSolution",
   "main": "package.json",
   "private": true,
-  "browserify-shim": {},
   "dependencies": {
     "@labeg/alertify.js": "=2.0.42",
     "@labeg/webapp-core": "=0.1.61",
@@ -125,12 +124,11 @@
   },
   "repository": {
     "type": "git",
-    "url": " git@github.com:LabEG/CSharp-Bootstrap-Solution.git"
+    "url": "git@github.com:LabEG/CSharp-Quick-Start-Solution.git"
   },
   "keywords": [
     "SampleSolution"
   ],
-  "author": "LabEg",
-  "license": "MIT",
-  "false": {}
+  "author": "LabEG",
+  "license": "MIT"
 }
