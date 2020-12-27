@@ -1,7 +1,7 @@
 {
-  "name": "sample-solution",
+  "name": "quick-start-solution",
   "version": "1.0.0",
-  "description": "SampleSolution",
+  "description": "Quick Start Solution",
   "main": "package.json",
   "private": true,
   "dependencies": {
@@ -127,7 +127,7 @@
     "url": "git@github.com:LabEG/CSharp-Quick-Start-Solution.git"
   },
   "keywords": [
-    "SampleSolution"
+    "Quick Start Solution"
   ],
   "author": "LabEG",
   "license": "MIT"
