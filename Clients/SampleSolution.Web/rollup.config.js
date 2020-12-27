@@ -4,7 +4,7 @@ import visualizer from "rollup-plugin-visualizer";
 import replace from "rollup-plugin-replace";
 import { terser } from "rollup-plugin-terser";
 import { string } from "rollup-plugin-string";
-import babel from "rollup-plugin-babel";
+import babel from "@rollup/plugin-babel";
 
 const isSourceMap = false;
 const isRelease = process.env.NODE_ENV === "production";
@@ -24,25 +24,7 @@ const getPlugins = (config) => {
     }));
 
     if (!isESNext) {
-        plugins.push(babel({
-            runtimeHelpers: true,
-            presets: [],
-            plugins: [
-                "@babel/plugin-transform-classes",
-                "@babel/plugin-transform-arrow-functions",
-                "@babel/plugin-transform-template-literals",
-                "@babel/plugin-transform-spread",
-                "@babel/plugin-transform-parameters",
-                "@babel/plugin-transform-async-to-generator",
-                "@babel/plugin-transform-regenerator",
-                "@babel/plugin-transform-for-of",
-                "@babel/plugin-transform-destructuring",
-                "@babel/plugin-transform-shorthand-properties",
-                "@babel/plugin-transform-runtime",
-                "@babel/plugin-transform-block-scoping",
-                "@babel/plugin-transform-unicode-regex"
-            ]
-        }));
+        plugins.push(babel({ babelHelpers: 'bundled' }));
     }
 
     plugins.push(string({
@@ -69,7 +51,7 @@ const getPlugins = (config) => {
                 max_line_len: 500
             },
             toplevel: true,
-            ecma: isESNext ? 2015 : 5
+            ecma: isESNext ? 2016 : 5
         }));
     }
 
@@ -88,15 +70,15 @@ const getPlugins = (config) => {
 
 const tasks = [];
 
-if (app === "Landing_es2015") {
+if (app === "Landing_es2020") {
     tasks.push({
         input: "wwwroot.tmp/landing/scripts/Main.js",
         output: {
-            file: "wwwroot/landing/scripts/main.es2015.min.js",
+            file: "wwwroot/landing/scripts/main.es2020.min.js",
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "LandingES2015", isESNext: true })
+        plugins: getPlugins({ appName: "LandingES2019", isESNext: true })
     });
 }
 
@@ -112,15 +94,15 @@ if (app === "Landing_es5") {
     });
 }
 
-if (app === "Cabinet_es2015") {
+if (app === "Cabinet_es2020") {
     tasks.push({
         input: "wwwroot.tmp/cabinet/scripts/Main.js",
         output: {
-            file: "wwwroot/cabinet/scripts/main.es2015.min.js",
+            file: "wwwroot/cabinet/scripts/main.es2020.min.js",
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "CabinetES2015", isESNext: true })
+        plugins: getPlugins({ appName: "CabinetES2019", isESNext: true })
     });
 }
 
@@ -136,15 +118,15 @@ if (app === "Cabinet_es5") {
     });
 }
 
-if (app === "Admin_es2015") {
+if (app === "Admin_es2020") {
     tasks.push({
         input: "wwwroot.tmp/admin/scripts/Main.js",
         output: {
-            file: "wwwroot/admin/scripts/main.es2015.min.js",
+            file: "wwwroot/admin/scripts/main.es2020.min.js",
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "AdminES2015", isESNext: true })
+        plugins: getPlugins({ appName: "AdminES2019", isESNext: true })
     });
 }
 
@@ -160,15 +142,15 @@ if (app === "Admin_es5") {
     });
 }
 
-if (app === "Login_es2015") {
+if (app === "Login_es2020") {
     tasks.push({
         input: "wwwroot.tmp/login/scripts/Main.js",
         output: {
-            file: "wwwroot/login/scripts/main.es2015.min.js",
+            file: "wwwroot/login/scripts/main.es2020.min.js",
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "LoginES2015", isESNext: true })
+        plugins: getPlugins({ appName: "LoginES2019", isESNext: true })
     });
 }
 
@@ -184,15 +166,15 @@ if (app === "Login_es5") {
     });
 }
 
-if (app === "Polyfills_es2015") {
+if (app === "Polyfills_es2020") {
     tasks.push({
-        input: "wwwroot.tmp/core/scripts/polyfills.es2015.js",
+        input: "wwwroot.tmp/core/scripts/polyfills.es2020.js",
         output: {
-            file: "wwwroot/core/scripts/polyfills.es2015.min.js",
+            file: "wwwroot/core/scripts/polyfills.es2020.min.js",
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "PolyfillsES2015", isESNext: true })
+        plugins: getPlugins({ appName: "PolyfillsES2019", isESNext: true })
     });
 }
 
