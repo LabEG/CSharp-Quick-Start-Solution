@@ -6,7 +6,8 @@ umask 000
 apt-get update && apt-get install -y glib2.0-dev libvips-dev
 
 cd './Clients/SampleSolution.Web'
-npm install --unsafe-perm=true
+npm config set unsafe-perm true
+npm install
 chmod -R 777 ./node_modules/*
 npm run build
 cd -
