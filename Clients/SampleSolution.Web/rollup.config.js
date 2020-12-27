@@ -78,7 +78,7 @@ if (app === "Landing_es2020") {
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "LandingES2019", isESNext: true })
+        plugins: getPlugins({ appName: "LandingES2020", isESNext: true })
     });
 }
 
@@ -102,7 +102,7 @@ if (app === "Cabinet_es2020") {
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "CabinetES2019", isESNext: true })
+        plugins: getPlugins({ appName: "CabinetES2020", isESNext: true })
     });
 }
 
@@ -126,7 +126,7 @@ if (app === "Admin_es2020") {
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "AdminES2019", isESNext: true })
+        plugins: getPlugins({ appName: "AdminES2020", isESNext: true })
     });
 }
 
@@ -150,7 +150,7 @@ if (app === "Login_es2020") {
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "LoginES2019", isESNext: true })
+        plugins: getPlugins({ appName: "LoginES2020", isESNext: true })
     });
 }
 
@@ -174,7 +174,7 @@ if (app === "Polyfills_es2020") {
             format: "iife",
             sourcemap: isSourceMap
         },
-        plugins: getPlugins({ appName: "PolyfillsES2019", isESNext: true })
+        plugins: getPlugins({ appName: "PolyfillsES2020", isESNext: true })
     });
 }
 
