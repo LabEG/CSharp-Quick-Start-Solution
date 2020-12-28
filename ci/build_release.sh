@@ -24,7 +24,7 @@ docker run -t \
            --network=host \
            --rm \
            -v ${PWD}:/app \
-           node:15 \
+           node:latest \
            sh ./ci/build_web.sh
 
 echo ""
