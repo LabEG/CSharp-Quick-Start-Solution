@@ -22,9 +22,10 @@ echo ""
 docker run -t \
            -w /app \
            --network=host \
+           --user=node \
            --rm \
            -v ${PWD}:/app \
-           node:14 \
+           node:15 \
            sh ./ci/build_web.sh
 
 echo ""
