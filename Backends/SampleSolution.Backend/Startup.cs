@@ -66,6 +66,8 @@ namespace SampleSolution.Backend
                 // options.UseSqlServer(this.Configuration.GetConnectionString("AuthDBConnection"));
             });
 
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
             services.AddIdentity<AuthUser, IdentityRole>((options) => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<AuthDbContext>()
                 .AddDefaultTokenProviders();

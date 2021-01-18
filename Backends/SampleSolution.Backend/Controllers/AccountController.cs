@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using SampleSolution.ServerCore.Controllers.Base;
 using SampleSolution.ServerCore.DbContexts;
@@ -20,17 +21,20 @@ namespace SampleSolution.Backend.Controllers
         private readonly SignInManager<AuthUser> signInManager;
         private readonly IEmailSenderService emailSender;
         private readonly ILogger logger;
+        private readonly IConfiguration appSettings;
 
         public AccountController(
             UserManager<AuthUser> userManager,
             SignInManager<AuthUser> signInManager,
             IEmailSenderService emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            IConfiguration _appSettings)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.emailSender = emailSender;
             this.logger = logger;
+            this.appSettings = _appSettings;
         }
 
         [AllowAnonymous]
@@ -151,14 +155,24 @@ namespace SampleSolution.Backend.Controllers
 
             AuthUser user = new AuthUser { UserName = model.Login, Email = model.Email };
             IdentityResult result = await this.userManager.CreateAsync(user, model.Password);
+
             if (result.Succeeded)
             {
                 this.logger.LogInformation($"User {model.Email} created a new account with password.");
                 await this.signInManager.SignInAsync(user, isPersistent: false);
 
                 string code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
-                var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, "https", "qss.labeg.ru");
-                await this.emailSender.SendEmailAsync(model.Email, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                var callbackUrl = Url.Action(
+                    "ConfirmEmail",
+                    "Account",
+                    new { userId = user.Id, code = code },
+                    "https", appSettings.GetValue<string>("Host")
+                );
+                await this.emailSender.SendEmailAsync(
+                    model.Email,
+                    "Confirm your account",
+                    "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>"
+                );
 
                 return Ok();
             }
