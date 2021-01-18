@@ -142,7 +142,7 @@ namespace SampleSolution.Backend.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -157,9 +157,8 @@ namespace SampleSolution.Backend.Controllers
                 await this.signInManager.SignInAsync(user, isPersistent: false);
 
                 string code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
-                // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                // await UserManager<AuthUser>.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                await this.emailSender.SendEmailAsync(model.Email, "Регистрация", "Вы зарегистрированны.");
+                var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, "https", "qss.labeg.ru");
+                await this.emailSender.SendEmailAsync(model.Email, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                 return Ok();
             }
@@ -167,6 +166,13 @@ namespace SampleSolution.Backend.Controllers
             {
                 return BadRequest(result.Errors);
             }
+        }
+
+        [AllowAnonymous]
+        [HttpGet("confirmemail")]
+        public async Task<IActionResult> ConfirmEmail()
+        {
+            return Ok();
         }
 
         [HttpPost("logout")]

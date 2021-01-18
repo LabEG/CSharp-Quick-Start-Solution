@@ -20,6 +20,7 @@ namespace SampleSolution.ServerCore.Services
         {
             string fromEmail = this.smtpSettings.Value.NoReplyEmail;
             MailMessage mailMessage = new MailMessage(fromEmail, email, subject, message);
+            mailMessage.IsBodyHtml = true;
             SmtpClient smtpClient = new SmtpClient(this.smtpSettings.Value.SendServer, this.smtpSettings.Value.SendServerPort);
             smtpClient.EnableSsl = true;
             if (this.smtpSettings.Value.NoReplyUseAuth)
