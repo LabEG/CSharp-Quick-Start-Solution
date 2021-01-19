@@ -189,9 +189,24 @@ namespace SampleSolution.Backend.Controllers
 
         [AllowAnonymous]
         [HttpGet("confirmemail")]
-        public async Task<IActionResult> ConfirmEmail()
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
-            return Ok();
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{userId}'.");
+            }
+
+            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            var result = await userManager.ConfirmEmailAsync(user, code);
+            if (result.Succeeded)
+            {
+                return BadRequest("Error confirming your email.");
+            }
+            else
+            {
+                return Redirect($"https://{appSettings.GetValue<string>("Host")}/cabinet/");
+            }
         }
 
         [HttpPost("logout")]
