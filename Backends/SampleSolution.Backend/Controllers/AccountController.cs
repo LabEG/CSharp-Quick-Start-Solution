@@ -1,8 +1,11 @@
 using System;
+using System.Text;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using SampleSolution.ServerCore.Controllers.Base;
@@ -39,7 +42,7 @@ namespace SampleSolution.Backend.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginViewModel model)
+        public async Task<IActionResult> Login([FromBody] LoginViewModel model) // checked
         {
             if (!this.ModelState.IsValid)
             {
@@ -146,7 +149,7 @@ namespace SampleSolution.Backend.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
+        public async Task<IActionResult> Register([FromBody] RegisterViewModel model) // checked
         {
             if (!this.ModelState.IsValid)
             {
@@ -162,16 +165,18 @@ namespace SampleSolution.Backend.Controllers
                 await this.signInManager.SignInAsync(user, isPersistent: false);
 
                 string code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                 var callbackUrl = Url.Action(
                     "ConfirmEmail",
                     "Account",
                     new { userId = user.Id, code = code },
-                    "https", appSettings.GetValue<string>("Host")
+                    "https",
+                    appSettings.GetValue<string>("Host")
                 );
                 await this.emailSender.SendEmailAsync(
                     model.Email,
                     "Confirm your account",
-                    "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>"
+                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>."
                 );
 
                 return Ok();
