@@ -78,7 +78,6 @@ namespace SampleSolution.Backend
             services.AddScoped(typeof(ICrudDbRepository<,,>), typeof(CrudDbRepository<,,>));
             services.AddScoped(typeof(ICrudDbService<,,>), typeof(CrudDbService<,,>));
 
-#if DEBUG
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -91,7 +90,6 @@ namespace SampleSolution.Backend
                     }
                 );
             });
-#endif
 
             // Add framework services.
             services
