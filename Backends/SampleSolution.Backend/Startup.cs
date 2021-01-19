@@ -145,6 +145,7 @@ namespace SampleSolution.Backend
                       .AllowAnyHeader()
             // .AllowCredentials()
             );
+#endif
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger(); // https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?tabs=visual-studio
@@ -154,7 +155,6 @@ namespace SampleSolution.Backend
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "SampleSolution Backend API V1");
             });
-#endif
 
             // app.UseHttpsRedirection();
             // app.UseStaticFiles();
