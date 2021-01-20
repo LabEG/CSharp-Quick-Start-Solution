@@ -189,7 +189,7 @@ namespace SampleSolution.Backend.Controllers
 
         [AllowAnonymous]
         [HttpGet("confirmemail")]
-        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        public async Task<IActionResult> ConfirmEmail(string userId, string code) // checked
         {
             var user = await userManager.FindByIdAsync(userId);
             if (user == null)
@@ -210,7 +210,7 @@ namespace SampleSolution.Backend.Controllers
         }
 
         [HttpPost("logout")]
-        public async Task Logout()
+        public async Task Logout() // checked
         {
             await this.signInManager.SignOutAsync();
             this.logger.LogInformation("User logged out.");
