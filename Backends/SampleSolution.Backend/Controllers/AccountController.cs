@@ -208,11 +208,11 @@ namespace SampleSolution.Backend.Controllers
             IdentityResult result = await this.userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
-                return BadRequest("Error confirming your email.");
+                return Redirect($"https://{appSettings.GetValue<string>("Host")}/cabinet/");
             }
             else
             {
-                return Redirect($"https://{appSettings.GetValue<string>("Host")}/cabinet/");
+                return BadRequest("Error confirming your email.");
             }
         }
 
@@ -236,27 +236,30 @@ namespace SampleSolution.Backend.Controllers
         [HttpPost("externalloginconfirm")]
         public async Task<IActionResult> ExternalLoginConfirmation([FromBody] ExternalLoginViewModel model)
         {
-            if (this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                // Get the information about the user from the external login provider
-                ExternalLoginInfo info = await this.signInManager.GetExternalLoginInfoAsync();
-                if (info == null)
-                {
-                    throw new ApplicationException("Error loading external login information during confirmation.");
-                }
-                AuthUser user = new AuthUser { UserName = model.Email, Email = model.Email };
-                IdentityResult result = await this.userManager.CreateAsync(user);
+                return BadRequest(this.ModelState);
+            }
+
+            // Get the information about the user from the external login provider
+            ExternalLoginInfo info = await this.signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                throw new ApplicationException("Error loading external login information during confirmation.");
+            }
+            AuthUser user = new AuthUser { UserName = model.Email, Email = model.Email };
+            IdentityResult result = await this.userManager.CreateAsync(user);
+            if (result.Succeeded)
+            {
+                result = await this.userManager.AddLoginAsync(user, info);
                 if (result.Succeeded)
                 {
-                    result = await this.userManager.AddLoginAsync(user, info);
-                    if (result.Succeeded)
-                    {
-                        await this.signInManager.SignInAsync(user, isPersistent: false);
-                        this.logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
-                        return Ok();
-                    }
+                    await this.signInManager.SignInAsync(user, isPersistent: false);
+                    this.logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
+                    return Ok();
                 }
             }
+
             return BadRequest(this.ModelState);
         }
 
@@ -264,46 +267,62 @@ namespace SampleSolution.Backend.Controllers
         [HttpPost("forgot")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordViewModel model)
         {
-            if (this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                AuthUser user = await this.userManager.FindByEmailAsync(model.Email);
-                if (user == null || !(await this.userManager.IsEmailConfirmedAsync(user)))
-                {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return this.BadRequest("User does not exist.");
-                }
-
-                // For more information on how to enable account confirmation and password reset please
-                // visit https://go.microsoft.com/fwlink/?LinkID=532713
-                string code = await this.userManager.GeneratePasswordResetTokenAsync(user);
-                await this.emailSender.SendEmailAsync(
-                    model.Email,
-                    "Reset Password",
-                   $"Please reset your password by clicking here: <a href='url'>link</a>"
-                );
-                return Ok();
+                return BadRequest(this.ModelState);
             }
-            return BadRequest(this.ModelState);
+
+            AuthUser user = await this.userManager.FindByEmailAsync(model.Email);
+            if (user == null || !(await this.userManager.IsEmailConfirmedAsync(user)))
+            {
+                // Don't reveal that the user does not exist or is not confirmed
+                return this.BadRequest("User does not exist.");
+            }
+
+            // For more information on how to enable account confirmation and password reset please
+            // visit https://go.microsoft.com/fwlink/?LinkID=532713
+            string code = await this.userManager.GeneratePasswordResetTokenAsync(user);
+            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
+            string callbackUrl = $"https://{appSettings.GetValue<string>("Host")}/login/reset?code={code}";
+
+            await this.emailSender.SendEmailAsync(
+                model.Email,
+                "Reset Password",
+               $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>."
+            );
+            return Ok();
         }
 
         [AllowAnonymous]
         [HttpPost("reset")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordViewModel model)
         {
-            if (this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                AuthUser user = await this.userManager.FindByEmailAsync(model.Email);
-                if (user == null)
-                {
-                    // Don't reveal that the user does not exist
-                    return this.BadRequest("User does not exist.");
-                }
-                IdentityResult result = await this.userManager.ResetPasswordAsync(user, model.Code, model.Password);
-                if (result.Succeeded)
-                {
-                    return Ok();
-                }
+                return BadRequest(this.ModelState);
             }
+
+            AuthUser user = await this.userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                // Don't reveal that the user does not exist
+                return this.BadRequest("User does not exist.");
+            }
+
+            string code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(model.Code));
+
+            IdentityResult result = await this.userManager.ResetPasswordAsync(user, code, model.Password);
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+
+            foreach (IdentityError error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
             return BadRequest(this.ModelState);
         }
     }
