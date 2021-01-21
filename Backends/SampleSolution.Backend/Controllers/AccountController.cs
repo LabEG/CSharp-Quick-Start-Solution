@@ -61,7 +61,13 @@ namespace SampleSolution.Backend.Controllers
             }
             if (result.RequiresTwoFactor)
             {
+                this.logger.LogWarning("Requires two factor identification.");
                 return this.BadRequest("Requires two factor identification.");
+            }
+            if (result.IsNotAllowed)
+            {
+                this.logger.LogWarning("Login is not allowed.");
+                return this.BadRequest("Login is not allowed.");
             }
             if (result.IsLockedOut)
             {

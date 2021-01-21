@@ -78,7 +78,12 @@ namespace SampleSolution.ServerCore.DbContexts
             if (user == null)
             {
                 AuthUser admin = new AuthUser { UserName = "demo", Email = "demo@example.com" };
-                userManager.CreateAsync(admin, "demo").Wait();
+
+                /**
+                 * W^2t7rk(bWn^<}KM - demo password for showcase.
+                 * Later need move it to environment variables
+                 */
+                userManager.CreateAsync(admin, "W^2t7rk(bWn^<}KM").Wait();
             }
         }
     }
