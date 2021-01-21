@@ -43,11 +43,18 @@ namespace SampleSolution.Backend
         {
             services.Configure<SmtpSettings>(Configuration.GetSection("Smtp"));
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.Name = "Qss";
+                options.ExpireTimeSpan = TimeSpan.FromDays(60);
+                options.SlidingExpiration = true;
+            });
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.MinimumSameSitePolicy = SameSiteMode.Strict;
             });
 
             services.AddDbContext<MainDbContext>(options =>
@@ -68,7 +75,10 @@ namespace SampleSolution.Backend
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddIdentity<AuthUser, IdentityRole>((options) => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<AuthUser, IdentityRole>((options) =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+            })
                 .AddEntityFrameworkStores<AuthDbContext>()
                 .AddDefaultTokenProviders();
 

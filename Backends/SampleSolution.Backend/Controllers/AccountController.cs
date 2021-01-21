@@ -265,7 +265,7 @@ namespace SampleSolution.Backend.Controllers
 
         [AllowAnonymous]
         [HttpPost("forgot")]
-        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordViewModel model)
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordViewModel model) // checked
         {
             if (!this.ModelState.IsValid)
             {
@@ -296,7 +296,7 @@ namespace SampleSolution.Backend.Controllers
 
         [AllowAnonymous]
         [HttpPost("reset")]
-        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordViewModel model)
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordViewModel model) // checked
         {
             if (!this.ModelState.IsValid)
             {
