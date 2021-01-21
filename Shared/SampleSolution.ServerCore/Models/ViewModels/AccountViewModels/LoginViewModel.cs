@@ -5,6 +5,9 @@ namespace SampleSolution.ServerCore.Models.ViewModels.AccountViewModels
     public class LoginViewModel
     {
         [Required]
+        public string Login { get; set; } // for test, delete it later
+
+        [Required]
         [EmailAddress]
         public string Email { get; set; }
 
