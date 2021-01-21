@@ -52,7 +52,7 @@ namespace SampleSolution.Backend.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, set lockoutOnFailure: true
             var result = await this.signInManager
-                .PasswordSignInAsync(model.Login, model.Password, model.RememberMe, lockoutOnFailure: false);
+                .PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
 
             if (result.Succeeded)
             {
