@@ -172,7 +172,8 @@ namespace SampleSolution.Backend.Controllers
 
                 string code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                var callbackUrl = Url.Action(
+
+                string callbackUrl = Url.Action(
                     "ConfirmEmail",
                     "Account",
                     new { userId = user.Id, code = code },
@@ -197,14 +198,14 @@ namespace SampleSolution.Backend.Controllers
         [HttpGet("confirmemail")]
         public async Task<IActionResult> ConfirmEmail(string userId, string code) // checked
         {
-            var user = await userManager.FindByIdAsync(userId);
+            AuthUser user = await this.userManager.FindByIdAsync(userId);
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{userId}'.");
             }
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-            var result = await userManager.ConfirmEmailAsync(user, code);
+            IdentityResult result = await this.userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
                 return BadRequest("Error confirming your email.");

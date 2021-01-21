@@ -9,9 +9,6 @@ namespace SampleSolution.ServerCore.DbContexts
 {
     public class AuthUser : IdentityUser, IEntity<string>
     {
-        // add property here
-        public new string Id { get; set; }
-
         public DateTime CreatedTime { get; set; }
         public DateTime LastUpdateTime { get; set; }
     }
