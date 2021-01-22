@@ -4,7 +4,7 @@ import { BaseModel } from "../../_base/BaseModel";
 export class LoginDto extends BaseModel {
 
     @jsonProperty(String)
-    public email: string = "";
+    public login: string = "";
 
     @jsonProperty(String)
     public password: string = "";

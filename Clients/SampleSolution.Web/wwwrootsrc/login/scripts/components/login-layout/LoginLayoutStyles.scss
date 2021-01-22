@@ -12,6 +12,8 @@
         width: 24em;
         padding: 0 2em 2em;
         text-align: center;
+        max-height: 90vh;
+        overflow: auto;
     }
 
     .input-block {

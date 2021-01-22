@@ -59,7 +59,7 @@ export class SignInPageController<P, S> extends BaseController<P, S> {
     public checkLogin(): void {
         try {
             // location.href = "./";
-        } catch (err) {
+        } catch (err: unknown) {
             // nothing do
         }
     }
@@ -70,16 +70,16 @@ export class SignInPageController<P, S> extends BaseController<P, S> {
             this.redraw();
 
             const login = new LoginDto();
-            login.email = this.login;
+            login.login = this.login;
             login.password = this.password;
             login.rememberMe = this.rememberMe;
 
             await this.accountService.login(login);
-        } catch (err) {
-            if (err.message === "401 - Unauthorized") {
-                alertify.error("При попытке залогиниться произошла ошибка: неверный логин или пароль");
+        } catch (err: unknown) {
+            if (err instanceof Error && err.message === "400 - Bad Request") {
+                alertify.error("An error occurred while trying to login: wrong login or password.");
             } else {
-                alertify.error(`При попытке залогиниться произошла ошибка: ${err}`);
+                alertify.error(`An error occurred while trying to login: ${String(err)}`);
             }
         } finally {
             this.isProgress = false;

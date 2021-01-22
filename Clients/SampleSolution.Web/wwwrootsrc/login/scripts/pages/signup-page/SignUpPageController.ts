@@ -6,6 +6,7 @@ import { FormErrors } from "../../../../core/scripts/models/ViewModels/FormError
 import { RegistrationDto } from "../../../../core/scripts/models/Dto/AccountsDto/RegistrationDto";
 import { autowired } from "first-di";
 import { AccountService } from "../../../../core/scripts/services/AccountService";
+import { alertify } from "@labeg/alertify.js";
 
 export class SignUpPage<P> extends PageController<P> {
 
@@ -65,8 +66,9 @@ export class SignUpPageController<P, S> extends BaseController<P, S> {
             this.redraw();
 
             await this.accountService.register(this.registration);
-        } catch (e) {
-            this.errorMessage = (e as Error).message;
+        } catch (err: unknown) {
+            this.errorMessage = (err as Error).message;
+            alertify.error(`An error occurred while trying to register: ${String(err)}`);
         } finally {
             this.isProgress = false;
             this.redraw();
