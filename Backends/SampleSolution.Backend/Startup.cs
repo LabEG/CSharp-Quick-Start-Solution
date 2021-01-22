@@ -45,7 +45,7 @@ namespace SampleSolution.Backend
 
             services.ConfigureApplicationCookie(options =>
             {
-                // options.Cookie.Name = "QssIdentity";
+                options.Cookie.Name = "Qss.Identity";
                 options.ExpireTimeSpan = TimeSpan.FromDays(60);
                 options.SlidingExpiration = true;
             });
