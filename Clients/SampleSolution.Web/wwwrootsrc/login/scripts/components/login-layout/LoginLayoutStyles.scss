@@ -4,6 +4,9 @@
     align-items: center;
     justify-content: center;
     background-color: #ddd;
+    background-image: url("./content/images/login-wallpaper-blur5px-1920w.webp");
+    background-size: cover;
+    background-position: center;
 
     .login-form {
         width: 24em;
@@ -12,7 +15,6 @@
     }
 
     .input-block {
-        max-width: 14em;
         margin: auto;
         margin-top: 0.5em;
     }
