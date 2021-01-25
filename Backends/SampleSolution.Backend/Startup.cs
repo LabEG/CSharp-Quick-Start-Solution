@@ -147,16 +147,6 @@ namespace SampleSolution.Backend
                 app.UseHsts();
             }
 
-#if DEBUG
-            // Shows UseCors with CorsPolicyBuilder. // todo: wrap in developer environment only
-            app.UseCors(builder =>
-               builder.AllowAnyOrigin()
-                      .AllowAnyMethod()
-                      .AllowAnyHeader()
-            // .AllowCredentials()
-            );
-#endif
-
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger(); // https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?tabs=visual-studio
 

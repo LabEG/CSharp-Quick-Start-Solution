@@ -8,6 +8,7 @@ import React from "react";
 // https://reacttraining.com/react-router/web/api/Route
 export const loginLayoutView = <T extends LoginLayoutOptions, S>(ctrl: LoginLayoutController<T, S>, props: T): JSX.Element => (
     <div className="LoginLayout">
+        <div className="login-background sm-hidden" />
         <Paper className="login-form"
             elevation={4}>
             <BrowserRouter basename="/login/">

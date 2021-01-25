@@ -6,7 +6,6 @@ import { FormErrors } from "../../../../core/scripts/models/ViewModels/FormError
 import { RegistrationDto } from "../../../../core/scripts/models/Dto/AccountsDto/RegistrationDto";
 import { autowired } from "first-di";
 import { AccountService } from "../../../../core/scripts/services/AccountService";
-import { alertify } from "@labeg/alertify.js";
 
 export class SignUpPage<P> extends PageController<P> {
 
@@ -63,12 +62,12 @@ export class SignUpPageController<P, S> extends BaseController<P, S> {
     public async makeLogin(): Promise<void> {
         try {
             this.isProgress = true;
+            this.errorMessage = null;
             this.redraw();
 
             await this.accountService.register(this.registration);
         } catch (err: unknown) {
             this.errorMessage = (err as Error).message;
-            alertify.error(`An error occurred while trying to register: ${String(err)}`);
         } finally {
             this.isProgress = false;
             this.redraw();
@@ -77,6 +76,7 @@ export class SignUpPageController<P, S> extends BaseController<P, S> {
 
     public async handleInput(prop: keyof RegistrationDto): Promise<void> {
         await this.formErrors.onChangeProp(prop);
+        this.errorMessage = null;
         this.redraw();
     }
 
@@ -87,6 +87,7 @@ export class SignUpPageController<P, S> extends BaseController<P, S> {
 
     public onEnterKeyPress(event: KeyboardEventInit): void {
         if (event.key === "Enter") {
+            this.errorMessage = null;
             this.makeLogin();
         }
     }

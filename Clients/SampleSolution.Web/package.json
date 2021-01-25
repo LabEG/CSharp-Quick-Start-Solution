@@ -8,6 +8,7 @@
     "@labeg/alertify.js": "=2.0.42",
     "@labeg/webapp-core": "=0.1.61",
     "@material-ui/core": "=4.11.2",
+    "@material-ui/lab": "=4.0.0-alpha.57",
     "@material-ui/icons": "=4.11.2",
     "abortcontroller-polyfill": "=1.5.0",
     "class-validator": "=0.12.2",

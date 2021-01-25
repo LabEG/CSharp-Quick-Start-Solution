@@ -1,6 +1,5 @@
 import React from "react";
 import { SignUpPageController } from "./SignUpPageController";
-import PersonAdd from "@material-ui/icons/PersonAdd";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -8,26 +7,36 @@ import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Collapse from "@material-ui/core/Collapse";
+import Alert from "@material-ui/lab/Alert";
 
 export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: P): JSX.Element => (
     <div className="SignUpPageController">
         <form>
-            <h2 className="text-center">
-                Sign Up
-            </h2>
-            <PersonAdd key={10} className="avatar" />
-            <div className="grid input-block">
-                <div className="col-6 text-left link-block">
+
+            <div className="grid-bottom">
+                <div className="col-3_sm-6 text-left link-block">
                     <Link to="/sign-in" component={RouterLink}>
                         Sign In
                     </Link>
                 </div>
-                <div className="col-6 text-right link-block">
+                <div className="col-6_sm-12 col_sm-first">
+                    <h2 className="text-center block-title">
+                        Sign Up
+                    </h2>
+                </div>
+                <div className="col-3_sm-6 text-right link-block">
                     <Link to="/restore" component={RouterLink}>
                         Restore
                     </Link>
                 </div>
-                <div className="col-12">
+            </div>
+
+            <br />
+            <br />
+
+            <div className="grid">
+                <div className="col-6_sm-12">
                     <TextField fullWidth
                         name="login"
                         label="Login"
@@ -41,7 +50,7 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                         onBlur={() => ctrl.handleBlur("login")}
                         onKeyPress={(event: KeyboardEventInit) => ctrl.onEnterKeyPress(event)} />
                 </div>
-                <div className="col-12">
+                <div className="col-6_sm-12">
                     <TextField fullWidth
                         name="email"
                         label="Email"
@@ -56,7 +65,7 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                         onBlur={() => ctrl.handleBlur("email")}
                         onKeyPress={(event: KeyboardEventInit) => ctrl.onEnterKeyPress(event)} />
                 </div>
-                <div className="col-12">
+                <div className="col-6_sm-12">
                     <TextField fullWidth
                         name="password"
                         label="Password"
@@ -71,7 +80,7 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                         onBlur={() => ctrl.handleBlur("password")}
                         onKeyPress={(event: KeyboardEventInit) => ctrl.onEnterKeyPress(event)} />
                 </div>
-                <div className="col-12">
+                <div className="col-6_sm-12">
                     <TextField fullWidth
                         name="password"
                         label="Confirm Password"
@@ -86,6 +95,19 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                         onBlur={() => ctrl.handleBlur("confirmPassword")}
                         onKeyPress={(event: KeyboardEventInit) => ctrl.onEnterKeyPress(event)} />
                 </div>
+                <div className="col-12">
+                    <Collapse className="full-width" in={Boolean(ctrl.errorMessage)}>
+                        <Alert severity="error">
+                            {ctrl.errorMessage}
+                        </Alert>
+                    </Collapse>
+                </div>
+            </div>
+
+            <br />
+            <br />
+
+            <div className="grid">
                 <div className="col-12">
                     <FormControlLabel label={
                         <small>
