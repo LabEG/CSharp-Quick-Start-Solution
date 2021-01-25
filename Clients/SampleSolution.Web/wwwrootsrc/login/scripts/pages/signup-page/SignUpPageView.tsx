@@ -20,7 +20,7 @@ export const signUpPageView = <P, S>(ctrl: SignUpPageController<P, S>, _props?: 
                         Sign In
                     </Link>
                 </div>
-                <div className="col-6_sm-12 col_sm-first">
+                <div className="col-6_sm-12 mobile-order">
                     <h2 className="text-center block-title">
                         Sign Up
                     </h2>

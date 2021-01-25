@@ -60,4 +60,10 @@
     .full-width {
         width: 100%;
     }
+
+    .mobile-order {
+        @media (max-width: $smallScreen) {
+            order: -1;
+        }
+    }
 }
