@@ -1,7 +1,6 @@
 import { PageController } from "../../../../core/scripts/components/_base/PageController";
 import { signInPageView } from "./SignInPageView";
 import { BaseController } from "../../../../core/scripts/components/_base/BaseController";
-import { alertify } from "@labeg/alertify.js";
 import style from "./SignInPageStyles.scss";
 import { autowired } from "first-di";
 import { AccountService } from "../../../../core/scripts/services/AccountService";
@@ -30,6 +29,8 @@ export class SignInPage<P> extends PageController<P> {
 export class SignInPageController<P, S> extends BaseController<P, S> {
 
     public isProgress: boolean = false;
+
+    public errorMessage: string | null = null;
 
     public login: string = "";
 
@@ -67,6 +68,7 @@ export class SignInPageController<P, S> extends BaseController<P, S> {
     public async makeLogin(): Promise<void> {
         try {
             this.isProgress = true;
+            this.errorMessage = null;
             this.redraw();
 
             const login = new LoginDto();
@@ -76,11 +78,7 @@ export class SignInPageController<P, S> extends BaseController<P, S> {
 
             await this.accountService.login(login);
         } catch (err: unknown) {
-            if (err instanceof Error && err.message === "400 - Bad Request") {
-                alertify.error("An error occurred while trying to login: wrong login or password.");
-            } else {
-                alertify.error(`An error occurred while trying to login: ${String(err)}`);
-            }
+            this.errorMessage = (err as Error).message;
         } finally {
             this.isProgress = false;
             this.redraw();
@@ -89,22 +87,26 @@ export class SignInPageController<P, S> extends BaseController<P, S> {
 
     public onEnterKeyPress(event: KeyboardEventInit): void {
         if (event.key === "Enter") {
+            this.errorMessage = null;
             this.makeLogin();
         }
     }
 
     public setLogin(value: string): void {
         this.login = value;
+        this.errorMessage = null;
         this.redraw();
     }
 
     public setPassword(value: string): void {
         this.password = value;
+        this.errorMessage = null;
         this.redraw();
     }
 
     public setRememberMe(value: boolean): void {
         this.rememberMe = value;
+        this.errorMessage = null;
         this.redraw();
     }
 
