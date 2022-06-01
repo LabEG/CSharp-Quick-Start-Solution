@@ -63,7 +63,7 @@
     "rollup-plugin-terser": "=7.0.2",
     "rollup-plugin-visualizer": "=4.2.0",
     "semver": "=7.3.4",
-    "sharp": "=0.27.0",
+    "sharp": "=0.30.5",
     "stylelint-scss": "=3.18.0",
     "ts-node": "=9.1.1",
     "typescript": "=4.1.3"
