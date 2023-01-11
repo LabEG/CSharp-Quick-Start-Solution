@@ -11,7 +11,7 @@
     "@material-ui/lab": "=4.0.0-alpha.57",
     "@material-ui/icons": "=4.11.2",
     "abortcontroller-polyfill": "=1.5.0",
-    "class-validator": "=0.12.2",
+    "class-validator": "=0.14.0",
     "classnames": "=2.2.6",
     "core-js": "=3.8.1",
     "first-di": "=0.1.29",
